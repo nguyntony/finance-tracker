@@ -16,6 +16,7 @@ const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
 // will need to import your router folder
+const routes = require("./routers")
 
 app.engine('html', es6Renderer);
 app.set('views', 'templates');
@@ -39,6 +40,7 @@ app.use(logger)
 app.use(express.urlencoded({ extended: true }));
 
 // more routes will go here
+app.use(routes)
 
 server.listen(PORT, HOST, () => {
     console.log(`Listening at`, HOST, PORT)
