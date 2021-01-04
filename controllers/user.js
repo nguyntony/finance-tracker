@@ -60,7 +60,7 @@ const processLogin = async (req, res) => {
 	if (user && bcrypt.compareSync(password, user.hash)) {
 		console.log("=====LOGIN SUCCESS=====");
 		req.session.user = {
-			username,
+			firstName: user.firstName,
 			id: user.id,
 		};
 		req.session.save(() => {
