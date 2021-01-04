@@ -81,13 +81,7 @@ const requireLogin = (req, res, next) => {
 	if (req.session.user) {
 		next();
 	} else {
-		res.redirect("/user/login", {
-			...layout,
-			locals: {
-				title: "Login!",
-				errormsg: "",
-			},
-		});
+		res.redirect("/user/login");
 	}
 };
 
