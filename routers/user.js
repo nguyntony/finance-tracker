@@ -7,6 +7,7 @@ router
 	.get("/signup", userController.signUp)
 	.post("/signup", userController.processSignUp)
 	.get("/login", userController.login)
-	.post("/login", userController.processLogin);
+	.post("/login", userController.processLogin)
+	.get("/logout", userController.logout);
 
 module.exports = router;

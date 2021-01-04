@@ -91,10 +91,17 @@ const requireLogin = (req, res, next) => {
 	}
 };
 
+const logout = (req, res) => {
+	req.session.destroy(() => {
+		res.redirect("/user/login");
+	});
+};
+
 module.exports = {
 	signUp,
 	processSignUp,
 	login,
 	processLogin,
+	logout,
 	requireLogin,
 };
