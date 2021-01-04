@@ -1,4 +1,5 @@
 ${header}
+<h1>Add Transaction</h1>
 <form method="POST">
     <label for="category">Category</label>
     <select name="category" id="category">
@@ -14,11 +15,12 @@ ${header}
     </select>
 
     <label for="amount" title="Enter the transaction amount.">Amount ($)</label>
-    <input type="number" min="0" id="amount" required>
+    <input type="number" min="0" id="amount" name="amount" required>
 
     <label for="description">Description (Optional)</label>
     <textarea name="description" id="description" cols="30" rows="10"></textarea>
 
     <input type="submit" value="Submit">
 </form>
+<a href="/member/home">Return</a>
 ${footer}

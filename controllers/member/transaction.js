@@ -27,7 +27,7 @@ const processTransactionForm = async (req, res) => {
     })
 
     // need to figure out where to redirect the user
-    res.redirect("")
+    res.redirect("/member/home")
 }
 
 module.exports = {
