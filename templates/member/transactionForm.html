@@ -2,15 +2,17 @@ ${header}
 <form method="POST">
     <label for="category">Category</label>
     <select name="category" id="category">
-        <option disabled selected>Select one</option>
+        <option disabled selected>Select One</option>
         <option value="bills">Bills</option>
         <option value="auto">Auto & Transport</option>
         <option value="health">Health & Medical</option>
         <option value="food">Food & Dining</option>
         <option value="shopping">Shopping</option>
         <option value="other">Other</option>
+        <option disabled>Transfer to Savings</option>
+        <option value="saving">Saving</option>
     </select>
-    
+
     <label for="amount" title="Enter the transaction amount.">Amount ($)</label>
     <input type="number" min="0" id="amount" required>
 
