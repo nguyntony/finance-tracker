@@ -77,9 +77,24 @@ const processLogin = async (req, res) => {
 	}
 };
 
+const requireLogin = (req, res, next) => {
+	if (req.session.user) {
+		next();
+	} else {
+		res.redirect("/user/login", {
+			...layout,
+			locals: {
+				title: "Login!",
+				errormsg: "",
+			},
+		});
+	}
+};
+
 module.exports = {
 	signUp,
 	processSignUp,
 	login,
 	processLogin,
+	requireLogin,
 };
