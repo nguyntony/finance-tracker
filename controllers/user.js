@@ -64,7 +64,7 @@ const processLogin = async (req, res) => {
 			id: user.id,
 		};
 		req.session.save(() => {
-			res.redirect("/member");
+			res.redirect("/member/home");
 		});
 	} else {
 		res.render("user/login", {

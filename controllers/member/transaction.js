@@ -3,7 +3,7 @@ const { Transaction } = require("../../models")
 
 // fn to display the transaction form
 const showTransactionForm = (req, res) => {
-    res.render("transactionForm", {
+    res.render("member/transactionForm", {
         ...layout,
         locals: {
             title: "Transaction Form"
