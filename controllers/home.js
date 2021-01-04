@@ -1,5 +1,13 @@
+const { layout } = require("../layout")
+
 const home = (req, res) => {
-    res.render("home")
+    res.render("home", {
+        ...layout,
+        locals: {
+            title: "T|WIN Homepage",
+            errormsg: ""
+        }
+    })
 }
 
 module.exports = {

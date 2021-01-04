@@ -1,7 +1,10 @@
 const layout = {
     partials: {
         header: '/partials/header',
-        footer: '/partials/footer'
+        homeHeader: '/partials/homeHeader',
+        footer: '/partials/footer',
+        loginForm: '/partials/loginForm',
+        signUpForm: '/partials/signUpForm'
     }
 };
 
