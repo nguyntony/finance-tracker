@@ -1,3 +1,4 @@
+const { NIL } = require("uuid")
 const { layout } = require("../../layout")
 const { Saving } = require('../../models')
 
@@ -12,7 +13,14 @@ const showSavingForm = (req, res) => {
 
 const processSavingForm = async (req, res) => {
     const { id } = req.session.user
-    const { title, deadline, total, category } = req.body
+    let { title, deadline, total, category } = req.body
+
+    if (!total) {
+        total = null
+    }
+    if (!deadline) {
+        deadline = null
+    }
 
     const newSaving = await Saving.create({
         title,

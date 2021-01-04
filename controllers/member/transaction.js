@@ -16,9 +16,13 @@ const processTransactionForm = async (req, res) => {
     // need uid
     const { id } = req.session.user
     // need to extract the values from the form
-    const { category, amount, description } = req.body;
+    let { category, amount, description } = req.body;
 
     // will possibly need to change the amount to a number value and also account for decimal places
+    if (!description) {
+        description = null
+    }
+
     const newTransaction = await Transaction.create({
         category,
         amount,

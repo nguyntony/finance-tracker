@@ -2,14 +2,24 @@ ${header}
 <h1>Savings Form</h1>
 <form action="" method="post">
     <label for="category">Category</label>
-    <input type="text" name="category" id="category">
-    <label for="title" id="title">What are you saving for?</label>
+
+    <select name="category" id="category">
+        <option disabled selected>Select One</option>
+        <option value="home">Buy a Home</option>
+        <option value="car">Buy a Car</option>
+        <option value="education">Education</option>
+        <option value="travel">Travel / Vacation</option>
+        <option value="item">Item / Products</option>
+        <option value="other">Other</option>
+    </select>
+
+    <label for="title" id="title">Savings Name</label>
     <input type="text" name="title" id="title" required>
-    <label for="deadline" id="deadline">When do you want to reach this goal by? (Optional)</label>
+    <label for="deadline" id="deadline">Goal Deadline (Optional)</label>
     <input type="date" name="deadline" id="deadline">
-    <label for="total" id="total">Goal Amount (optional)</label>
+    <label for="total" id="total">Goal Amount (Optional)</label>
     <input type="number" name="total" id="total">
-    <input type="submit" value="Create Goal!">
+    <input type="submit" value="Create Goal">
 </form>
 <a href="/member/home">Return</a>
 ${footer}
