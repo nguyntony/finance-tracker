@@ -1,5 +1,5 @@
 const { layout } = require("../../layout")
-const { Transaction } = require("../../models")
+const { Transaction } = require('../../models')
 
 // fn to display the transaction form
 const showTransactionForm = (req, res) => {
