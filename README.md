@@ -1,11 +1,7 @@
 # T|WIN  Personal Finance Tracker
-### Itinerary
-- create member route
-- create savings form/html
-- ensure the id is stored in sessions 
-- create requireLogin/authentification middleware
 
 ### Changelog 
+- 1/4/2021: Created the member route and the necessary forms. 
 - 1/3/2021: Created user signup/login form, transaction form.
 - 1/2/2021: Created the repo environment for T|WIN finance tracker. 
 - - - -
