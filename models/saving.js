@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     uid: DataTypes.INTEGER,
     title: DataTypes.STRING,
     deadline: DataTypes.DATEONLY,
-    total: DataTypes.INTEGER,
-    progress: DataTypes.INTEGER,
+    total: DataTypes.DECIMAL(10, 2),
+    progress: DataTypes.DECIMAL(10, 2),
     category: DataTypes.STRING
   }, {
     sequelize,

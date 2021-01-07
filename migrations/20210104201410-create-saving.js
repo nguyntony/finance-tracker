@@ -10,7 +10,11 @@ module.exports = {
       },
       uid: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "Users",
+          key: "id"
+        }
       },
       title: {
         type: Sequelize.STRING,
@@ -20,10 +24,10 @@ module.exports = {
         type: Sequelize.DATEONLY
       },
       total: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(10, 2)
       },
       progress: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(10, 2)
       },
       category: {
         type: Sequelize.STRING,

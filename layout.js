@@ -25,9 +25,14 @@ const getMessages = (req) => {
     }
 }
 
+const addDecimal = (num) => {
+    return Number.parseFloat(num).toFixed(2)
+}
+
 module.exports = {
     layout,
     getMessages,
     partialContent,
-    msgContent
+    msgContent,
+    addDecimal
 };
