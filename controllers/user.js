@@ -1,5 +1,10 @@
 const bcrypt = require("bcryptjs");
-const { layout, partialContent, msgContent, getMessages } = require("../layout");
+const {
+	layout,
+	partialContent,
+	msgContent,
+	getMessages,
+} = require("../helper");
 const { User } = require("../models");
 
 const signUp = (req, res) => {
@@ -11,12 +16,12 @@ const signUp = (req, res) => {
 		// },
 		partials: {
 			...partialContent,
-			...msgContent
+			...msgContent,
 		},
 		locals: {
 			title: "Sign Up",
-			messages: getMessages(req)
-		}
+			messages: getMessages(req),
+		},
 	});
 };
 
@@ -44,11 +49,12 @@ const processSignUp = async (req, res) => {
 			// 		errormsg: "This username is already taken.",
 			// 	},
 			// });
-			req.session.flash = { error: "This username has already been taken." }
+			req.session.flash = {
+				error: "This username has already been taken.",
+			};
 			req.session.save(() => {
-				res.redirect("/user/signup")
-			})
-
+				res.redirect("/user/signup");
+			});
 		}
 	}
 };
@@ -62,12 +68,12 @@ const login = (req, res) => {
 		// },
 		partials: {
 			...partialContent,
-			...msgContent
+			...msgContent,
 		},
 		locals: {
 			title: "Login",
-			messages: getMessages(req)
-		}
+			messages: getMessages(req),
+		},
 	});
 };
 
@@ -95,10 +101,10 @@ const processLogin = async (req, res) => {
 		// 		errormsg: "The username or password is incorrect.",
 		// 	},
 		// });
-		req.session.flash = { error: "The username or password is incorrect." }
+		req.session.flash = { error: "The username or password is incorrect." };
 		req.session.save(() => {
-			res.redirect("/user/login")
-		})
+			res.redirect("/user/login");
+		});
 	}
 };
 
