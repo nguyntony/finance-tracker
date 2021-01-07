@@ -41,6 +41,7 @@ app.use(
 app.use(flash());
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("./public"))
 
 // more routes will go here
 app.use(routes);

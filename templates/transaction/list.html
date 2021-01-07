@@ -1,0 +1,8 @@
+${header}
+<h1>All transactions</h1>
+<ul>
+    ${editedTransactions.map(t => `
+        <li>${t.category} | ${t.description} | ${t.amount}</li>
+        `).join("")}
+</ul>
+${footer}
