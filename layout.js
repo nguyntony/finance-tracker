@@ -21,7 +21,8 @@ const msgContent = {
 
 const getMessages = (req) => {
     return {
-        error: req.flash("error")
+        error: req.flash("error"),
+        success: req.flash("success")
     }
 }
 
