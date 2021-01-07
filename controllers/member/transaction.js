@@ -1,5 +1,6 @@
 const { layout } = require("../../helper");
-const { Transaction } = require("../../models");
+const { Transaction, User } = require("../../models");
+const numeral = require("numeral")
 
 // fn to display the transaction form
 const showTransactionForm = (req, res) => {
@@ -63,9 +64,34 @@ const processDepositForm = async (req, res) => {
 	res.redirect("/member/home");
 };
 
+const list = async (req, res) => {
+	const { id } = req.session.user
+	const user = await User.findByPk(id)
+	const allTransactions = await user.getTransactions()
+
+	const editedTransactions = allTransactions.map(t => {
+		return {
+			category: t.category,
+			description: t.description,
+			amount: numeral(t.amount).format("$0,0.00")
+		}
+	})
+
+	console.log(allTransactions)
+
+	res.render("transaction/list", {
+		...layout,
+		locals: {
+			title: "Transactions",
+			editedTransactions
+		}
+	})
+}
+
 module.exports = {
 	showTransactionForm,
 	processTransactionForm,
 	showDepositForm,
 	processDepositForm,
+	list
 };

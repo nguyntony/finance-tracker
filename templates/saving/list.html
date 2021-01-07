@@ -1,0 +1,14 @@
+${header}
+<h1>All Savings Goal</h1>
+<ul>
+    ${editedSavings.map(s => `
+        <li>
+            ${s.title}
+            ${s.deadline ? ` | ${s.deadline}` : ""}
+            ${s.total ? ` | ${s.progress} / ${s.total}` : ""}
+        </li>
+
+
+        `).join("")}
+</ul>
+${footer}
