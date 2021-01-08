@@ -5,6 +5,7 @@ const { memberController } = require("../controllers");
 
 router
 	.get("/list", memberController.transactionController.list)
+	.get("/list/data", memberController.transactionController.dataList)
 	.get(
 		"/edit/:transactionId",
 		memberController.transactionController.showEditTransactionForm

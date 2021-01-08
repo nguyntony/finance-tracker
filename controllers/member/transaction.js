@@ -100,6 +100,16 @@ const list = async (req, res) => {
 	});
 };
 
+const dataList = async (req, res) => {
+	const { id, firstName } = req.session.user;
+	const user = await User.findByPk(id);
+	const allTransactions = await user.getTransactions({
+		order: [["createdAt", "desc"]],
+	});
+
+	res.json(allTransactions);
+};
+
 const showEditTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
 	const { id, firstName } = req.session.user;
@@ -183,6 +193,7 @@ module.exports = {
 	showDepositForm,
 	processDepositForm,
 	list,
+	dataList,
 	showEditTransactionForm,
 	processEditTransactionForm,
 	showDeleteTransactionForm,
