@@ -25,27 +25,29 @@ app.set("views", "templates");
 app.set("view engine", "html");
 
 const logger = morgan("tiny");
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("./public"));
+
 app.use(cookieParser());
 app.use(
-    session({
-        store: new FileStore(),
-        secret: process.env.SESSION_SECRET,
-        saveUninitialized: false,
-        resave: true,
-        rolling: true,
-        cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 7,
-        },
-    })
+	session({
+		store: new FileStore(),
+		secret: process.env.SESSION_SECRET,
+		saveUninitialized: false,
+		resave: true,
+		rolling: true,
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 24 * 7,
+		},
+	})
 );
 app.use(flash());
 app.use(logger);
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("./public"))
 
 // more routes will go here
 app.use(routes);
 
 server.listen(PORT, HOST, () => {
-    console.log(`Listening at`, HOST, PORT);
+	console.log(`Listening at`, HOST, PORT);
 });
