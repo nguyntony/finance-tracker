@@ -2,7 +2,7 @@ const layout = {
     partials: {
         header: '/partials/header',
         homeHeader: '/partials/homeHeader',
-        memberHeader: '/partials/memberHeader',
+        // memberHeader: '/partials/memberHeader',
         footer: '/partials/footer',
     }
 };
@@ -10,8 +10,17 @@ const layout = {
 const partialContent = {
     header: '/partials/header',
     homeHeader: '/partials/homeHeader',
-    memberHeader: '/partials/memberHeader',
+    // memberHeader: '/partials/memberHeader',
     footer: '/partials/footer',
+}
+
+const dashboardContent = {
+    header: '/partials/header',
+    // memberHeader: "/partials/memberHeader",
+    footer: '/partials/footer',
+    dashHeader: "/partials/dashboard/dashHeader",
+    dashFooter: "/partials/dashboard/dashFooter",
+    cards: '/partials/dashboard/cards'
 }
 
 const msgContent = {
@@ -35,5 +44,6 @@ module.exports = {
     getMessages,
     partialContent,
     msgContent,
-    addDecimal
+    addDecimal,
+    dashboardContent
 };
