@@ -42,7 +42,7 @@ const showDepositForm = (req, res) => {
 		...layout,
 		locals: {
 			title: "Deposit Form",
-			transaction: null
+			transaction: null,
 		},
 	});
 };
@@ -95,7 +95,7 @@ const list = async (req, res) => {
 
 const showEditTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
-	const { id } = req.session.user
+	const { id } = req.session.user;
 	const transaction = await Transaction.findByPk(transactionId);
 
 	if (transaction.uid == id) {
@@ -107,20 +107,38 @@ const showEditTransactionForm = async (req, res) => {
 			},
 		});
 	} else {
-		res.redirect("/member/home")
+		res.redirect("/member/home");
 	}
-
 };
 
 const processEditTransactionForm = async (req, res) => {
-	const { transactionId } = req.params
-	const { category, amount, description } = req.body
+	const { transactionId } = req.params;
+	const { category, amount, description } = req.body;
 
-	const findTransaction = await Transaction.findByPk(transactionId)
-	findTransaction.update({ category, amount, description })
+	const findTransaction = await Transaction.findByPk(transactionId);
+	findTransaction.update({ category, amount, description });
 
-	res.redirect("/member/transaction/list")
-}
+	res.redirect("/member/transaction/list");
+};
+
+const showDeleteTransactionForm = async (req, res) => {
+	const { transactionId } = req.params;
+	const transaction = await Transaction.findByPk(transactionId);
+	const { id } = req.session.user;
+	console.log(`=========${transaction.uid}:${id}`);
+
+	if (transaction.uid == id) {
+		res.render("member/transactionDeleteForm", {
+			...layout,
+			locals: {
+				title: "Delete Confirmation",
+				transaction,
+			},
+		});
+	} else {
+		res.redirect("/member/home");
+	}
+};
 
 module.exports = {
 	showTransactionForm,
@@ -129,5 +147,6 @@ module.exports = {
 	processDepositForm,
 	list,
 	showEditTransactionForm,
-	processEditTransactionForm
+	processEditTransactionForm,
+	showDeleteTransactionForm,
 };
