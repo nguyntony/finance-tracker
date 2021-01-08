@@ -1,0 +1,8 @@
+<h1>All transactions</h1>
+<ul>
+    ${editedTransactions.map(t => `
+        <li><a href="/member/transaction/edit/${t.id}">${t.category} | ${t.description} | ${t.amount}</a></li>
+        <a href="/member/transaction/delete/${t.id}">Delete</a>
+        `).join("")}
+</ul>
+<a href="/member/home">Return</a>

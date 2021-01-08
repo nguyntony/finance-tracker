@@ -20,7 +20,8 @@ const dashboardContent = {
     footer: '/partials/footer',
     dashHeader: "/partials/dashboard/dashHeader",
     dashFooter: "/partials/dashboard/dashFooter",
-    cards: '/partials/dashboard/cards'
+    cards: '/partials/dashboard/cards',
+    // transactionList: '/partials/transactionView/list'
 }
 
 const msgContent = {
