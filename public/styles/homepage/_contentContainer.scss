@@ -1,6 +1,38 @@
 #contentContainer {
     display: flex;
+    align-items: center;
+    padding: 8rem 4rem;
 
     #landing {
+        width: 50rem;
+    }
+
+    #heroImg {
+        img {
+            width: 50rem;
+        }
+    }
+
+    button {
+        margin-top: 4rem;
+        padding: 1rem 3rem;
+        border-radius: 1rem;
+        font-size: 1.8rem;
+        // border: solid 1px rgb(54, 80, 126);
+        border: none;
+        // font-family: "Noto Sans JP", sans-serif;
+        background: rgb(44, 72, 135);
+        color: rgb(250, 250, 250);
+        cursor: pointer;
+        outline: none;
+        font-weight: bold;
+
+        &:focus {
+            border: none;
+        }
+
+        &:hover {
+            background: rgb(110, 159, 232);
+        }
     }
 }
