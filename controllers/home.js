@@ -1,10 +1,14 @@
-const { layout } = require("../helper");
+const { layout, partialContent, msgContent, getMessages } = require("../helper");
 
 const home = (req, res) => {
 	res.render("home", {
-		...layout,
+		partials: {
+			...partialContent,
+			...msgContent
+		},
 		locals: {
-			title: "T|WIN Homepage"
+			title: "T|WIN Homepage",
+			messages: getMessages(req)
 		},
 	});
 };

@@ -7,18 +7,18 @@ const {
 } = require("../helper");
 const { User } = require("../models");
 
-const signUp = (req, res) => {
-	res.render("user/signup", {
-		partials: {
-			...partialContent,
-			...msgContent,
-		},
-		locals: {
-			title: "Sign Up",
-			messages: getMessages(req),
-		},
-	});
-};
+// const signUp = (req, res) => {
+// 	res.render("user/signup", {
+// 		partials: {
+// 			...partialContent,
+// 			...msgContent,
+// 		},
+// 		locals: {
+// 			title: "Sign Up",
+// 			messages: getMessages(req),
+// 		},
+// 	});
+// };
 
 const processSignUp = async (req, res) => {
 	const { username, password, firstName, lastName, email } = req.body;
@@ -34,31 +34,31 @@ const processSignUp = async (req, res) => {
 			lastName,
 			email,
 		});
-		res.redirect(`${req.baseUrl}/login`);
+		res.redirect("/member/home");
 	} catch (e) {
 		if (e.name === "SequelizeUniqueConstraintError") {
 			req.session.flash = {
 				error: "This username has already been taken.",
 			};
 			req.session.save(() => {
-				res.redirect("/user/signup");
+				res.redirect("/");
 			});
 		}
 	}
 };
 
-const login = (req, res) => {
-	res.render("user/login", {
-		partials: {
-			...partialContent,
-			...msgContent,
-		},
-		locals: {
-			title: "Login",
-			messages: getMessages(req),
-		},
-	});
-};
+// const login = (req, res) => {
+// 	res.render("user/login", {
+// 		partials: {
+// 			...partialContent,
+// 			...msgContent,
+// 		},
+// 		locals: {
+// 			title: "Login",
+// 			messages: getMessages(req),
+// 		},
+// 	});
+// };
 
 const processLogin = async (req, res) => {
 	const { username, password } = req.body;
@@ -80,7 +80,7 @@ const processLogin = async (req, res) => {
 	} else {
 		req.session.flash = { error: "The username or password is incorrect." };
 		req.session.save(() => {
-			res.redirect("/user/login");
+			res.redirect("/");
 		});
 	}
 };
@@ -100,9 +100,9 @@ const logout = (req, res) => {
 };
 
 module.exports = {
-	signUp,
+	// signUp,
 	processSignUp,
-	login,
+	// login,
 	processLogin,
 	logout,
 	requireLogin,
