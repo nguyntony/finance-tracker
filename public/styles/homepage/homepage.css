@@ -45,6 +45,10 @@ p {
   color: #373737;
 }
 
+.hidden {
+  display: none;
+}
+
 #window {
   margin: 1rem 0;
   overflow: hidden;
@@ -55,11 +59,6 @@ p {
   -webkit-box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.3);
           box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.3);
   border-radius: 2rem;
-}
-
-#window #signupForm,
-#window #loginForm {
-  display: none;
 }
 
 nav {
@@ -140,5 +139,32 @@ nav ul li:hover a {
 
 #contentContainer button:hover {
   background: #6e9fe8;
+}
+
+#signupForm {
+  position: absolute;
+  height: 40rem;
+  width: 30rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: rgba(70, 143, 206, 0.1);
+  -webkit-backdrop-filter: blur(40px);
+          backdrop-filter: blur(40px);
+  background-clip: padding-box;
+  -webkit-box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.3);
+          box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.3);
+  border-radius: 2rem;
+}
+
+#signupForm form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 25rem;
 }
 /*# sourceMappingURL=homepage.css.map */
