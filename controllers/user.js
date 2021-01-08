@@ -9,11 +9,6 @@ const { User } = require("../models");
 
 const signUp = (req, res) => {
 	res.render("user/signup", {
-		// ...layout,
-		// locals: {
-		// 	title: "Sign Up!",
-		// 	errormsg: "",
-		// },
 		partials: {
 			...partialContent,
 			...msgContent,
@@ -42,13 +37,6 @@ const processSignUp = async (req, res) => {
 		res.redirect(`${req.baseUrl}/login`);
 	} catch (e) {
 		if (e.name === "SequelizeUniqueConstraintError") {
-			// res.render("user/signup", {
-			// 	...layout,
-			// 	locals: {
-			// 		title: "Sign Up!",
-			// 		errormsg: "This username is already taken.",
-			// 	},
-			// });
 			req.session.flash = {
 				error: "This username has already been taken.",
 			};
@@ -61,11 +49,6 @@ const processSignUp = async (req, res) => {
 
 const login = (req, res) => {
 	res.render("user/login", {
-		// ...layout,
-		// locals: {
-		// 	title: "Login!",
-		// 	errormsg: "",
-		// },
 		partials: {
 			...partialContent,
 			...msgContent,
@@ -84,8 +67,9 @@ const processLogin = async (req, res) => {
 			username,
 		},
 	});
-	if (user && bcrypt.compareSync(password, user.hash)) {
-		console.log("=====LOGIN SUCCESS=====");
+	const passwordCheck = bcrypt.compareSync(password, user.hash)
+
+	if (user && passwordCheck) {
 		req.session.user = {
 			firstName: user.firstName,
 			id: user.id,
@@ -94,13 +78,6 @@ const processLogin = async (req, res) => {
 			res.redirect("/member/home");
 		});
 	} else {
-		// res.render("user/login", {
-		// 	...layout,
-		// 	locals: {
-		// 		title: "Log In!",
-		// 		errormsg: "The username or password is incorrect.",
-		// 	},
-		// });
 		req.session.flash = { error: "The username or password is incorrect." };
 		req.session.save(() => {
 			res.redirect("/user/login");

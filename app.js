@@ -17,7 +17,6 @@ const HOST = "0.0.0.0";
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
-// will need to import your router folder
 const routes = require("./routers");
 
 app.engine("html", es6Renderer);
