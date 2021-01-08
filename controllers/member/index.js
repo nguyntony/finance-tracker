@@ -3,5 +3,3 @@ module.exports = {
     transactionController: require("./transaction"),
     savingController: require("./saving")
 }
-
-// not sure if nesting it like this will work or not.

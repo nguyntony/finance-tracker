@@ -1,11 +1,10 @@
 const express = require("express")
 const router = express.Router()
 
-const { userController } = require("../controllers")
-const { memberController } = require("../controllers")
+const { userController, memberController } = require("../controllers")
 
 router
-    .use("/", userController.requireLogin)
+    .get("/", userController.requireLogin)
     .get("/home", memberController.memberHomeController.home)
     .get("/transaction/create", memberController.transactionController.showTransactionForm)
     .post("/transaction/create", memberController.transactionController.processTransactionForm)

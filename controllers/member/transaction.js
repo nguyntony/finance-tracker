@@ -1,7 +1,6 @@
 const { layout } = require("../../helper");
 const { Transaction, User } = require("../../models");
 const numeral = require("numeral");
-const { find } = require("lodash");
 
 // fn to display the transaction form
 const showTransactionForm = (req, res) => {
@@ -43,6 +42,7 @@ const showDepositForm = (req, res) => {
 		...layout,
 		locals: {
 			title: "Deposit Form",
+			transaction: null
 		},
 	});
 };
@@ -95,15 +95,21 @@ const list = async (req, res) => {
 
 const showEditTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
+	const { id } = req.session.user
 	const transaction = await Transaction.findByPk(transactionId);
 
-	res.render("member/transactionForm", {
-		...layout,
-		locals: {
-			title: "Edit Transaction",
-			transaction,
-		},
-	});
+	if (transaction.uid == id) {
+		res.render("member/transactionForm", {
+			...layout,
+			locals: {
+				title: "Edit Transaction",
+				transaction,
+			},
+		});
+	} else {
+		res.redirect("/member/home")
+	}
+
 };
 
 const processEditTransactionForm = async (req, res) => {

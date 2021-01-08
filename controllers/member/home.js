@@ -20,7 +20,6 @@ const home = async (req, res) => {
 	const totalDeposits = allDeposits
 		.map((d) => Number(d.amount))
 		.reduce((a, b) => a + b, 0);
-	// console.log(totalDeposits);
 
 	const allNonDeposits = await user.getTransactions({
 		where: {
@@ -29,10 +28,10 @@ const home = async (req, res) => {
 			},
 		},
 	});
+
 	const totalNonDeposits = allNonDeposits
 		.map((n) => Number(n.amount))
 		.reduce((a, b) => a + b, 0);
-	// console.log(totalNonDeposits);
 
 	const totalFunds = totalDeposits - totalNonDeposits;
 

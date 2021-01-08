@@ -29,6 +29,7 @@ const processSavingForm = async (req, res) => {
 		category,
 		uid: id,
 	});
+
 	req.session.flash = { success: "Your savings goal has been added." };
 	req.session.save(() => {
 		res.redirect("/member/home");
