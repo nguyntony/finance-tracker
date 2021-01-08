@@ -39,6 +39,10 @@ p {
     color: rgb(55, 55, 55);
 }
 
+.hidden {
+    display: none;
+}
+
 @import "window";
 @import "nav";
 @import "contentContainer";
