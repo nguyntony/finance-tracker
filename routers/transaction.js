@@ -9,7 +9,13 @@ router
 		"/edit/:transactionId",
 		memberController.transactionController.showEditTransactionForm
 	)
-	.post("/edit/:transactionId", memberController.transactionController.processEditTransactionForm)
-
+	.post(
+		"/edit/:transactionId",
+		memberController.transactionController.processEditTransactionForm
+	)
+	.get(
+		"/delete/:transactionId",
+		memberController.transactionController.showDeleteTransactionForm
+	);
 
 module.exports = router;
