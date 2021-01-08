@@ -5,14 +5,12 @@ const router = express.Router();
 const { memberController } = require("../controllers");
 
 router
-	.use("/list", memberController.transactionController.list)
-	.use(
+	.get("/list", memberController.transactionController.list)
+	.get(
 		"/edit/:transactionId",
 		memberController.transactionController.showEditTransactionForm
 	)
-	.post(
-		"/edit/:transactionId",
-		memberController.transactionController.processEditTransactionForm
-	);
+	.post("/edit/:transactionId", memberController.transactionController.processEditTransactionForm)
+
 
 module.exports = router;
