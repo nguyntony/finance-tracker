@@ -95,7 +95,7 @@ const requireLogin = (req, res, next) => {
 
 const logout = (req, res) => {
 	req.session.destroy(() => {
-		res.redirect("/user/login");
+		res.redirect("/");
 	});
 };
 
