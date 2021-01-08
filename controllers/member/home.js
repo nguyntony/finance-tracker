@@ -3,6 +3,7 @@ const {
 	partialContent,
 	msgContent,
 	getMessages,
+	dashboardContent
 } = require("../../helper");
 const { Transaction, User } = require("../../models");
 const { Op } = require("sequelize");
@@ -36,16 +37,26 @@ const home = async (req, res) => {
 	const totalFunds = totalDeposits - totalNonDeposits;
 
 	res.render("member/home", {
+		// partials: {
+		// 	...partialContent,
+		// 	...msgContent,
+		// },
+		// locals: {
+		// 	title: "Member Homepage",
+		// 	firstName,
+		// 	messages: getMessages(req),
+		// 	totalFunds: numeral(totalFunds).format("$0,0.00"),
+		// },
 		partials: {
-			...partialContent,
-			...msgContent,
+			...dashboardContent,
+			...msgContent
 		},
 		locals: {
-			title: "Member Homepage",
+			title: "Member Dashboard",
 			firstName,
 			messages: getMessages(req),
-			totalFunds: numeral(totalFunds).format("$0,0.00"),
-		},
+			totalFunds: numeral(totalFunds).format("$0,0.00")
+		}
 	});
 };
 
