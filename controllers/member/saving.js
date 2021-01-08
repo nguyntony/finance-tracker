@@ -1,17 +1,18 @@
-const {
-	layout,
-	dashboardContent,
-	msgContent,
-	getMessages,
-} = require("../../helper");
+const { dashboardContent, msgContent, getMessages } = require("../../helper");
 const { Saving, User } = require("../../models");
 const numeral = require("numeral");
 
 const showSavingForm = (req, res) => {
-	res.render("member/savingForm", {
-		...layout,
+	const { firstName } = req.session.user;
+
+	res.render("dashboard/saving/savingForm", {
+		partials: {
+			...dashboardContent,
+			savingForm: "/partials/dashboard/savingView/savingForm",
+		},
 		locals: {
 			title: "Saving Form",
+			firstName,
 			saving: null,
 		},
 	});
@@ -43,7 +44,7 @@ const processSavingForm = async (req, res) => {
 };
 
 const list = async (req, res) => {
-	const { id } = req.session.user;
+	const { id, firstName } = req.session.user;
 	const user = await User.findByPk(id);
 	const getSavings = await user.getSavings({
 		order: [["createdAt", "desc"]],
@@ -62,10 +63,14 @@ const list = async (req, res) => {
 		};
 	});
 
-	res.render("saving/list", {
-		...layout,
+	res.render("dashboard/saving/savingList", {
+		partials: {
+			...dashboardContent,
+			savingList: "/partials/dashboard/savingView/list",
+		},
 		locals: {
 			title: "Savings",
+			firstName,
 			editedSavings,
 		},
 	});
@@ -77,10 +82,10 @@ const showEditSavingForm = async (req, res) => {
 	const saving = await Saving.findByPk(savingId);
 
 	if (saving.uid == id) {
-		res.render("dashboard/transaction/savingForm", {
+		res.render("dashboard/saving/savingForm", {
 			partials: {
 				...dashboardContent,
-				savingForm: "/partials/transactionView/savingForm",
+				savingForm: "/partials/dashboard/savingView/savingForm",
 			},
 			locals: {
 				title: "Edit Saving",
@@ -121,7 +126,7 @@ const showDeleteSavingForm = async (req, res) => {
 				...dashboardContent,
 				...msgContent,
 				deleteTransaction:
-					"/partials/transactionView/deleteTransaction",
+					"/partials/dashboard/transactionView/deleteTransaction",
 			},
 			locals: {
 				title: "Delete Confirmation",
