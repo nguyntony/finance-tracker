@@ -72,12 +72,13 @@ const showEditSavingForm = async (req, res) => {
 	const saving = await Saving.findByPk(savingId);
 
 	if (saving.uid == id) {
-		res.render("member/savingForm", {
-			...layout,
-			locals: {
-				title: "Edit Saving",
-				saving,
-			},
+		res.render("dashboard/transaction/savingForm", {
+			// ...layout,
+			// locals: {
+			// 	title: "Edit Saving",
+			// 	saving,
+			// },
+			// REFACTOR THIS
 		});
 	} else {
 		res.redirect("/member/home");

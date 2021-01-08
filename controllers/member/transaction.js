@@ -1,10 +1,15 @@
-const { layout, dashboardContent, msgContent, getMessages } = require("../../helper");
+const {
+	layout,
+	dashboardContent,
+	msgContent,
+	getMessages,
+} = require("../../helper");
 const { Transaction, User } = require("../../models");
 const numeral = require("numeral");
 
 // fn to display the transaction form
 const showTransactionForm = (req, res) => {
-	const { firstName } = req.session.user
+	const { firstName } = req.session.user;
 
 	res.render("dashboard/transaction/addTransaction", {
 		// ...layout,
@@ -14,13 +19,13 @@ const showTransactionForm = (req, res) => {
 		// },
 		partials: {
 			...dashboardContent,
-			addTransaction: '/partials/transactionView/transactionForm'
+			addTransaction: "/partials/transactionView/transactionForm",
 		},
 		locals: {
 			title: "Transaction Form",
 			firstName,
-			transaction: null
-		}
+			transaction: null,
+		},
 	});
 };
 
@@ -43,7 +48,7 @@ const processTransactionForm = async (req, res) => {
 };
 
 const showDepositForm = (req, res) => {
-	const { firstName } = req.session.user
+	const { firstName } = req.session.user;
 
 	res.render("dashboard/transaction/addDeposit", {
 		// ...layout,
@@ -53,12 +58,12 @@ const showDepositForm = (req, res) => {
 		// },
 		partials: {
 			...dashboardContent,
-			addDeposit: '/partials/transactionView/depositForm'
+			addDeposit: "/partials/transactionView/depositForm",
 		},
 		locals: {
 			title: "Deposit",
-			firstName
-		}
+			firstName,
+		},
 	});
 };
 
@@ -104,13 +109,13 @@ const list = async (req, res) => {
 		// },
 		partials: {
 			...dashboardContent,
-			transactionList: '/partials/transactionView/list'
+			transactionList: "/partials/transactionView/list",
 		},
 		locals: {
 			title: "Transactions",
 			firstName,
-			editedTransactions
-		}
+			editedTransactions,
+		},
 	});
 };
 
@@ -128,13 +133,13 @@ const showEditTransactionForm = async (req, res) => {
 			// },
 			partials: {
 				...dashboardContent,
-				transactionForm: '/partials/transactionView/transactionForm'
+				transactionForm: "/partials/transactionView/transactionForm",
 			},
 			locals: {
 				title: "Transaction",
 				firstName,
-				transaction
-			}
+				transaction,
+			},
 		});
 	} else {
 		res.redirect("/member/home");
@@ -167,14 +172,16 @@ const showDeleteTransactionForm = async (req, res) => {
 			partials: {
 				...dashboardContent,
 				...msgContent,
-				deleteTransaction: "/partials/transactionView/deleteTransaction"
+				deleteTransaction:
+					"/partials/transactionView/deleteTransaction",
 			},
 			locals: {
 				title: "Delete Confirmation",
 				firstName,
-				transaction,
-				messages: getMessages(req)
-			}
+				deleteWhat: transaction.description,
+				redirectWhere: "transaction",
+				messages: getMessages(req),
+			},
 		});
 	} else {
 		res.redirect("/member/home");
@@ -191,10 +198,12 @@ const processDeleteTransactionForm = async (req, res) => {
 		res.redirect("/member/transaction/list");
 	} else {
 		// flash message here
-		req.session.flash = { error: "Your entry does not match. Please try again." }
+		req.session.flash = {
+			error: "Your entry does not match. Please try again.",
+		};
 		req.session.save(() => {
 			res.redirect(`/member/transaction/delete/${transaction.id}`);
-		})
+		});
 	}
 };
 
