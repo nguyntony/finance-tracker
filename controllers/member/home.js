@@ -36,7 +36,7 @@ const home = async (req, res) => {
 
 	const totalFunds = totalDeposits - totalNonDeposits;
 
-	res.render("member/home", {
+	res.render("dashboard/home", {
 		// partials: {
 		// 	...partialContent,
 		// 	...msgContent,
