@@ -4,21 +4,21 @@ ${header}
     <label for="category">Category</label>
     <select name="category" id="category">
         <option disabled selected>Select One</option>
-        <option value="bills">Bills</option>
-        <option value="auto">Auto & Transport</option>
-        <option value="health">Health & Medical</option>
-        <option value="food">Food & Dining</option>
-        <option value="shopping">Shopping</option>
-        <option value="other">Other</option>
+        <option value="bills" ${transaction.category == "bills" ? "selected" : ''}>Bills</option>
+        <option value="auto" ${transaction.category == "auto" ? "selected" : ''}>Auto & Transport</option>
+        <option value="health" ${transaction.category == "health" ? "selected" : ''}>Health & Medical</option>
+        <option value="food" ${transaction.category == "food" ? "selected" : ''}>Food & Dining</option>
+        <option value="shopping" ${transaction.category == "shopping" ? "selected" : ''}>Shopping</option>
+        <option value="other" ${transaction.category == "other" ? "selected" : ''}>Other</option>
         <option disabled>Transfer to Savings</option>
-        <option value="saving">Saving</option>
+        <option value="saving" ${transaction.category == "saving" ? "selected" : ''}>Saving</option>
     </select>
 
     <label for="amount" title="Enter the transaction amount.">Amount ($)</label>
-    <input type="number" min="0" id="amount" name="amount" required>
+    <input type="number" min="0" id="amount" name="amount" step=".01" required value=${transaction ? `${transaction.amount}` : ''}>
 
     <label for="description">Description (Optional)</label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <textarea name="description" id="description" cols="30" rows="10">${transaction ? `${transaction.description}` : ''}</textarea>
 
     <input type="submit" value="Submit">
 </form>
