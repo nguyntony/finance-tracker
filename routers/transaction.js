@@ -16,6 +16,10 @@ router
 	.get(
 		"/delete/:transactionId",
 		memberController.transactionController.showDeleteTransactionForm
+	)
+	.post(
+		"/delete/:transactionId",
+		memberController.transactionController.processDeleteTransactionForm
 	);
 
 module.exports = router;
