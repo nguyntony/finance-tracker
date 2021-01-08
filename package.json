@@ -20,6 +20,7 @@
   "homepage": "https://github.com/nguyntony/finance-tracker#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chart.js": "^2.9.4",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
