@@ -1,9 +1,4 @@
-const {
-	layout,
-	dashboardContent,
-	msgContent,
-	getMessages,
-} = require("../../helper");
+const { dashboardContent, msgContent, getMessages } = require("../../helper");
 const { Transaction, User } = require("../../models");
 const numeral = require("numeral");
 
@@ -12,14 +7,10 @@ const showTransactionForm = (req, res) => {
 	const { firstName } = req.session.user;
 
 	res.render("dashboard/transaction/addTransaction", {
-		// ...layout,
-		// locals: {
-		// 	title: "Transaction Form",
-		// 	transaction: null,
-		// },
 		partials: {
 			...dashboardContent,
-			addTransaction: "/partials/transactionView/transactionForm",
+			addTransaction:
+				"/partials/dashboard/transactionView/transactionForm",
 		},
 		locals: {
 			title: "Transaction Form",
@@ -51,14 +42,9 @@ const showDepositForm = (req, res) => {
 	const { firstName } = req.session.user;
 
 	res.render("dashboard/transaction/addDeposit", {
-		// ...layout,
-		// locals: {
-		// 	title: "Deposit Form",
-		// 	// transaction: null,
-		// },
 		partials: {
 			...dashboardContent,
-			addDeposit: "/partials/transactionView/depositForm",
+			addDeposit: "/partials/dashboard/transactionView/depositForm",
 		},
 		locals: {
 			title: "Deposit",
@@ -102,14 +88,9 @@ const list = async (req, res) => {
 	});
 
 	res.render("dashboard/transaction/transactionList", {
-		// ...layout,
-		// locals: {
-		// 	title: "Transactions",
-		// 	editedTransactions,
-		// },
 		partials: {
 			...dashboardContent,
-			transactionList: "/partials/transactionView/list",
+			transactionList: "/partials/dashboard/transactionView/list",
 		},
 		locals: {
 			title: "Transactions",
@@ -126,14 +107,10 @@ const showEditTransactionForm = async (req, res) => {
 
 	if (transaction.uid == id) {
 		res.render("dashboard/transaction/transactionForm", {
-			// ...layout,
-			// locals: {
-			// 	title: "Edit Transaction",
-			// 	transaction,
-			// },
 			partials: {
 				...dashboardContent,
-				transactionForm: "/partials/transactionView/transactionForm",
+				transactionForm:
+					"/partials/dashboard/transactionView/transactionForm",
 			},
 			locals: {
 				title: "Transaction",
@@ -160,20 +137,14 @@ const showDeleteTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
 	const transaction = await Transaction.findByPk(transactionId);
 	const { id, firstName } = req.session.user;
-	console.log(`=========${transaction.uid}:${id}`);
 
 	if (transaction.uid == id) {
 		res.render("dashboard/transaction/deleteTransaction", {
-			// ...layout,
-			// locals: {
-			// 	title: "Delete Confirmation",
-			// 	transaction,
-			// },
 			partials: {
 				...dashboardContent,
 				...msgContent,
 				deleteTransaction:
-					"/partials/transactionView/deleteTransaction",
+					"/partials/dashboard/transactionView/deleteTransaction",
 			},
 			locals: {
 				title: "Delete Confirmation",
@@ -197,7 +168,6 @@ const processDeleteTransactionForm = async (req, res) => {
 		transaction.destroy();
 		res.redirect("/member/transaction/list");
 	} else {
-		// flash message here
 		req.session.flash = {
 			error: "Your entry does not match. Please try again.",
 		};

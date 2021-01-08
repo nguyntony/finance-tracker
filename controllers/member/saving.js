@@ -1,9 +1,4 @@
-const {
-	layout,
-	dashboardContent,
-	msgContent,
-	getMessages,
-} = require("../../helper");
+const { dashboardContent, msgContent, getMessages } = require("../../helper");
 const { Saving, User } = require("../../models");
 const numeral = require("numeral");
 
@@ -69,11 +64,6 @@ const list = async (req, res) => {
 	});
 
 	res.render("dashboard/saving/savingList", {
-		// ...layout,
-		// locals: {
-		// 	title: "Savings",
-		// 	editedSavings,
-		// },
 		partials: {
 			...dashboardContent,
 			savingList: "/partials/dashboard/savingView/list",
@@ -92,10 +82,10 @@ const showEditSavingForm = async (req, res) => {
 	const saving = await Saving.findByPk(savingId);
 
 	if (saving.uid == id) {
-		res.render("dashboard/transaction/savingForm", {
+		res.render("dashboard/saving/savingForm", {
 			partials: {
 				...dashboardContent,
-				savingForm: "/partials/savingView/savingForm",
+				savingForm: "/partials/dashboard/savingView/savingForm",
 			},
 			locals: {
 				title: "Edit Saving",
@@ -136,7 +126,7 @@ const showDeleteSavingForm = async (req, res) => {
 				...dashboardContent,
 				...msgContent,
 				deleteTransaction:
-					"/partials/transactionView/deleteTransaction",
+					"/partials/dashboard/transactionView/deleteTransaction",
 			},
 			locals: {
 				title: "Delete Confirmation",
