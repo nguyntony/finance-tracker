@@ -49,7 +49,8 @@ const home = async (req, res) => {
 		// },
 		partials: {
 			...dashboardContent,
-			...msgContent
+			...msgContent,
+			cards: '/partials/dashboard/cards'
 		},
 		locals: {
 			title: "Member Dashboard",

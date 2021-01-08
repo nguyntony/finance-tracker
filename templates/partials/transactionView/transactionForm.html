@@ -1,9 +1,8 @@
-${header}
-<h1>Add Transaction</h1>
+<h1>Transaction Form</h1>
 <form method="POST">
     <label for="category">Category</label>
-    <select name="category" id="category">
-        <option disabled selected>Select One</option>
+    <select required name="category" id="category">
+        <option value="" disabled selected>Select One</option>
         <option value="bills" ${transaction ? `${transaction.category == "bills" ? "selected" : ''}` : ""}>Bills</option>
         <option value="auto" ${transaction ? `${transaction.category == "auto" ? "selected" : ''}` : ""}>Auto & Transport</option>
         <option value="health" ${transaction ? `${transaction.category == "health" ? "selected" : ''}` : ""}>Health & Medical</option>
@@ -25,6 +24,3 @@ ${header}
     <input type="submit" value="Submit">
 </form>
 <a href="/member/home">Return</a>
-${footer}
-
-<!-- this can be deleted -->
