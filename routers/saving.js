@@ -12,6 +12,10 @@ router
 	.post(
 		"/edit/:savingId",
 		memberController.savingController.processEditSavingForm
+	)
+	.get(
+		"/delete/:savingId",
+		memberController.savingController.showDeleteSavingForm
 	);
 
 module.exports = router;

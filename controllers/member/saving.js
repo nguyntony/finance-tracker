@@ -1,4 +1,9 @@
-const { layout } = require("../../helper");
+const {
+	layout,
+	dashboardContent,
+	msgContent,
+	getMessages,
+} = require("../../helper");
 const { Saving, User } = require("../../models");
 const numeral = require("numeral");
 
@@ -68,17 +73,20 @@ const list = async (req, res) => {
 
 const showEditSavingForm = async (req, res) => {
 	const { savingId } = req.params;
-	const { id } = req.session.user;
+	const { id, firstName } = req.session.user;
 	const saving = await Saving.findByPk(savingId);
 
 	if (saving.uid == id) {
 		res.render("dashboard/transaction/savingForm", {
-			// ...layout,
-			// locals: {
-			// 	title: "Edit Saving",
-			// 	saving,
-			// },
-			// REFACTOR THIS
+			partials: {
+				...dashboardContent,
+				savingForm: "/partials/transactionView/savingForm",
+			},
+			locals: {
+				title: "Edit Saving",
+				saving,
+				firstName,
+			},
 		});
 	} else {
 		res.redirect("/member/home");
@@ -102,10 +110,37 @@ const processEditSavingForm = async (req, res) => {
 	res.redirect("/member/saving/list");
 };
 
+const showDeleteSavingForm = async (req, res) => {
+	const { savingId } = req.params;
+	const saving = await Saving.findByPk(savingId);
+	const { id, firstName } = req.session.user;
+
+	if (saving.uid == id) {
+		res.render("dashboard/transaction/deleteTransaction", {
+			partials: {
+				...dashboardContent,
+				...msgContent,
+				deleteTransaction:
+					"/partials/transactionView/deleteTransaction",
+			},
+			locals: {
+				title: "Delete Confirmation",
+				firstName,
+				deleteWhat: saving.title,
+				redirectWhere: "saving",
+				messages: getMessages(req),
+			},
+		});
+	} else {
+		res.redirect("/member/home");
+	}
+};
+
 module.exports = {
 	showSavingForm,
 	processSavingForm,
 	list,
 	showEditSavingForm,
 	processEditSavingForm,
+	showDeleteSavingForm,
 };
