@@ -5,6 +5,6 @@ const router = express.Router()
 const { memberController } = require("../controllers")
 
 router
-    .use("/list", memberController.savingController.list)
+    .get("/list", memberController.savingController.list)
 
 module.exports = router

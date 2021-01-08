@@ -1,6 +1,7 @@
 const { layout } = require("../../helper");
 const { Transaction, User } = require("../../models");
 const numeral = require("numeral");
+const { find } = require("lodash");
 
 // fn to display the transaction form
 const showTransactionForm = (req, res) => {
@@ -81,7 +82,7 @@ const list = async (req, res) => {
 		};
 	});
 
-	console.log(allTransactions);
+	// console.log(allTransactions);
 
 	res.render("transaction/list", {
 		...layout,
@@ -106,25 +107,14 @@ const showEditTransactionForm = async (req, res) => {
 };
 
 const processEditTransactionForm = async (req, res) => {
-	const { transactionId } = req.params;
-	const { category, amount, description } = req.body;
-	console.log(category, amount, description);
+	const { transactionId } = req.params
+	const { category, amount, description } = req.body
 
-	const transaction = await Transaction.update(
-		{
-			category,
-			amount,
-			description,
-		},
-		{
-			where: {
-				id: transactionId,
-			},
-		}
-	);
+	const findTransaction = await Transaction.findByPk(transactionId)
+	findTransaction.update({ category, amount, description })
 
-	res.redirect("/member/home");
-};
+	res.redirect("/member/transaction/list")
+}
 
 module.exports = {
 	showTransactionForm,
@@ -133,5 +123,5 @@ module.exports = {
 	processDepositForm,
 	list,
 	showEditTransactionForm,
-	processEditTransactionForm,
+	processEditTransactionForm
 };
