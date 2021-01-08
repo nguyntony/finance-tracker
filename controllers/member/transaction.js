@@ -140,6 +140,20 @@ const showDeleteTransactionForm = async (req, res) => {
 	}
 };
 
+const processDeleteTransactionForm = async (req, res) => {
+	const { transactionId } = req.params;
+	const transaction = await Transaction.findByPk(transactionId);
+	const { deletion } = req.body;
+
+	if (deletion == "Delete") {
+		transaction.destroy();
+		res.redirect("/member/transaction/list");
+	} else {
+		// flash message here
+		res.redirect(`/member/transaction/delete/${transaction.id}`);
+	}
+};
+
 module.exports = {
 	showTransactionForm,
 	processTransactionForm,
@@ -149,4 +163,5 @@ module.exports = {
 	showEditTransactionForm,
 	processEditTransactionForm,
 	showDeleteTransactionForm,
+	processDeleteTransactionForm,
 };
