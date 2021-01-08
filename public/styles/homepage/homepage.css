@@ -1,6 +1,6 @@
 html {
   font-size: 62.5%;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 * {
@@ -54,11 +54,12 @@ p {
   background-clip: padding-box;
   -webkit-box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.3);
           box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.3);
-  border-radius: 1.5rem;
+  border-radius: 2rem;
 }
 
-#window #heroImg img {
-  width: 55rem;
+#window #signupForm,
+#window #loginForm {
+  display: none;
 }
 
 nav {
@@ -72,9 +73,14 @@ nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 5rem;
+  height: 7rem;
   padding: 0 2rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+nav #logo img {
+  width: 6rem;
 }
 
 nav ul {
@@ -94,12 +100,45 @@ nav ul li a {
 }
 
 nav ul li:hover a {
-  color: white;
+  color: #fafafa;
 }
 
 #contentContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8rem 4rem;
+}
+
+#contentContainer #landing {
+  width: 50rem;
+}
+
+#contentContainer #heroImg img {
+  width: 50rem;
+}
+
+#contentContainer button {
+  margin-top: 4rem;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  font-size: 1.8rem;
+  border: none;
+  background: #2c4887;
+  color: #fafafa;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+}
+
+#contentContainer button:focus {
+  border: none;
+}
+
+#contentContainer button:hover {
+  background: #6e9fe8;
 }
 /*# sourceMappingURL=homepage.css.map */
