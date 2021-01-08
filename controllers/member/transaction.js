@@ -1,6 +1,6 @@
 const { layout } = require("../../helper");
 const { Transaction, User } = require("../../models");
-const numeral = require("numeral")
+const numeral = require("numeral");
 
 // fn to display the transaction form
 const showTransactionForm = (req, res) => {
@@ -8,6 +8,7 @@ const showTransactionForm = (req, res) => {
 		...layout,
 		locals: {
 			title: "Transaction Form",
+			transaction: null,
 		},
 	});
 };
@@ -65,33 +66,72 @@ const processDepositForm = async (req, res) => {
 };
 
 const list = async (req, res) => {
-	const { id } = req.session.user
-	const user = await User.findByPk(id)
-	const allTransactions = await user.getTransactions()
+	const { id } = req.session.user;
+	const user = await User.findByPk(id);
+	const allTransactions = await user.getTransactions({
+		order: [["createdAt", "desc"]],
+	});
 
-	const editedTransactions = allTransactions.map(t => {
+	const editedTransactions = allTransactions.map((t) => {
 		return {
+			id: t.id,
 			category: t.category,
 			description: t.description,
-			amount: numeral(t.amount).format("$0,0.00")
-		}
-	})
+			amount: numeral(t.amount).format("$0,0.00"),
+		};
+	});
 
-	console.log(allTransactions)
+	console.log(allTransactions);
 
 	res.render("transaction/list", {
 		...layout,
 		locals: {
 			title: "Transactions",
-			editedTransactions
+			editedTransactions,
+		},
+	});
+};
+
+const showEditTransactionForm = async (req, res) => {
+	const { transactionId } = req.params;
+	const transaction = await Transaction.findByPk(transactionId);
+
+	res.render("member/transactionForm", {
+		...layout,
+		locals: {
+			title: "Edit Transaction",
+			transaction,
+		},
+	});
+};
+
+const processEditTransactionForm = async (req, res) => {
+	const { transactionId } = req.params;
+	const { category, amount, description } = req.body;
+	console.log(category, amount, description);
+
+	const transaction = await Transaction.update(
+		{
+			category,
+			amount,
+			description,
+		},
+		{
+			where: {
+				id: transactionId,
+			},
 		}
-	})
-}
+	);
+
+	res.redirect("/member/home");
+};
 
 module.exports = {
 	showTransactionForm,
 	processTransactionForm,
 	showDepositForm,
 	processDepositForm,
-	list
+	list,
+	showEditTransactionForm,
+	processEditTransactionForm,
 };
