@@ -1,0 +1,30 @@
+nav {
+    background: rgba(245, 245, 245, 0.4);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+
+    ul {
+        list-style-type: none;
+        display: flex;
+
+        li {
+            margin: 0 1.5rem;
+
+            a {
+                text-decoration: none;
+                color: rgb(55, 55, 55);
+            }
+
+            &:hover {
+                a {
+                    color: white;
+                }
+            }
+        }
+    }
+}
