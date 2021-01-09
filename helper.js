@@ -28,6 +28,10 @@ const msgContent = {
     flashMsg: '/partials/flashMsg'
 }
 
+const homepageContent = {
+    homeHeader: "/partials/homepage/homeHeader",
+    homeFooter: "/partials/homepage/homeFooter",
+}
 
 const getMessages = (req) => {
     return {
@@ -46,5 +50,6 @@ module.exports = {
     partialContent,
     msgContent,
     addDecimal,
-    dashboardContent
+    dashboardContent,
+    homepageContent
 };

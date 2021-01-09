@@ -4,21 +4,23 @@ const {
 	partialContent,
 	msgContent,
 	getMessages,
+	homepageContent,
 } = require("../helper");
 const { User } = require("../models");
 
-// const signUp = (req, res) => {
-// 	res.render("user/signup", {
-// 		partials: {
-// 			...partialContent,
-// 			...msgContent,
-// 		},
-// 		locals: {
-// 			title: "Sign Up",
-// 			messages: getMessages(req),
-// 		},
-// 	});
-// };
+const signUp = (req, res) => {
+	res.render("signup", {
+		partials: {
+			...homepageContent,
+			...msgContent,
+			signupForm: "/partials/homepage/signupForm"
+		},
+		locals: {
+			title: "Sign Up",
+			messages: getMessages(req),
+		},
+	});
+};
 
 const processSignUp = async (req, res) => {
 	const { username, password, firstName, lastName, email } = req.body;
@@ -41,24 +43,25 @@ const processSignUp = async (req, res) => {
 				error: "This username has already been taken.",
 			};
 			req.session.save(() => {
-				res.redirect("/");
+				res.redirect("/user/signup");
 			});
 		}
 	}
 };
 
-// const login = (req, res) => {
-// 	res.render("user/login", {
-// 		partials: {
-// 			...partialContent,
-// 			...msgContent,
-// 		},
-// 		locals: {
-// 			title: "Login",
-// 			messages: getMessages(req),
-// 		},
-// 	});
-// };
+const login = (req, res) => {
+	res.render("login", {
+		partials: {
+			...homepageContent,
+			...msgContent,
+			loginForm: "/partials/homepage/loginForm"
+		},
+		locals: {
+			title: "Login",
+			messages: getMessages(req),
+		},
+	});
+};
 
 const processLogin = async (req, res) => {
 	const { username, password } = req.body;
@@ -100,9 +103,9 @@ const logout = (req, res) => {
 };
 
 module.exports = {
-	// signUp,
+	signUp,
 	processSignUp,
-	// login,
+	login,
 	processLogin,
 	logout,
 	requireLogin,
