@@ -4,7 +4,7 @@ const numeral = require("numeral");
 
 // fn to display the transaction form
 const showTransactionForm = (req, res) => {
-	const { firstName } = req.session.user;
+	const { firstName, lastName } = req.session.user;
 
 	res.render("dashboard/transaction/addTransaction", {
 		partials: {
@@ -15,6 +15,7 @@ const showTransactionForm = (req, res) => {
 		locals: {
 			title: "Transaction Form",
 			firstName,
+			lastName,
 			transaction: null,
 		},
 	});
@@ -39,7 +40,7 @@ const processTransactionForm = async (req, res) => {
 };
 
 const showDepositForm = (req, res) => {
-	const { firstName } = req.session.user;
+	const { firstName, lastName } = req.session.user;
 
 	res.render("dashboard/transaction/addDeposit", {
 		partials: {
@@ -49,6 +50,7 @@ const showDepositForm = (req, res) => {
 		locals: {
 			title: "Deposit",
 			firstName,
+			lastName,
 		},
 	});
 };
@@ -72,7 +74,7 @@ const processDepositForm = async (req, res) => {
 };
 
 const list = async (req, res) => {
-	const { id, firstName } = req.session.user;
+	const { id, firstName, lastName } = req.session.user;
 	const user = await User.findByPk(id);
 	const allTransactions = await user.getTransactions({
 		order: [["createdAt", "desc"]],
@@ -95,13 +97,14 @@ const list = async (req, res) => {
 		locals: {
 			title: "Transactions",
 			firstName,
+			lastName,
 			editedTransactions,
 		},
 	});
 };
 
 const dataList = async (req, res) => {
-	const { id, firstName } = req.session.user;
+	const { id } = req.session.user;
 	const user = await User.findByPk(id);
 	const allTransactions = await user.getTransactions({
 		order: [["createdAt", "desc"]],
@@ -112,7 +115,7 @@ const dataList = async (req, res) => {
 
 const showEditTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
-	const { id, firstName } = req.session.user;
+	const { id, firstName, lastName } = req.session.user;
 	const transaction = await Transaction.findByPk(transactionId);
 
 	if (transaction.uid == id) {
@@ -125,6 +128,7 @@ const showEditTransactionForm = async (req, res) => {
 			locals: {
 				title: "Transaction",
 				firstName,
+				lastName,
 				transaction,
 			},
 		});
@@ -146,7 +150,7 @@ const processEditTransactionForm = async (req, res) => {
 const showDeleteTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
 	const transaction = await Transaction.findByPk(transactionId);
-	const { id, firstName } = req.session.user;
+	const { id, firstName, lastName } = req.session.user;
 
 	if (transaction.uid == id) {
 		res.render("dashboard/transaction/deleteTransaction", {
@@ -159,6 +163,7 @@ const showDeleteTransactionForm = async (req, res) => {
 			locals: {
 				title: "Delete Confirmation",
 				firstName,
+				lastName,
 				deleteWhat: transaction.description,
 				redirectWhere: "transaction",
 				messages: getMessages(req),
