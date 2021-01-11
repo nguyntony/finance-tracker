@@ -1,9 +1,21 @@
-<h1>Deposit Form</h1>
-<form method="post">
-    <label for="amount">Deposit Amount:</label>
-    <input type="number" name="amount" id="amount" required min="0">
+<div class="form">
+    <h2>Deposit Funds</h2>
+    
+    <form method="post">
+       
+            <div class="entry deposit-amount">
+                <input type="number" name="amount" id="amount" placeholder=" " required min="0">
+                <label class="label-name" for="amount">Deposit Amount</label>
+            </div>
 
-    <label for="description">Description (Optional):</label>
-    <input type="text" name="description" id="description" required>
-    <input type="submit" value="Deposit">
-</form>
+         <div class="same-line">
+            <div class="entry deposit-description">
+                <input type="text" name="description" id="description" placeholder=" " required>
+                <label class="label-name" for="description">Description (Optional)</label>
+            </div>
+            <div class="submit-container">
+                <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

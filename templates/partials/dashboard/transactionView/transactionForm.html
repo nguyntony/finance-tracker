@@ -1,25 +1,41 @@
-<h1>Transaction Form</h1>
-<form method="POST">
-    <label for="category">Category</label>
-    <select required name="category" id="category">
-        <option value="" disabled selected>Select One</option>
-        <option value="bills" ${transaction ? `${transaction.category == "bills" ? "selected" : ''}` : ""}>Bills</option>
-        <option value="auto" ${transaction ? `${transaction.category == "auto" ? "selected" : ''}` : ""}>Auto & Transport</option>
-        <option value="health" ${transaction ? `${transaction.category == "health" ? "selected" : ''}` : ""}>Health & Medical</option>
-        <option value="food" ${transaction ? `${transaction.category == "food" ? "selected" : ''}` : ""}>Food & Dining</option>
-        <option value="shopping" ${transaction ? `${transaction.category == "shopping" ? "selected" : ''}` : ""}>Shopping</option>
-        <option value="other" ${transaction ? `${transaction.category == "other" ? "selected" : ''}` : ""}>Other</option>
-        <option disabled>Deposit Funds</option>
-        <option value="deposit" ${transaction ? `${transaction.category == "deposit" ? "selected" : ''}` : ""}>Deposit</option>
-        <option disabled>Transfer to Savings</option>
-        <option value="savings" ${transaction ? `${transaction.category == "savings" ? "selected" : ''}` : ""}>Savings</option>
-    </select>
+<div class="form">
+    <h2>Add Transaction</h2>
 
-    <label for="amount" title="Enter the transaction amount.">Amount ($)</label>
-    <input type="number" min="0" id="amount" name="amount" step=".01" required value=${transaction ? `${transaction.amount}` : ''}>
+    <form method="POST">
+        <div class="entry dropdown">
+            <select required name="category" id="category">
+                <option value="" disabled selected>Category</option>
+                <option value="bills" ${transaction ? `${transaction.category == "bills" ? "selected" : ''}` : ""}>Bills</option>
+                <option value="auto" ${transaction ? `${transaction.category == "auto" ? "selected" : ''}` : ""}>Auto & Transport</option>
+                <option value="health" ${transaction ? `${transaction.category == "health" ? "selected" : ''}` : ""}>Health & Medical</option>
+                <option value="food" ${transaction ? `${transaction.category == "food" ? "selected" : ''}` : ""}>Food & Dining</option>
+                <option value="shopping" ${transaction ? `${transaction.category == "shopping" ? "selected" : ''}` : ""}>Shopping</option>
+                <option value="other" ${transaction ? `${transaction.category == "other" ? "selected" : ''}` : ""}>Other</option>
+                <option disabled>Deposit Funds</option>
+                <option value="deposit" ${transaction ? `${transaction.category == "deposit" ? "selected" : ''}` : ""}>Deposit</option>
+                <option disabled>Transfer to Savings</option>
+                <option value="savings" ${transaction ? `${transaction.category == "savings" ? "selected" : ''}` : ""}>Savings</option>
+            </select>
+            <label for="category" class="select-label"></label>
+        </div>
+    
+        <div class="entry">
+            <input type="number" min="0" id="amount" name="amount" step=".01" required value="${transaction ? `${transaction.amount}` : ''} " placeholder=" ">
+            <label for="amount" title="Enter the transaction amount." class="label-name">Amount ($)</label>
+        </div>
+    
+        <div class="entry deposit-description">
 
-    <label for="description">Description (Optional)</label>
-    <textarea name="description" id="description" cols="30" rows="10">${transaction ? `${transaction.description}` : ''}</textarea>
+            <input type="text" name="description" id="description" value="${transaction ? `${transaction.description}` : ''} " placeholder="">
+            <label class="label-name" for="description">Description (Optional)</label>
+            <!-- <input type="text" name="description" id="description" value="${transaction ? `${transaction.description}` : ''}" placeholder=" ">
 
-    <input type="submit" value="Submit">
-</form>
+            <label for="description" class="label-name">Description (Optional)</label> -->
+        </div>
+        
+        <input type="submit" value="Submit">
+    
+    
+        <!-- <textarea name="description" id="description" cols="30" rows="10">${transaction ? `${transaction.description}` : ''}</textarea> -->
+    </form>
+</div>
