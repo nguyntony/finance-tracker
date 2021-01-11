@@ -42,12 +42,11 @@ const showTransactionForm = async (req, res) => {
 	const totalFunds = await checkTotalFunds(req, res);
 	console.log(totalFunds);
 
-	res.render("dashboard/transaction/addTransaction", {
+	res.render("dashboard/transaction/transactionForm", {
 		partials: {
 			...dashboardContent,
 			...msgContent,
-			addTransaction:
-				"/partials/dashboard/transactionView/transactionForm",
+			transactionForm: "/partials/dashboard/transactionView/transactionForm",
 		},
 		locals: {
 			title: "Transaction Form",
