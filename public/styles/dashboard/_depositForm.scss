@@ -6,24 +6,23 @@
     form {
         .dropdown {
             position: relative;
-            font-family: "Inter", sans-serif;
-
             select {
-                height: 4rem;
                 width: 20rem;
-                padding: 2rem;
-                font-size: 1.5rem;
-
-                //glass
+                height: 4rem;
                 background: rgba(210, 210, 210, 0.1);
                 backdrop-filter: blur(30px);
                 border-radius: 2rem;
-                outline: none;
                 border: none;
+                outline: none;
+                padding-left: 2rem;
+                font-size: 1.5rem;
+                color: rgb(55, 55, 55);
+            }
 
-                &:focus {
-                    background: rgba(140, 140, 140, 0.1);
-                }
+            ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+            ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+            ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+                color: transparent;
             }
         }
 
@@ -66,9 +65,15 @@
         }
 
         .deposit-description {
+            margin: 0;
+
             input {
                 width: 25rem;
             }
+        }
+
+        .saving-amount {
+            margin: 0;
         }
 
         #deposit-submit {

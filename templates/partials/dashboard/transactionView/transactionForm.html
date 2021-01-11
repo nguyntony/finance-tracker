@@ -2,7 +2,7 @@
     <h2>Add Transaction</h2>
 
     <form method="POST">
-        <div class="entry dropdown">
+        <div class="dropdown">
             <select required name="category" id="category">
                 <option value="" disabled selected>Category</option>
                 <option value="bills" ${transaction ? `${transaction.category == "bills" ? "selected" : ''}` : ""}>Bills</option>
@@ -16,26 +16,21 @@
                 <option disabled>Transfer to Savings</option>
                 <option value="savings" ${transaction ? `${transaction.category == "savings" ? "selected" : ''}` : ""}>Savings</option>
             </select>
-            <label for="category" class="select-label"></label>
         </div>
     
         <div class="entry">
-            <input type="number" min="0" id="amount" name="amount" step=".01" required value="${transaction ? `${transaction.amount}` : ''} " placeholder=" ">
+            <input type="number" min="0" id="amount" name="amount" step=".01" required placeholder=" " autocomplete="off" value=${transaction ? `${transaction.amount}` : ''}>
             <label for="amount" title="Enter the transaction amount." class="label-name">Amount ($)</label>
         </div>
     
-        <div class="entry deposit-description">
-
-            <input type="text" name="description" id="description" value="${transaction ? `${transaction.description}` : ''} " placeholder="">
-            <label class="label-name" for="description">Description (Optional)</label>
-            <!-- <input type="text" name="description" id="description" value="${transaction ? `${transaction.description}` : ''}" placeholder=" ">
-
-            <label for="description" class="label-name">Description (Optional)</label> -->
+        <div class="same-line">
+            <div class="entry deposit-description">
+                <input type="text" required name="description" id="description" placeholder=" " autocomplete="off" value=${transaction ? `${transaction.description}` : ''} >
+                <label class="label-name" for="description">Description</label>
+            </div>
+            <div class="submit-container">
+                    <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
         </div>
-        
-        <input type="submit" value="Submit">
-    
-    
-        <!-- <textarea name="description" id="description" cols="30" rows="10">${transaction ? `${transaction.description}` : ''}</textarea> -->
     </form>
 </div>
