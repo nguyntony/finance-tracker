@@ -2,10 +2,9 @@
     <form method="post">
         
         <h2>Start Savings Goal</h2>
-        <!-- <label for="category">Category</label> -->
     
         <div class="dropdown">
-            <select name="category" id="category">
+            <select name="category">
                 <option disabled selected>Category</option>
                 <option value="home" ${saving ? `${saving.category == "home" ? "selected" : ''}` : ""}>Home</option>
                 <option value="car" ${saving ? `${saving.category == "car" ? "selected" : ''}` : ""}>Car</option>
@@ -20,17 +19,16 @@
             <input type="text" required placeholder=" " autocomplete="off" name="title" id="title" value="${saving ? `${saving.title}` : ""}" >
             <label class="label-name" for="title">Savings Title</label>
         </div>
-    
-        <div class="entry">
-            <input type="date" name="deadline" id="deadline" value=${saving ? `${saving.deadline}` : ""}>
-            <!-- <label for="deadline">Goal Deadline (Optional)</label> -->
+        <div class="entry saving-amount">
+            <input type="number" required placeholder=" " autocomplete="off" name="total" id="total" min="0" value=${saving ? `${saving.total}` : ""}>
+            <label class="label-name" for="total">Amount ($)</label>
         </div>
-    
+
         <div class="same-line">
-            <div class="entry saving-amount">
-                <input type="number" required placeholder=" " autocomplete="off" name="total" id="total" min="0" value=${saving ? `${saving.total}` : ""}>
-                <label class="label-name" for="total">Goal Amount ($)</label>
-            </div>
+            <div class="entry deadline">
+            <input type="date" name="deadline" min="" id="deadline" value=${saving ? `${saving.deadline}` : ""}>
+            <label for="deadline" id="goal-deadline">Deadline (Optional)</label>
+        </div>
             <div class="submit-container">
                 <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
             </div>

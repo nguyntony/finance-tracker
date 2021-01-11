@@ -3,6 +3,16 @@
         margin-left: 0.5rem;
         margin-bottom: 2.5rem;
     }
+
+    #allocate-heading {
+        margin-bottom: 0;
+    }
+
+    #pAllocate {
+        margin-left: 0.5rem;
+        margin-bottom: 2.5rem;
+    }
+
     form {
         .dropdown {
             position: relative;
@@ -17,12 +27,6 @@
                 padding-left: 2rem;
                 font-size: 1.5rem;
                 color: rgb(55, 55, 55);
-            }
-
-            ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
-            ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
-            ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
-                color: transparent;
             }
         }
 
@@ -76,6 +80,10 @@
             margin: 0;
         }
 
+        #deadline {
+            margin-top: 0.5rem;
+        }
+
         #deposit-submit {
             margin-left: 1rem;
             padding: 0.5rem 0.8rem;
@@ -100,6 +108,15 @@
                 background: #bb8dbb;
                 // background: rgb(110, 159, 232);
             }
+        }
+
+        #goal-deadline {
+            position: absolute;
+            top: -5px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            color: #f0e3d4;
         }
     }
 }
