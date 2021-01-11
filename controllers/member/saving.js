@@ -141,6 +141,68 @@ const showDeleteSavingForm = async (req, res) => {
 	}
 };
 
+const showAllocationForm = async (req, res) => {
+	const { id, firstName } = req.session.user;
+	const user = await User.findByPk(id);
+	const saving = await user.getSavings();
+
+	res.render("dashboard/saving/allocationForm", {
+		partials: {
+			...dashboardContent,
+			allocationForm: "/partials/dashboard/savingView/allocationForm",
+		},
+		locals: {
+			firstName,
+			title: "Allocate Savings",
+			saving,
+		},
+	});
+};
+
+const processAllocationForm = async (req, res) => {
+	const { id } = req.session.user;
+	let { savingId, progress } = req.body;
+	const saving = await Saving.findByPk(savingId);
+	const user = await User.findByPk(id);
+
+	// Gets the total saving funds
+	const allSavingDeposits = await user.getTransactions({
+		where: {
+			category: "savings",
+		},
+	});
+	const totalSavingDeposits = allSavingDeposits
+		.map((sd) => Number(sd.amount))
+		.reduce((a, b) => a + b, 0);
+	const allAllocatedSavings = await user.getSavings();
+	const totalAllocatedSavings = allAllocatedSavings
+		.map((as) => Number(as.progress))
+		.reduce((a, b) => a + b, 0);
+	const totalSavings = totalSavingDeposits - totalAllocatedSavings;
+
+	if (saving.uid == id) {
+		// Compares allocation amount to the total of the goal
+		if (
+			saving.total !== null &&
+			Number(saving.total) -
+				(Number(saving.progress) + Number(progress)) <
+				0
+		) {
+			progress = Number(saving.total) - Number(saving.progress);
+		} else {
+			progress = Number(saving.progress) + Number(progress);
+		}
+
+		// Compares allocation amount to how much is in saving funds
+		if (Number(progress) > totalSavings) {
+			progress = Number(saving.progress) + totalSavings;
+		}
+
+		saving.update({ progress });
+		res.redirect("/member/saving/list");
+	}
+};
+
 module.exports = {
 	showSavingForm,
 	processSavingForm,
@@ -148,4 +210,6 @@ module.exports = {
 	showEditSavingForm,
 	processEditSavingForm,
 	showDeleteSavingForm,
+	showAllocationForm,
+	processAllocationForm,
 };

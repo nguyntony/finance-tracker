@@ -3,9 +3,9 @@ const {
 	partialContent,
 	msgContent,
 	getMessages,
-	dashboardContent
+	dashboardContent,
 } = require("../../helper");
-const { Transaction, User } = require("../../models");
+const { Transaction, User, Saving } = require("../../models");
 const { Op } = require("sequelize");
 const numeral = require("numeral");
 
@@ -36,28 +36,36 @@ const home = async (req, res) => {
 
 	const totalFunds = totalDeposits - totalNonDeposits;
 
+	const allSavingDeposits = await user.getTransactions({
+		where: {
+			category: "savings",
+		},
+	});
+	const totalSavingDeposits = allSavingDeposits
+		.map((sd) => Number(sd.amount))
+		.reduce((a, b) => a + b, 0);
+
+	const allAllocatedSavings = await user.getSavings();
+
+	const totalAllocatedSavings = allAllocatedSavings
+		.map((as) => Number(as.progress))
+		.reduce((a, b) => a + b, 0);
+
+	const totalSavings = totalSavingDeposits - totalAllocatedSavings;
+
 	res.render("dashboard/home", {
-		// partials: {
-		// 	...partialContent,
-		// 	...msgContent,
-		// },
-		// locals: {
-		// 	title: "Member Homepage",
-		// 	firstName,
-		// 	messages: getMessages(req),
-		// 	totalFunds: numeral(totalFunds).format("$0,0.00"),
-		// },
 		partials: {
 			...dashboardContent,
 			...msgContent,
-			cards: '/partials/dashboard/cards'
+			cards: "/partials/dashboard/cards",
 		},
 		locals: {
 			title: "Member Dashboard",
 			firstName,
 			messages: getMessages(req),
-			totalFunds: numeral(totalFunds).format("$0,0.00")
-		}
+			totalFunds: numeral(totalFunds).format("$0,0.00"),
+			totalSavings: numeral(totalSavings).format("$0,0.00"),
+		},
 	});
 };
 
