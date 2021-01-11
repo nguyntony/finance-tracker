@@ -136,7 +136,6 @@ const showDeleteSavingForm = async (req, res) => {
 				firstName,
 				lastName,
 				deleteWhat: saving.title,
-				redirectWhere: "saving",
 				messages: getMessages(req),
 			},
 		});
