@@ -222,24 +222,26 @@ p {
 
 .form form .dropdown {
   position: relative;
-  font-family: "Inter", sans-serif;
 }
 
 .form form .dropdown select {
-  height: 4rem;
   width: 20rem;
-  padding: 2rem;
-  font-size: 1.5rem;
+  height: 4rem;
   background: rgba(210, 210, 210, 0.1);
   -webkit-backdrop-filter: blur(30px);
           backdrop-filter: blur(30px);
   border-radius: 2rem;
-  outline: none;
   border: none;
+  outline: none;
+  padding-left: 2rem;
+  font-size: 1.5rem;
+  color: #373737;
 }
 
-.form form .dropdown select:focus {
-  background: rgba(140, 140, 140, 0.1);
+.form form .dropdown ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+.form form .dropdown ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+.form form .dropdown ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+  color: transparent;
 }
 
 .form form .entry {
@@ -284,8 +286,16 @@ p {
           align-items: center;
 }
 
+.form form .deposit-description {
+  margin: 0;
+}
+
 .form form .deposit-description input {
   width: 25rem;
+}
+
+.form form .saving-amount {
+  margin: 0;
 }
 
 .form form #deposit-submit {
