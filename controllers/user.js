@@ -36,7 +36,7 @@ const processSignUp = async (req, res) => {
 			lastName,
 			email,
 		});
-		res.redirect("/member/home");
+		res.redirect("/user/login");
 	} catch (e) {
 		if (e.name === "SequelizeUniqueConstraintError") {
 			req.session.flash = {
