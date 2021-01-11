@@ -16,6 +16,11 @@ router
 	.get(
 		"/delete/:savingId",
 		memberController.savingController.showDeleteSavingForm
+	)
+	.get("/allocation", memberController.savingController.showAllocationForm)
+	.post(
+		"/allocation",
+		memberController.savingController.processAllocationForm
 	);
 
 module.exports = router;
