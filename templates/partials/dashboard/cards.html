@@ -44,7 +44,10 @@
 
             <div class="card-content">
                 <h3>Savings</h3>
-                <p>Your pinned saving goal</p>
+                <p>${MRSG ? `${MRSGCat}:` : ""}
+                    ${MRSG ? `${MRSGTitle}` : ""}
+                    ${MRSG.total ? `- ${MRSGProg}/${MRSGTotal}` : `- ${MRSGProg}`}
+                </p>
             </div>
 
 
