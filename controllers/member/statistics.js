@@ -3,7 +3,8 @@ const { Saving, User, Transaction } = require("../../models");
 const numeral = require("numeral");
 
 const statistics = async (req, res) => {
-	res.render("dashboard/statistics", {
+	const { firstName, lastName } = req.session.user;
+	res.render("dashboard/statistics/statistics", {
 		partials: {
 			...dashboardContent,
 			statistics: "/partials/dashboard/statisticsView/statistics",
@@ -14,4 +15,8 @@ const statistics = async (req, res) => {
 			firstName,
 		},
 	});
+};
+
+module.exports = {
+	statistics,
 };
