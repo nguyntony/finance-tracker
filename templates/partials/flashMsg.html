@@ -1,2 +1,6 @@
-${messages.error.length ? `<p class="error">${messages.error}</p>` : ""}
+${messages.error.length ? `
+    <p class="error" id="pFlash">${messages.error}</p>
+    <script src="/scripts/flashMessage.js"></script>
+    ` : ""}
+    
 ${messages.success.length ? `<p>${messages.success}</p>` : ""}
