@@ -178,6 +178,10 @@ nav ul li:hover a {
   border: none;
 }
 
+.form form .entry input:focus {
+  background: rgba(140, 140, 140, 0.1);
+}
+
 .form form .entry label {
   position: absolute;
   bottom: 1rem;

@@ -1,0 +1,44 @@
+html {
+    font-size: 62.5%;
+    // font-family: "Noto Sans JP", sans-serif;
+    font-family: "Inter", sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // removes any default styling the browser may have
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(/images/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
+    color: rgb(45, 45, 45);
+}
+
+h3 {
+    font-size: 2rem;
+    color: rgb(45, 45, 45);
+}
+
+p {
+    font-size: 1.5rem;
+    color: rgb(55, 55, 55);
+}
+
+@import "window";
+@import "sidebar";
+@import "home";

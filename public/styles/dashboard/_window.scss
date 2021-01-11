@@ -1,0 +1,10 @@
+#dashboard {
+    display: flex;
+    overflow: hidden;
+    // glass
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: solid 1px transparent;
+    box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.3);
+    border-radius: 2.5rem;
+}

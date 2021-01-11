@@ -18,6 +18,7 @@ const signUp = (req, res) => {
 		locals: {
 			title: "Sign Up",
 			messages: getMessages(req),
+			heroImage: "signup"
 		},
 	});
 };
@@ -59,6 +60,7 @@ const login = (req, res) => {
 		locals: {
 			title: "Login",
 			messages: getMessages(req),
+			heroImage: "login"
 		},
 	});
 };
@@ -74,8 +76,9 @@ const processLogin = async (req, res) => {
 
 	if (user && passwordCheck) {
 		req.session.user = {
-			firstName: user.firstName,
 			id: user.id,
+			firstName: user.firstName,
+			lastName: user.lastName,
 		};
 		req.session.save(() => {
 			res.redirect("/member/home");
