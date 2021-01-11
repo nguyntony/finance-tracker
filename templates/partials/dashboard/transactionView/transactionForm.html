@@ -12,7 +12,7 @@
         <option disabled>Deposit Funds</option>
         <option value="deposit" ${transaction ? `${transaction.category == "deposit" ? "selected" : ''}` : ""}>Deposit</option>
         <option disabled>Transfer to Savings</option>
-        <option value="saving" ${transaction ? `${transaction.category == "saving" ? "selected" : ''}` : ""}>Savings</option>
+        <option value="savings" ${transaction ? `${transaction.category == "savings" ? "selected" : ''}` : ""}>Savings</option>
     </select>
 
     <label for="amount" title="Enter the transaction amount.">Amount ($)</label>
