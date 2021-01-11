@@ -1,21 +1,53 @@
         <!-- This is the total funds. -->
-        <div class="fundsCard">
-            <h2>Total funds</h2>
-            <img src="/heroIcons/money-tree.png" alt="money tree icon">
-            <p>${totalFunds}</p>
+        <div class="fundsCard card">
+            <div class="card-icon">
+                <img src="/heroIcons/money-tree.png" alt="money tree icon">
+            </div>
+
+
+            <div class="card-content">
+                <h3>Total funds</h3>
+                <p>this is how much money you have</p>
+            </div>
+
+            <div class="card-other-content">
+                <p>${totalFunds}</p>
+            </div>
         </div>
 
         <!-- This is the transactions card. -->
-        <div class="transactionsCard">
-            <h2>Transactions</h2>
-            <img src="/heroIcons/credit-card.png" alt="credit card icon">
-            <button><a href="/member/transaction/list">Transactions</a></button>
+        <div class="transactionsCard card">
+            <div class="card-icon">
+                <img src="/heroIcons/credit-card.png" alt="credit card icon">
+            </div>
+
+
+            <div class="card-content">
+                <h3>Transactions</h3>
+                <p>Your most expense is blah blah blah</p>
+            </div>
+
+            <div class="card-other-content">
+                <button><a href="/member/transaction/list">Transactions</a></button>
+            </div>
         </div>
 
         <!-- This is the savings card. -->
-        <div class="savingsCard">
-            <h2>Savings</h2>
-            <img src="/heroIcons/piggy-bank.png" alt="piggy bank icon">
-            <button><a href="/member/saving/list">Savings</a></button>
-            <p>${totalSavings}</p>
+        <div class="savingsCard card">
+            <div class="card-icon">
+                <img src="/heroIcons/piggy-bank.png" alt="piggy bank icon">
+            </div>
+
+
+            <div class="card-content">
+                <h3>Savings</h3>
+                <p>Your pinned saving goal</p>
+            </div>
+
+
+            <div class="card-other-content">
+                <p>${totalSavings}</p>
+                <button><a href="/member/saving/list">Savings</a></button>
+            </div>
+            
         </div>

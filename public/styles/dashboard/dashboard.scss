@@ -34,6 +34,11 @@ h3 {
     color: rgb(45, 45, 45);
 }
 
+h4 {
+    font-size: 1.8rem;
+    color: rgb(45, 45, 45);
+}
+
 p {
     font-size: 1.5rem;
     color: rgb(55, 55, 55);
@@ -43,3 +48,4 @@ p {
 @import "sidebar";
 @import "home";
 @import "main";
+@import "focus";
