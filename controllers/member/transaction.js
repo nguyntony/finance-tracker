@@ -45,6 +45,7 @@ const showTransactionForm = async (req, res) => {
 	res.render("dashboard/transaction/addTransaction", {
 		partials: {
 			...dashboardContent,
+			...msgContent,
 			addTransaction:
 				"/partials/dashboard/transactionView/transactionForm",
 		},
@@ -53,6 +54,7 @@ const showTransactionForm = async (req, res) => {
 			firstName,
 			lastName,
 			transaction: null,
+			messages: getMessages(req),
 		},
 	});
 };
@@ -68,16 +70,20 @@ const processTransactionForm = async (req, res) => {
 	}
 
 	if (totalFunds - Number(amount) < 0) {
+		req.session.flash = { error: "Insufficient funds." };
+		req.session.save(() => {
+			res.redirect("/member/transaction/create");
+		});
+	} else {
+		const newTransaction = await Transaction.create({
+			category,
+			amount,
+			description,
+			uid: id,
+		});
+
+		res.redirect("/member/home");
 	}
-
-	const newTransaction = await Transaction.create({
-		category,
-		amount,
-		description,
-		uid: id,
-	});
-
-	res.redirect("/member/home");
 };
 
 const showDepositForm = (req, res) => {
