@@ -35,6 +35,41 @@ const checkTotalFunds = async (req, res) => {
 	return totalFunds;
 };
 
+// Function to check total savings progress
+const checkTotalProgress = async (req, res, transactionId) => {
+	const { id } = req.session.user;
+	const user = await User.findByPk(id);
+
+	const allSavings = await user.getSavings();
+
+	const totalSavingsProgress = allSavings
+		.map((n) => Number(n.progress))
+		.reduce((a, b) => a + b, 0);
+
+	return totalSavingsProgress;
+};
+
+// Function to check total savings amount without the edited one.
+const checkTotalSavings = async (req, res, transactionId) => {
+	const { id } = req.session.user;
+	const user = await User.findByPk(id);
+
+	const allSavingDeposits = await user.getTransactions({
+		where: {
+			category: "savings",
+			id: {
+				[Op.not]: transactionId,
+			},
+		},
+	});
+
+	const totalSavings = allSavingDeposits
+		.map((n) => Number(n.amount))
+		.reduce((a, b) => a + b, 0);
+
+	return totalSavings;
+};
+
 // fn to display the transaction form
 const showTransactionForm = async (req, res) => {
 	const { firstName, lastName } = req.session.user;
@@ -46,7 +81,8 @@ const showTransactionForm = async (req, res) => {
 		partials: {
 			...dashboardContent,
 			...msgContent,
-			transactionForm: "/partials/dashboard/transactionView/transactionForm",
+			transactionForm:
+				"/partials/dashboard/transactionView/transactionForm",
 		},
 		locals: {
 			title: "Transaction Form",
@@ -168,6 +204,7 @@ const showEditTransactionForm = async (req, res) => {
 		res.render("dashboard/transaction/transactionForm", {
 			partials: {
 				...dashboardContent,
+				...msgContent,
 				transactionForm:
 					"/partials/dashboard/transactionView/transactionForm",
 			},
@@ -176,6 +213,7 @@ const showEditTransactionForm = async (req, res) => {
 				firstName,
 				lastName,
 				transaction,
+				messages: getMessages(req),
 			},
 		});
 	} else {
@@ -187,10 +225,30 @@ const processEditTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
 	const { category, amount, description } = req.body;
 
-	const findTransaction = await Transaction.findByPk(transactionId);
-	findTransaction.update({ category, amount, description });
+	const totalFunds = await checkTotalFunds(req, res);
+	const totalProgress = await checkTotalProgress(req, res);
+	const totalSavings = await checkTotalSavings(req, res, transactionId);
+	console.log("==========", totalSavings, "-", totalProgress);
 
-	res.redirect("/member/transaction/list");
+	if (totalFunds - Number(amount) < 0 && category !== "deposit") {
+		req.session.flash = { error: "Insufficient funds." };
+		req.session.save(() => {
+			res.redirect(`/member/transaction/edit/${transactionId}`);
+		});
+	} else if (
+		totalSavings + Number(amount) - totalProgress < 0 &&
+		category === "savings"
+	) {
+		req.session.flash = { error: "Insufficient savings." };
+		req.session.save(() => {
+			res.redirect(`/member/transaction/edit/${transactionId}`);
+		});
+	} else {
+		const findTransaction = await Transaction.findByPk(transactionId);
+		findTransaction.update({ category, amount, description });
+
+		res.redirect("/member/transaction/list");
+	}
 };
 
 const showDeleteTransactionForm = async (req, res) => {
