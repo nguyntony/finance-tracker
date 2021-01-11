@@ -56,8 +56,8 @@ async function chartIt() {
 			],
 		},
 		options: {
-			rotation: 1 * Math.PI,
-			circumference: 1 * Math.PI,
+			// rotation: 1 * Math.PI,
+			// circumference: 1 * Math.PI,
 		},
 	});
 }
