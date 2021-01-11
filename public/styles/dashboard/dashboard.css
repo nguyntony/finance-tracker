@@ -210,4 +210,116 @@ p {
   width: 8rem;
   background: tomato;
 }
+
+#focus .fundsCard .card-other-content p {
+  font-weight: bold;
+}
+
+.form h2 {
+  margin-left: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.form form .dropdown {
+  position: relative;
+  font-family: "Inter", sans-serif;
+}
+
+.form form .dropdown select {
+  height: 4rem;
+  width: 20rem;
+  padding: 2rem;
+  font-size: 1.5rem;
+  background: rgba(210, 210, 210, 0.1);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  border-radius: 2rem;
+  outline: none;
+  border: none;
+}
+
+.form form .dropdown select:focus {
+  background: rgba(140, 140, 140, 0.1);
+}
+
+.form form .entry {
+  position: relative;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  color: #373737;
+}
+
+.form form .entry input {
+  height: 4rem;
+  width: 20rem;
+  padding: 2rem;
+  font-size: 1.5rem;
+  background: rgba(210, 210, 210, 0.1);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  border-radius: 2rem;
+  outline: none;
+  border: none;
+}
+
+.form form .entry input:focus {
+  background: rgba(140, 140, 140, 0.1);
+}
+
+.form form .entry label {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem;
+  pointer-events: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.form form .same-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form form .deposit-description input {
+  width: 25rem;
+}
+
+.form form #deposit-submit {
+  margin-left: 1rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 100%;
+  border: none;
+  background: #765992;
+  color: #fafafa;
+  cursor: pointer;
+  outline: none;
+}
+
+.form form #deposit-submit i {
+  font-size: 3rem;
+  color: #f9e9df;
+}
+
+.form form #deposit-submit:focus {
+  border: none;
+}
+
+.form form #deposit-submit:hover {
+  background: #bb8dbb;
+}
+
+.form input:focus + .label-name,
+.form input:valid + .label-name,
+.form input:not(:placeholder-shown):not(:focus):invalid + .label-name {
+  -webkit-transform: translateY(-150%);
+          transform: translateY(-150%);
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #f0e3d4;
+}
 /*# sourceMappingURL=dashboard.css.map */
