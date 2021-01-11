@@ -53,6 +53,7 @@ const home = async (req, res) => {
 	});
 
 	const mostRecentSavingGoal = allAllocatedSavings[0];
+	console.log(mostRecentSavingGoal.title);
 
 	const totalAllocatedSavings = allAllocatedSavings
 		.map((as) => Number(as.progress))
@@ -85,13 +86,23 @@ const home = async (req, res) => {
 				? ""
 				: "You have no recent transactions!",
 			MRSG: mostRecentSavingGoal,
-			MRSGTotal: mostRecentSavingGoal
-				? numeral(mostRecentSavingGoal.total).format("0,0.00")
+			MRSGProg: mostRecentSavingGoal
+				? numeral(mostRecentSavingGoal.progress).format("$0,0.00")
 				: "",
-			MRSG: mostRecentSavingGoal
+			MRSGTotal: mostRecentSavingGoal
+				? numeral(mostRecentSavingGoal.total).format("$0,0.00")
+				: "",
+			MRSGCat: mostRecentSavingGoal
 				? mostRecentSavingGoal.category.charAt(0).toUpperCase() +
 				  mostRecentSavingGoal.category.slice(1)
 				: "",
+			MRSGTitle: mostRecentSavingGoal
+				? mostRecentSavingGoal.title.charAt(0).toUpperCase() +
+				  mostRecentSavingGoal.title.slice(1)
+				: "",
+			NoMRSG: mostRecentSavingGoal
+				? ""
+				: "You have no saving goal! Create one now!",
 		},
 	});
 };

@@ -1,10 +1,46 @@
 const { dashboardContent, msgContent, getMessages } = require("../../helper");
-const { Transaction, User } = require("../../models");
+const { Transaction, User, Saving } = require("../../models");
+const { Op } = require("sequelize");
 const numeral = require("numeral");
 
+// Function to check total funds.
+const checkTotalFunds = async (req, res) => {
+	const { id } = req.session.user;
+	const user = await User.findByPk(id);
+
+	const allDeposits = await user.getTransactions({
+		where: {
+			category: "deposit",
+		},
+	});
+	const totalDeposits = allDeposits
+		.map((d) => Number(d.amount))
+		.reduce((a, b) => a + b, 0);
+
+	const allNonDeposits = await user.getTransactions({
+		where: {
+			category: {
+				[Op.not]: "deposit",
+			},
+		},
+		order: [["createdAt", "desc"]],
+	});
+
+	const totalNonDeposits = allNonDeposits
+		.map((n) => Number(n.amount))
+		.reduce((a, b) => a + b, 0);
+
+	const totalFunds = totalDeposits - totalNonDeposits;
+
+	return totalFunds;
+};
+
 // fn to display the transaction form
-const showTransactionForm = (req, res) => {
+const showTransactionForm = async (req, res) => {
 	const { firstName, lastName } = req.session.user;
+
+	const totalFunds = await checkTotalFunds(req, res);
+	console.log(totalFunds);
 
 	res.render("dashboard/transaction/addTransaction", {
 		partials: {
@@ -25,8 +61,13 @@ const processTransactionForm = async (req, res) => {
 	const { id } = req.session.user;
 	let { category, amount, description } = req.body;
 
+	const totalFunds = await checkTotalFunds(req, res);
+
 	if (!description) {
 		description = null;
+	}
+
+	if (totalFunds - Number(amount) < 0) {
 	}
 
 	const newTransaction = await Transaction.create({
