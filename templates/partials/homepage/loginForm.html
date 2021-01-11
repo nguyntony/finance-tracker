@@ -1,10 +1,24 @@
-<div id="loginForm">
-    <h2>Welcome back</h2>
+<div class="form">
+    <h1>Welcome back</h1>
     <form action="" method="post">
-        <label for="username">Username:</label>
+        <!-- <label for="username">Username:</label>
         <input type="text" name="username" id="username">
         <label for="password">Password:</label>
         <input type="password" name="password" id="password">
-        <input type="submit" value="Login">
+        <input type="submit" value="Login"> -->
+        <div class="same-line">
+            <div class="entry name">
+                <input type="text" name="username" required autocomplete="off" placeholder=" ">
+                <label for="username" class="label-name"><span class="content-name">Username</span></label>
+            </div>
+            <div class="entry name">
+                <input type="password" name="password" required autocomplete="off" placeholder=" ">
+                <label for="password" class="label-name"><span class="content-name">Password</span></label>
+            </div>
+            <div class="login-container">
+                <button type="submit" id="submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
+        </div>
+        <p class="memberMsg">Not a member? <a href="/user/signup">Create account</a></p>
     </form>
 </div>
