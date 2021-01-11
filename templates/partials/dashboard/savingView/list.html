@@ -1,11 +1,12 @@
 <h1>All Savings Goal</h1>
+<a href="/member/saving/allocation">Allocate to a goal</a>
 <ul>
     ${editedSavings.map(s => `
         <li>
         <a href="/member/saving/edit/${s.id}">
             ${s.title}
             ${s.deadline ? ` | ${s.deadline}` : ""}
-            ${s.total ? ` | ${s.progress} / ${s.total}` : ""}
+            ${s.total ? ` | ${s.progress} / ${s.total}` : ` | ${s.progress}`}
         </a>
         </li>
         <a href="/member/saving/delete/${s.id}">Delete</a>
