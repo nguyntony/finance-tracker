@@ -3,7 +3,7 @@ const { Saving, User } = require("../../models");
 const numeral = require("numeral");
 
 const showSavingForm = (req, res) => {
-	const { firstName } = req.session.user;
+	const { firstName, lastName } = req.session.user;
 
 	res.render("dashboard/saving/savingForm", {
 		partials: {
@@ -12,6 +12,7 @@ const showSavingForm = (req, res) => {
 		},
 		locals: {
 			title: "Saving Form",
+			lastName,
 			firstName,
 			saving: null,
 		},
@@ -44,7 +45,7 @@ const processSavingForm = async (req, res) => {
 };
 
 const list = async (req, res) => {
-	const { id, firstName } = req.session.user;
+	const { id, firstName, lastName } = req.session.user;
 	const user = await User.findByPk(id);
 	const getSavings = await user.getSavings({
 		order: [["createdAt", "desc"]],
@@ -71,6 +72,7 @@ const list = async (req, res) => {
 		locals: {
 			title: "Savings",
 			firstName,
+			lastName,
 			editedSavings,
 		},
 	});
@@ -78,7 +80,7 @@ const list = async (req, res) => {
 
 const showEditSavingForm = async (req, res) => {
 	const { savingId } = req.params;
-	const { id, firstName } = req.session.user;
+	const { id, firstName, lastName } = req.session.user;
 	const saving = await Saving.findByPk(savingId);
 
 	if (saving.uid == id) {
@@ -91,6 +93,7 @@ const showEditSavingForm = async (req, res) => {
 				title: "Edit Saving",
 				saving,
 				firstName,
+				lastName,
 			},
 		});
 	} else {
@@ -118,7 +121,7 @@ const processEditSavingForm = async (req, res) => {
 const showDeleteSavingForm = async (req, res) => {
 	const { savingId } = req.params;
 	const saving = await Saving.findByPk(savingId);
-	const { id, firstName } = req.session.user;
+	const { id, firstName, lastName } = req.session.user;
 
 	if (saving.uid == id) {
 		res.render("dashboard/transaction/deleteTransaction", {
@@ -131,6 +134,7 @@ const showDeleteSavingForm = async (req, res) => {
 			locals: {
 				title: "Delete Confirmation",
 				firstName,
+				lastName,
 				deleteWhat: saving.title,
 				redirectWhere: "saving",
 				messages: getMessages(req),
@@ -142,7 +146,7 @@ const showDeleteSavingForm = async (req, res) => {
 };
 
 const showAllocationForm = async (req, res) => {
-	const { id, firstName } = req.session.user;
+	const { id, firstName, lastName } = req.session.user;
 	const user = await User.findByPk(id);
 	const saving = await user.getSavings();
 
@@ -153,6 +157,7 @@ const showAllocationForm = async (req, res) => {
 		},
 		locals: {
 			firstName,
+			lastName,
 			title: "Allocate Savings",
 			saving,
 		},
