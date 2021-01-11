@@ -1,16 +1,30 @@
-<h1>Allocate into Goal</h1>
-<form action="" method="post">
-    <label for="goal">Goal</label>
-    <select name="savingId" id="goal">
-        <option value="" disabled selected>Select One</option>
-    ${saving.map(s => `
-        <option value="${s.id}">${s.title}</option>
-        `).join("")}
-    </select>
-    <label for="progress">Amount:</label>
-    <input type="number" name="progress" id="progress" min="0" step=".01" required>
-    <input type="submit" value="Sumbit">
+<div class="form">
+    <form action="" method="post">
+        <h2 id="allocate-heading">Allocate Funds</h2>
+        <p id="pAllocate">Transfer your savings toward a goal.</p>
 
 
+        <div class="dropdown">
+            <select name="savingId" id="goal">
+                <option value="" disabled selected>Goals</option>
+            ${saving.map(s => `
+                <option value="${s.id}">${s.title}</option>
+                `).join("")}
+            </select>
+            <!-- <label for="goal">Goal</label> -->
+        </div>
 
-</form>
+
+        <div class="same-line">
+            <div class="entry">
+                <input type="number" name="progress" id="progress" min="0" step=".01" required placeholder=" ">
+    
+                <label class="label-name" for="progress">Amount ($)</label>
+            </div>
+            <div class="submit-container">
+                <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
+        </div>
+
+    </form>
+</div>

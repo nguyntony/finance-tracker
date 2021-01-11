@@ -205,17 +205,62 @@ p {
           flex-direction: column;
 }
 
-#focus .card .card-other-content {
-  height: 5rem;
-  width: 8rem;
-  background: tomato;
+#focus .card #total-funds {
+  position: absolute;
+  right: 0;
 }
 
-#focus .fundsCard .card-other-content p {
+#focus .card .card-other-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  width: 13rem;
+}
+
+#focus .card .card-other-content button {
+  position: absolute;
+  right: 0;
+  padding: 0.8rem 1rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  border: none;
+  background: #765992;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+}
+
+#focus .card .card-other-content button a {
+  color: #fafafa;
+}
+
+#focus .card .card-other-content button:focus {
+  border: none;
+}
+
+#focus .card .card-other-content button:hover {
+  background: #bb8dbb;
+}
+
+#focus .fundsCard .card-other-content p,
+#focus .savingsCard .card-other-content p {
   font-weight: bold;
 }
 
 .form h2 {
+  margin-left: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.form #allocate-heading {
+  margin-bottom: 0;
+}
+
+.form #pAllocate {
   margin-left: 0.5rem;
   margin-bottom: 2.5rem;
 }
@@ -236,12 +281,6 @@ p {
   padding-left: 2rem;
   font-size: 1.5rem;
   color: #373737;
-}
-
-.form form .dropdown ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
-.form form .dropdown ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
-.form form .dropdown ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
-  color: transparent;
 }
 
 .form form .entry {
@@ -298,6 +337,10 @@ p {
   margin: 0;
 }
 
+.form form #deadline {
+  margin-top: 0.5rem;
+}
+
 .form form #deposit-submit {
   margin-left: 1rem;
   padding: 0.5rem 0.8rem;
@@ -320,6 +363,15 @@ p {
 
 .form form #deposit-submit:hover {
   background: #bb8dbb;
+}
+
+.form form #goal-deadline {
+  position: absolute;
+  top: -5px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #f0e3d4;
 }
 
 .form input:focus + .label-name,
