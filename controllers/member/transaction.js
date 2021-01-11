@@ -165,7 +165,6 @@ const showDeleteTransactionForm = async (req, res) => {
 				firstName,
 				lastName,
 				deleteWhat: transaction.description,
-				redirectWhere: "transaction",
 				messages: getMessages(req),
 			},
 		});
