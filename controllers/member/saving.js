@@ -23,12 +23,8 @@ const processSavingForm = async (req, res) => {
 	const { id } = req.session.user;
 	let { title, deadline, total, category } = req.body;
 
-	if (!total) {
-		total = null;
-	}
-	if (!deadline) {
-		deadline = null;
-	}
+	// All new titles will have the first word uppercased.
+	title = title.charAt(0).toUpperCase() + title.slice(1);
 
 	const newSaving = await Saving.create({
 		title,
@@ -105,12 +101,8 @@ const processEditSavingForm = async (req, res) => {
 	const { savingId } = req.params;
 	let { category, title, deadline, total } = req.body;
 
-	if (!total) {
-		total = null;
-	}
-	if (!deadline) {
-		deadline = null;
-	}
+	// All edited titles will have the first word uppercased.
+	title = title.charAt(0).toUpperCase() + title.slice(1);
 
 	const findSaving = await Saving.findByPk(savingId);
 	findSaving.update({ category, title, deadline, total });
