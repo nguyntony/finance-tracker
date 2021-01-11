@@ -1,5 +1,7 @@
 #focus {
     // this will be for the default view of the cards
+    // min-width: 60rem;
+
     .card {
         background: rgba(255, 255, 255, 0.3);
         backdrop-filter: blur(20px);
@@ -16,15 +18,15 @@
         }
 
         .card-content {
-            width: 70%;
+            width: 35rem;
             display: flex;
             flex-direction: column;
         }
 
-        #total-funds {
-            position: absolute;
-            right: 0;
-        }
+        // #total-funds {
+        //     position: absolute;
+        //     right: 0;
+        // }
 
         .card-other-content {
             display: flex;
