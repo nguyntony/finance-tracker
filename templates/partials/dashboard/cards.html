@@ -24,7 +24,10 @@
 
             <div class="card-content">
                 <h3>Transactions</h3>
-                <p>Your most expense is blah blah blah</p>
+                <p> ${MRT ? `${MRTCat}:` : ""} 
+                    ${MRT.description ? `${MRT.description} -` : ""} 
+                    ${MRTAmt ? `${MRTAmt}` : ""} 
+                    ${NoMRT}</p>
             </div>
 
             <div class="card-other-content">

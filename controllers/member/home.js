@@ -28,7 +28,10 @@ const home = async (req, res) => {
 				[Op.not]: "deposit",
 			},
 		},
+		order: [["createdAt", "desc"]],
 	});
+
+	const mostRecentTransaction = allNonDeposits[0];
 
 	const totalNonDeposits = allNonDeposits
 		.map((n) => Number(n.amount))
@@ -45,7 +48,11 @@ const home = async (req, res) => {
 		.map((sd) => Number(sd.amount))
 		.reduce((a, b) => a + b, 0);
 
-	const allAllocatedSavings = await user.getSavings();
+	const allAllocatedSavings = await user.getSavings({
+		order: [["createdAt", "desc"]],
+	});
+
+	const mostRecentSavingGoal = allAllocatedSavings[0];
 
 	const totalAllocatedSavings = allAllocatedSavings
 		.map((as) => Number(as.progress))
@@ -66,6 +73,25 @@ const home = async (req, res) => {
 			messages: getMessages(req),
 			totalFunds: numeral(totalFunds).format("$0,0.00"),
 			totalSavings: numeral(totalSavings).format("$0,0.00"),
+			MRT: mostRecentTransaction,
+			MRTAmt: mostRecentTransaction
+				? numeral(mostRecentTransaction.amount).format("$0,0.00")
+				: "",
+			MRTCat: mostRecentTransaction
+				? mostRecentTransaction.category.charAt(0).toUpperCase() +
+				  mostRecentTransaction.category.slice(1)
+				: "",
+			NoMRT: mostRecentTransaction
+				? ""
+				: "You have no recent transactions!",
+			MRSG: mostRecentSavingGoal,
+			MRSGTotal: mostRecentSavingGoal
+				? numeral(mostRecentSavingGoal.total).format("0,0.00")
+				: "",
+			MRSG: mostRecentSavingGoal
+				? mostRecentSavingGoal.category.charAt(0).toUpperCase() +
+				  mostRecentSavingGoal.category.slice(1)
+				: "",
 		},
 	});
 };
