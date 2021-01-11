@@ -1,0 +1,63 @@
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    min-width: 25rem;
+    background: rgba(245, 245, 245, 0.8);
+    padding: 2.5rem 2rem;
+    align-items: center;
+
+    #profile-pic {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        border: 1px solid rgb(55, 55, 55);
+        box-shadow: 3px 3.5px 3.5px rgba(46, 54, 68, 0.3);
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    #name-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        height: 4rem;
+        margin-top: 2.5rem;
+        background: #cf9fcf;
+        border-radius: 1.2rem;
+
+        h4 {
+            font-size: 1.8rem;
+        }
+    }
+
+    nav {
+        margin: 2.5rem 0;
+        width: 80%;
+        // height: 80%;
+
+        ul {
+            list-style: none;
+            li {
+                font-size: 1.3rem;
+
+                a {
+                    color: #a29f9f;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    #logout {
+        width: 80%;
+        font-size: 1.3rem;
+        color: #a29f9f;
+        text-decoration: none;
+        font-weight: bold;
+    }
+}

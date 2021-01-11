@@ -10,7 +10,7 @@ const { Op } = require("sequelize");
 const numeral = require("numeral");
 
 const home = async (req, res) => {
-	const { firstName, id } = req.session.user;
+	const { firstName, lastName, id } = req.session.user;
 	const user = await User.findByPk(id);
 
 	const allDeposits = await user.getTransactions({
@@ -62,6 +62,7 @@ const home = async (req, res) => {
 		locals: {
 			title: "Member Dashboard",
 			firstName,
+			lastName,
 			messages: getMessages(req),
 			totalFunds: numeral(totalFunds).format("$0,0.00"),
 			totalSavings: numeral(totalSavings).format("$0,0.00"),

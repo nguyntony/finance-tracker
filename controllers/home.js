@@ -9,7 +9,8 @@ const home = (req, res) => {
 		},
 		locals: {
 			title: "T|WIN Homepage",
-			messages: getMessages(req)
+			messages: getMessages(req),
+			heroImage: "home"
 		},
 	});
 };
