@@ -1,17 +1,69 @@
-<div id="signupForm">
-    <h2>Sign Up</h2>
-    <form action="" method="post">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" required>
-        <label for="firstname">First Name:</label>
-        <input type="text" name="firstName" id="firstname" required>
-        <label for="lastname">Last Name:</label>
-        <input type="text" name="lastName" id="lastname" required>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-        <input type="submit" value="Sign Up">
+<!-- <div class="signup-form">
+    <form action="" method="post" class="form">
+        <h2 class="form__title">Sign Up</h2>
+
+        <div class="form__div">
+            <label for="username" class="form__label">Username</label>
+            <input type="text" name="username" id="username" class="form__input" placeholder=" " required>
+        </div>
+
+        <div class="form__div">
+            <label for="firstname" class="form__label">First Name:</label>
+            <input type="text" name="firstName" id="firstname" class="form__input" placeholder=" " required>
+        </div>
+    
+        <div class="form__div">
+            <label for="lastname" class="form__label">Last Name:</label>
+            <input type="text" name="lastName" id="lastname" class="form__input" placeholder=" " required>
+        </div>
+
+        <div class="form__div">
+            <label for="email" class="form__label">Email:</label>
+            <input type="email" name="email" id="email" class="form__input" placeholder=" " required>
+        </div>
+
+        <div class="form__div">
+            <label for="password" class="form__label">Password</label>
+            <input type="password" name="password" id="password" class="form__input" placeholder=" " required>
+        </div>
+    
+        <input type="submit" value="Sign Up" class="form__button">
+        
     </form>
-    <p>Already a member? <a href="/user/login">Login</a></p>
+    <!-- <p>Already a member? <a href="/user/login">Login</a></p> -->
+<!-- </div> --> 
+
+<div class="form">
+    <h1>Create account</h1>
+
+        <form action="" method="POST">
+            <div class="same-line">
+                <div class="entry name">
+                    <input type="text" name="firstName" required autocomplete="off" placeholder=" ">
+                    <label for="firstName" class="label-name"><span class="content-name">First Name</span></label>
+                </div>
+                <div class="entry name">
+                    <input type="text" name="lastName" required autocomplete="off" placeholder=" ">
+                    <label for="lastName" class="label-name"><span class="content-name">Last Name</span></label>
+                </div>
+            </div>
+            <div class="entry email">
+                <input type="email" name="email" required autocomplete="off" placeholder=" ">
+                <label for="email" class="label-name"><span class="content-name">Email</span></label>
+            </div>
+            <div class="entry">
+                <input type="text" name="username" required autocomplete="off" placeholder=" ">
+                <label for="username" class="label-name"><span class="content-name">Username</span></label>
+            </div>
+            <div class="entry">
+                <input type="password" name="password" required autocomplete="off" placeholder=" ">
+                <label for="password" class="label-name"><span class="content-name">Password</span></label>
+            </div>
+
+            <div class="submit-container">
+                <h2>Sign up</h2>
+                <button type="submit" id="submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
+            <p class="memberMsg">Already a member? <a href="/user/login">Login</a></p>
+        </form>
 </div>
