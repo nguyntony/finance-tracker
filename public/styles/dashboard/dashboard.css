@@ -195,7 +195,7 @@ p {
 }
 
 #focus .card .card-content {
-  width: 70%;
+  width: 35rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -203,11 +203,6 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-#focus .card #total-funds {
-  position: absolute;
-  right: 0;
 }
 
 #focus .card .card-other-content {

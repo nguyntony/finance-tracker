@@ -31,7 +31,16 @@ const home = async (req, res) => {
 		order: [["createdAt", "desc"]],
 	});
 
-	const mostRecentTransaction = allNonDeposits[0];
+	const mostRecentTransaction = allNonDeposits[0]
+
+	// const newTransaction = mostRecentTransaction.map(t => {
+	// 	return {
+	// 		category: t.category.toUpperCase(),
+	// 		amount: t.amount.format(edfeduee)
+	// 	} 
+	// })
+
+	newTransaction.category
 
 	const totalNonDeposits = allNonDeposits
 		.map((n) => Number(n.amount))
@@ -80,7 +89,7 @@ const home = async (req, res) => {
 				: "",
 			MRTCat: mostRecentTransaction
 				? mostRecentTransaction.category.charAt(0).toUpperCase() +
-				  mostRecentTransaction.category.slice(1)
+				mostRecentTransaction.category.slice(1)
 				: "",
 			NoMRT: mostRecentTransaction
 				? ""
@@ -94,11 +103,11 @@ const home = async (req, res) => {
 				: "",
 			MRSGCat: mostRecentSavingGoal
 				? mostRecentSavingGoal.category.charAt(0).toUpperCase() +
-				  mostRecentSavingGoal.category.slice(1)
+				mostRecentSavingGoal.category.slice(1)
 				: "",
 			MRSGTitle: mostRecentSavingGoal
 				? mostRecentSavingGoal.title.charAt(0).toUpperCase() +
-				  mostRecentSavingGoal.title.slice(1)
+				mostRecentSavingGoal.title.slice(1)
 				: "",
 			NoMRSG: mostRecentSavingGoal
 				? ""
