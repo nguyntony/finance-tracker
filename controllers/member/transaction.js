@@ -3,8 +3,8 @@ const { Transaction, User, Saving } = require("../../models");
 const { Op } = require("sequelize");
 const numeral = require("numeral");
 
-// Function to check total funds.
-const checkTotalFunds = async (req, res) => {
+// Function to check total funds or total non-deposits
+const checkTotalFundsOrTotalNonDeposits = async (req, res) => {
 	const { id } = req.session.user;
 	const user = await User.findByPk(id);
 
@@ -23,7 +23,6 @@ const checkTotalFunds = async (req, res) => {
 				[Op.not]: "deposit",
 			},
 		},
-		order: [["createdAt", "desc"]],
 	});
 
 	const totalNonDeposits = allNonDeposits
@@ -32,7 +31,28 @@ const checkTotalFunds = async (req, res) => {
 
 	const totalFunds = totalDeposits - totalNonDeposits;
 
-	return totalFunds;
+	return { totalFunds, totalNonDeposits };
+};
+
+// Function to check total deposits without editing one
+const checkTotalDeposits = async (req, res, transactionId) => {
+	const { id } = req.session.user;
+	const user = await User.findByPk(id);
+
+	const allDeposits = await user.getTransactions({
+		where: {
+			category: "deposits",
+		},
+		id: {
+			[Op.not]: transactionId,
+		},
+	});
+
+	const totalDeposits = allDeposits
+		.map((n) => Number(n.progress))
+		.reduce((a, b) => a + b, 0);
+
+	return totalDeposits;
 };
 
 // Function to check total savings progress
@@ -74,7 +94,7 @@ const checkTotalSavings = async (req, res, transactionId) => {
 const showTransactionForm = async (req, res) => {
 	const { firstName, lastName } = req.session.user;
 
-	const totalFunds = await checkTotalFunds(req, res);
+	const totalFunds = await checkTotalFundsOrTotalNonDeposits(req, res);
 	console.log(totalFunds);
 
 	res.render("dashboard/transaction/transactionForm", {
@@ -98,13 +118,9 @@ const processTransactionForm = async (req, res) => {
 	const { id } = req.session.user;
 	let { category, amount, description } = req.body;
 
-	const totalFunds = await checkTotalFunds(req, res);
+	const totalFunds = await checkTotalFundsOrTotalNonDeposits(req, res);
 
-	if (!description) {
-		description = null;
-	}
-
-	if (totalFunds - Number(amount) < 0) {
+	if (totalFunds.totalFunds - Number(amount) < 0) {
 		req.session.flash = { error: "Insufficient funds." };
 		req.session.save(() => {
 			res.redirect("/member/transaction/create");
@@ -225,12 +241,23 @@ const processEditTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
 	const { category, amount, description } = req.body;
 
-	const totalFunds = await checkTotalFunds(req, res);
+	const totalFundsOrND = await checkTotalFundsOrTotalNonDeposits(req, res);
+	const totalDeposits = await checkTotalDeposits(req, res, transactionId);
 	const totalProgress = await checkTotalProgress(req, res);
 	const totalSavings = await checkTotalSavings(req, res, transactionId);
-	console.log("==========", totalSavings, "-", totalProgress);
 
-	if (totalFunds - Number(amount) < 0 && category !== "deposit") {
+	if (
+		totalFundsOrND.totalFunds - Number(amount) < 0 &&
+		category !== "deposit"
+	) {
+		req.session.flash = { error: "Insufficient funds." };
+		req.session.save(() => {
+			res.redirect(`/member/transaction/edit/${transactionId}`);
+		});
+	} else if (
+		totalDeposits + Number(amount) - totalFundsOrND.totalNonDeposits < 0 &&
+		category === "deposit"
+	) {
 		req.session.flash = { error: "Insufficient funds." };
 		req.session.save(() => {
 			res.redirect(`/member/transaction/edit/${transactionId}`);

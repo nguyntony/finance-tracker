@@ -13,6 +13,7 @@ const home = async (req, res) => {
 	const { firstName, lastName, id } = req.session.user;
 	const user = await User.findByPk(id);
 
+	// Function to get total funds
 	const allDeposits = await user.getTransactions({
 		where: {
 			category: "deposit",
@@ -31,23 +32,13 @@ const home = async (req, res) => {
 		order: [["createdAt", "desc"]],
 	});
 
-	const mostRecentTransaction = allNonDeposits[0]
-
-	// const newTransaction = mostRecentTransaction.map(t => {
-	// 	return {
-	// 		category: t.category.toUpperCase(),
-	// 		amount: t.amount.format(edfeduee)
-	// 	} 
-	// })
-
-	newTransaction.category
-
 	const totalNonDeposits = allNonDeposits
 		.map((n) => Number(n.amount))
 		.reduce((a, b) => a + b, 0);
 
 	const totalFunds = totalDeposits - totalNonDeposits;
 
+	// Function to get total savings
 	const allSavingDeposits = await user.getTransactions({
 		where: {
 			category: "savings",
@@ -61,14 +52,16 @@ const home = async (req, res) => {
 		order: [["createdAt", "desc"]],
 	});
 
-	const mostRecentSavingGoal = allAllocatedSavings[0];
-	console.log(mostRecentSavingGoal.title);
-
 	const totalAllocatedSavings = allAllocatedSavings
 		.map((as) => Number(as.progress))
 		.reduce((a, b) => a + b, 0);
 
 	const totalSavings = totalSavingDeposits - totalAllocatedSavings;
+
+	// Function to get most recent savings goal
+	const mostRecentSavingGoal = allAllocatedSavings[0];
+	// Function to get most recent Transaction
+	const mostRecentTransaction = allNonDeposits[0];
 
 	res.render("dashboard/home", {
 		partials: {
@@ -84,34 +77,12 @@ const home = async (req, res) => {
 			totalFunds: numeral(totalFunds).format("$0,0.00"),
 			totalSavings: numeral(totalSavings).format("$0,0.00"),
 			MRT: mostRecentTransaction,
-			MRTAmt: mostRecentTransaction
-				? numeral(mostRecentTransaction.amount).format("$0,0.00")
-				: "",
-			MRTCat: mostRecentTransaction
-				? mostRecentTransaction.category.charAt(0).toUpperCase() +
-				mostRecentTransaction.category.slice(1)
-				: "",
-			NoMRT: mostRecentTransaction
-				? ""
-				: "You have no recent transactions!",
+			MRTAmt: numeral(mostRecentTransaction.amount).format("$0,0.00"),
+			NoMRT: "You have no recent transactions!",
 			MRSG: mostRecentSavingGoal,
-			MRSGProg: mostRecentSavingGoal
-				? numeral(mostRecentSavingGoal.progress).format("$0,0.00")
-				: "",
-			MRSGTotal: mostRecentSavingGoal
-				? numeral(mostRecentSavingGoal.total).format("$0,0.00")
-				: "",
-			MRSGCat: mostRecentSavingGoal
-				? mostRecentSavingGoal.category.charAt(0).toUpperCase() +
-				mostRecentSavingGoal.category.slice(1)
-				: "",
-			MRSGTitle: mostRecentSavingGoal
-				? mostRecentSavingGoal.title.charAt(0).toUpperCase() +
-				mostRecentSavingGoal.title.slice(1)
-				: "",
-			NoMRSG: mostRecentSavingGoal
-				? ""
-				: "You have no saving goal! Create one now!",
+			MRSGProg: numeral(mostRecentSavingGoal.progress).format("$0,0.00"),
+			MRSGTotal: numeral(mostRecentSavingGoal.total).format("$0,0.00"),
+			NoMRSG: "You have no saving goal! Create one now!",
 		},
 	});
 };

@@ -25,10 +25,7 @@
 
             <div class="card-content">
                 <h3>Transactions</h3>
-                <p> ${MRT ? `${MRTCat}:` : ""} 
-                    ${MRT.description ? `${MRT.description} -` : ""} 
-                    ${MRTAmt ? `${MRTAmt}` : ""} 
-                    ${NoMRT}</p>
+                <p> ${MRT ? `${MRT.description} - ${MRTAmt}` : `${NoMRT}`}</p>
             </div>
 
             <div class="card-other-content">
@@ -45,9 +42,7 @@
 
             <div class="card-content">
                 <h3>Savings</h3>
-                <p>${MRSG ? `${MRSGCat}:` : ""}
-                    ${MRSG ? `${MRSGTitle}` : ""}
-                    ${MRSG.total ? `- ${MRSGProg}/${MRSGTotal}` : `- ${MRSGProg}`}
+                <p> ${MRSG ? `${MRSG.title} - ${MRSGProg}/${MRSGTotal}` : `${NoMRSG}`}
                 </p>
             </div>
 
