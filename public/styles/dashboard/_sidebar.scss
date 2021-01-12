@@ -57,6 +57,10 @@
                     color: #a29f9f;
                     text-decoration: none;
                     font-weight: bold;
+
+                    &:hover {
+                        color: #7a7575;
+                    }
                 }
             }
         }

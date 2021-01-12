@@ -1,7 +1,11 @@
 <div class="form">
     <form method="post">
         
-        <h2>${h2}</h2>
+        <div class="multiple-heading">
+            <h2>${h2}</h2>
+
+            ${saving ? `${saving.progress != 0 ? `<a href="/member/saving/reallocation/${saving.id}">Reallocate</a>` : ""}` : "" }
+        </div>
     
         <div class="dropdown">
             <select name="category">

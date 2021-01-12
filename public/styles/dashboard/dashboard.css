@@ -134,6 +134,10 @@ p {
   font-weight: bold;
 }
 
+#sidebar nav ul li a:hover {
+  color: #7a7575;
+}
+
 #main {
   padding: 2.5rem 2rem;
   min-width: 40rem;
