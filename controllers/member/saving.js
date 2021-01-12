@@ -91,16 +91,14 @@ const list = async (req, res) => {
 				"/" +
 				today.getDate();
 
-			remaining = Math.round(
-				Math.abs((deadlineDay - today) / oneDay)
-			);
+			remaining = Math.round(Math.abs((deadlineDay - today) / oneDay));
 
 			if (remaining < 0) {
 				remaining = 0;
 			}
 		}
 
-		const percent = (s.progress / s.total) * 100
+		const percent = (s.progress / s.total) * 100;
 
 		return {
 			id: s.id,
@@ -112,7 +110,7 @@ const list = async (req, res) => {
 				: numeral(0).format("$0,0.00"),
 			category: s.category,
 			remaining,
-			percent
+			percent,
 		};
 	});
 
@@ -222,40 +220,25 @@ const processAllocationForm = async (req, res) => {
 	const saving = await Saving.findByPk(savingId);
 	const user = await User.findByPk(id);
 
-	// Gets the total saving funds
-	// const allSavingDeposits = await user.getTransactions({
-	// 	where: {
-	// 		category: "Savings",
-	// 	},
-	// });
-	// const totalSavingDeposits = allSavingDeposits
-	// 	.map((sd) => Number(sd.amount))
-	// 	.reduce((a, b) => a + b, 0);
-	// const allAllocatedSavings = await user.getSavings();
-	// const totalAllocatedSavings = allAllocatedSavings
-	// 	.map((as) => Number(as.progress))
-	// 	.reduce((a, b) => a + b, 0);
-	// const totalSavings = totalSavingDeposits - totalAllocatedSavings;
 	let totalSavings = await checkTotalSavings(req, res);
 	totalSavings = totalSavings.totalSavings;
 
 	if (saving.uid == id) {
+		// Compares allocation amount to how much is in saving funds
+		if (Number(progress) > totalSavings) {
+			progress = Number(saving.progress) + totalSavings;
+		}
 		// Compares allocation amount to the total of the goal
 		if (
 			// If the total is a number and if adding the new progress amount doesn't make the total go below 0.
 			saving.total !== null &&
 			Number(saving.total) -
-			(Number(saving.progress) + Number(progress)) <
-			0
+				(Number(saving.progress) + Number(progress)) <
+				0
 		) {
-			progress = Number(saving.total) - Number(saving.progress);
+			progress = Number(saving.total);
 		} else {
 			progress = Number(saving.progress) + Number(progress);
-		}
-
-		// Compares allocation amount to how much is in saving funds
-		if (Number(progress) > totalSavings) {
-			progress = Number(saving.progress) + totalSavings;
 		}
 
 		saving.update({ progress });
