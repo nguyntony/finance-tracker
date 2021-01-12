@@ -1,15 +1,41 @@
-<h1>All Savings Goal</h1>
+<h2 id="page-title">Your Goals</h2>
+
 <a href="/member/saving/allocation">Allocate to a goal</a>
-<ul>
+
+
+<ul id="transaction-list">
     ${editedSavings.map(s => `
-        <li>
-        <a href="/member/saving/edit/${s.id}">
-            ${s.title}
-            ${s.deadline ? ` | ${s.deadline}` : ""}
-            ${s.total ? ` | ${s.progress} / ${s.total}` : ` | ${s.progress}`}
-        </a>
+        <li id="list-li">
+        <div class="transaction-item saving-item">
+            <div class="saving-icon">
+                <img src="/heroIcons/${s.category.toLowerCase()}.png" alt="">
+            </div>
+
+            <div class="transaction-title">
+                <a href="/member/saving/edit/${s.id}">
+                    ${s.title}</a>
+                    <p class="transaction-category">
+                        ${s.deadline ? `${s.deadline}` : ""}
+                    </p>
+                    
+                    <!-- ${s.total ? ` | ${s.progress} / ${s.total}` : ` | ${s.progress}`} -->
+                    <div class="progress">
+                        <p id="goal-total">${s.total}</p>
+                        <div class="progress-done" data-done="${(s.progress / s.total) * 100}"><p>
+                            ${s.progress}
+                        </p></div>
+                    </div>
+            </div>
+
+            <div class="transaction-amount">
+                <a id="goal-edit" href="/member/saving/reallocation/${s.id}"><i class="fas fa-pencil-alt"></i></a>
+
+                <a href="/member/saving/delete/${s.id}"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+
         </li>
-        <a href="/member/saving/reallocation/${s.id}">Reallocate</a>
-        <a href="/member/saving/delete/${s.id}">Delete</a>
         `).join("")}
 </ul>
+
+<script src="/scripts/progress-bar.js"></script>
