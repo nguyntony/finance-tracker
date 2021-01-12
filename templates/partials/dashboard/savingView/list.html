@@ -16,6 +16,7 @@
                     ${s.title}</a>
                     <p class="transaction-category">
                         ${s.deadline ? `${s.deadline}` : ""}
+                        ${s.remaining ? `- ${s.remaining} days remaining` : ""}
                     </p>
                     
                     <!-- ${s.total ? ` | ${s.progress} / ${s.total}` : ` | ${s.progress}`} -->

@@ -1,6 +1,7 @@
 const { dashboardContent, msgContent, getMessages } = require("../../helper");
 const { Saving, User } = require("../../models");
 const numeral = require("numeral");
+const moment = require("moment");
 
 const checkTotalSavings = async (req, res) => {
 	const { id } = req.session.user;
@@ -77,21 +78,21 @@ const list = async (req, res) => {
 		order: [["createdAt", "desc"]],
 	});
 
-	let remaining = null;
-
 	const editedSavings = getSavings.map((s) => {
+		let remaining = null;
+		let today = [];
+		todayAll = new Date();
+		today.push(todayAll.getFullYear());
+		today.push(todayAll.getMonth() + 1);
+		today.push(todayAll.getDate());
 		if (s.deadline) {
 			const oneDay = 24 * 60 * 60 * 1000;
-			const deadlineDay = s.deadline;
-			let today = new Date();
-			today =
-				today.getFullYear() +
-				"/" +
-				(today.getMonth() + 1) +
-				"/" +
-				today.getDate();
+			const deadlineDay = s.deadline.split("-");
 
-			remaining = Math.round(Math.abs((deadlineDay - today) / oneDay));
+			const firstDate = new Date(deadlineDay);
+			const secondDate = new Date(today);
+
+			remaining = Math.round(Math.abs((firstDate - secondDate) / oneDay));
 
 			if (remaining < 0) {
 				remaining = 0;
@@ -103,7 +104,9 @@ const list = async (req, res) => {
 		return {
 			id: s.id,
 			title: s.title,
-			deadline: s.deadline,
+			deadline: s.deadline
+				? moment(s.deadline).format("MMMM D, YYYY")
+				: null,
 			total: s.total ? numeral(s.total).format("$0,0.00") : null,
 			progress: s.progress
 				? numeral(s.progress).format("$0,0.00")
