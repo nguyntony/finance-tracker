@@ -62,6 +62,7 @@ const processSavingForm = async (req, res) => {
 		deadline,
 		total,
 		category,
+		progress: 0,
 		uid: id,
 	});
 
@@ -194,6 +195,24 @@ const showDeleteSavingForm = async (req, res) => {
 	}
 };
 
+const processDeleteSavingForm = async (req, res) => {
+	const { savingId } = req.params
+	const saving = await Saving.findByPk(savingId)
+	const { deletion } = req.body
+
+	if (deletion == "Delete") {
+		saving.destroy()
+		res.redirect("/member/saving/list")
+	} else {
+		req.session.flash = {
+			error: "Your entry does not match. Please try again.",
+		},
+			req.session.save(() => {
+				res.redirect(`/member/saving/delete/${savingId}`)
+			})
+	}
+}
+
 const showAllocationForm = async (req, res) => {
 	const { id, firstName, lastName } = req.session.user;
 	const user = await User.findByPk(id);
@@ -236,8 +255,8 @@ const processAllocationForm = async (req, res) => {
 			// If the total is a number and if adding the new progress amount doesn't make the total go below 0.
 			saving.total !== null &&
 			Number(saving.total) -
-				(Number(saving.progress) + Number(progress)) <
-				0
+			(Number(saving.progress) + Number(progress)) <
+			0
 		) {
 			progress = Number(saving.total);
 		} else {
@@ -299,6 +318,7 @@ module.exports = {
 	showEditSavingForm,
 	processEditSavingForm,
 	showDeleteSavingForm,
+	processDeleteSavingForm,
 	showAllocationForm,
 	processAllocationForm,
 	showReallocationForm,

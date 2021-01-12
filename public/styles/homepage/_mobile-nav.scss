@@ -1,0 +1,86 @@
+#mobile-nav {
+    display: flex;
+    width: 6rem;
+    height: 5rem;
+    // position: absolute;
+    // top: 10px;
+    // left: 10px;
+    // right: 0px;
+    transform: translate(50%, 20%);
+    // z-index: 10;
+    // margin-left: auto;
+    // position: absolute;
+    opacity: 0;
+    pointer-events: none;
+
+    .ham {
+        // activator
+        padding: 1rem;
+        border-radius: 100%;
+        cursor: pointer;
+
+        //glass
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(40px);
+        border: solid 2px transparent;
+        box-shadow: 5px 5px 5px rgba(46, 54, 68, 0.3);
+
+        // &:hover {
+        //     background-color: #e99685;
+        // }
+    }
+
+    img {
+        width: 100%;
+        max-width: 5rem;
+    }
+}
+
+#mobile-li {
+    // background: darkcyan;
+    height: 5rem;
+    border-radius: 2rem 0rem 0rem 2rem;
+    // padding: 0.5em 1em;
+
+    //glass
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(40px);
+    border: solid 2px transparent;
+
+    box-shadow: 5px 5px 5px rgba(46, 54, 68, 0.3);
+
+    // animation
+    clip-path: ellipse(50% 50% at 180% 50%);
+
+    ul {
+        display: flex;
+        list-style-type: none;
+        align-items: center;
+        // padding: 0 1em;
+
+        // li {
+        //     transition: background-color 0.3s;
+
+        //     &:hover {
+        //         background: rosybrown;
+        //     }
+        // }
+
+        li a {
+            display: block;
+            // padding: 0.5rem;
+            // margin: 0 0.5rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: #464646;
+
+            // hide icons initially
+            opacity: 0;
+            transform: translateX(10px);
+
+            &:hover {
+                color: #bb8dbb;
+            }
+        }
+    }
+}

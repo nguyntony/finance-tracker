@@ -17,6 +17,7 @@ router
 		"/delete/:savingId",
 		memberController.savingController.showDeleteSavingForm
 	)
+	.post("/delete/:savingId", memberController.savingController.processDeleteSavingForm)
 	.get("/allocation", memberController.savingController.showAllocationForm)
 	.post(
 		"/allocation",
