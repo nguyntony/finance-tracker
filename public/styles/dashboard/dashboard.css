@@ -172,6 +172,8 @@ p {
   text-decoration: none;
   color: #3c3c3c;
   font-weight: bold;
+  width: 100%;
+  height: 100%;
 }
 
 #focus .card {
@@ -216,28 +218,21 @@ p {
   width: 13rem;
 }
 
-#focus .card .card-other-content button {
+#focus .card .card-other-content a {
   position: absolute;
-  right: 0;
+  right: -0.3rem;
   padding: 0.8rem 1rem;
   border-radius: 50%;
   font-size: 1.5rem;
   border: none;
+  outline: none;
   background: #765992;
   cursor: pointer;
-  outline: none;
   font-weight: bold;
-}
-
-#focus .card .card-other-content button a {
   color: #fafafa;
 }
 
-#focus .card .card-other-content button:focus {
-  border: none;
-}
-
-#focus .card .card-other-content button:hover {
+#focus .card .card-other-content a:hover {
   background: #bb8dbb;
 }
 
@@ -380,6 +375,10 @@ p {
   color: #f0e3d4;
 }
 
+#page-title {
+  margin-bottom: 2rem;
+}
+
 #transaction-list {
   height: 25rem;
   display: -webkit-box;
@@ -390,5 +389,51 @@ p {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow: scroll;
+  list-style: none;
+}
+
+#transaction-list::-webkit-scrollbar {
+  display: none;
+}
+
+#transaction-list .transaction-item {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0.5rem 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#transaction-list .transaction-item .transaction-title a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #2d2d2d;
+}
+
+#transaction-list .transaction-item .transaction-category {
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+#transaction-list .transaction-item .transaction-amount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#transaction-list .transaction-item .transaction-amount p {
+  margin-right: 1.5rem;
+}
+
+#transaction-list .transaction-item .transaction-amount a {
+  font-size: 2rem;
+  color: #5a5757;
 }
 /*# sourceMappingURL=dashboard.css.map */

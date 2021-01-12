@@ -1,19 +1,26 @@
-<h1>All transactions</h1>
+<h2 id="page-title">All transactions</h2>
 
 <ul id="transaction-list">
     ${editedTransactions.map(t => `
         <li>
-            <!-- <a href="/member/transaction/edit/${t.id}">${t.category} |  | </a> -->
-
             <div class="transaction-item">
                 <div class="transaction-title">
                     <a href="/member/transaction/edit/${t.id}">${t.description}</a>
                     <p class="transaction-category">${t.category}</p>
                 </div>
-                <div class="transaction-amount">${t.amount}</div>
+                <div class="transaction-amount">
+                    <p>
+                        ${t.amount}
+                    </p>
+
+                     <a href="/member/transaction/delete/${t.id}"><i class="fas fa-times"></i></a>
+                </div>
+
+                <!-- <div class="transaction-delete">
+                   
+                </div> -->
             </div>
 
-            <a href="/member/transaction/delete/${t.id}"><i class="fas fa-times"></i></a>
         </li>
         
         `).join("")}

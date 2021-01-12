@@ -23,11 +23,6 @@
             flex-direction: column;
         }
 
-        // #total-funds {
-        //     position: absolute;
-        //     right: 0;
-        // }
-
         .card-other-content {
             display: flex;
             align-items: center;
@@ -36,25 +31,18 @@
             width: 13rem;
             // background: tomato;
 
-            button {
+            a {
                 position: absolute;
-                right: 0;
+                right: -0.3rem;
                 padding: 0.8rem 1rem;
                 border-radius: 50%;
                 font-size: 1.5rem;
                 border: none;
+                outline: none;
                 background: #765992;
                 cursor: pointer;
-                outline: none;
                 font-weight: bold;
-
-                a {
-                    color: rgb(250, 250, 250);
-                }
-
-                &:focus {
-                    border: none;
-                }
+                color: rgb(250, 250, 250);
 
                 &:hover {
                     background: #bb8dbb;
@@ -68,7 +56,6 @@
         .card-other-content {
             p {
                 font-weight: bold;
-                // font-size: 1.8rem;
             }
         }
     }

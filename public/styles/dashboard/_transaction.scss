@@ -1,7 +1,54 @@
+#page-title {
+    margin-bottom: 2rem;
+}
+
 #transaction-list {
     height: 25rem;
 
     display: flex;
     flex-direction: column;
     overflow: scroll;
+    // align-items: center;
+    list-style: none;
+    // margin: 0 6rem;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .transaction-item {
+        width: 100%;
+        display: flex;
+        margin: 0.5rem 0;
+        justify-content: space-between;
+        // align-items: baseline;
+
+        .transaction-title {
+            a {
+                font-size: 1.5rem;
+                text-decoration: none;
+                font-weight: bold;
+                color: rgb(45, 45, 45);
+            }
+        }
+
+        .transaction-category {
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        .transaction-amount {
+            display: flex;
+            align-items: center;
+
+            p {
+                margin-right: 1.5rem;
+            }
+
+            a {
+                font-size: 2rem;
+                color: rgb(90, 87, 87);
+            }
+        }
+    }
 }
