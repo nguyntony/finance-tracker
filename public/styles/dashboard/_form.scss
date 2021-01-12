@@ -4,6 +4,12 @@
         margin-bottom: 2.5rem;
     }
 
+    .multiple-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
     #allocate-heading,
     #delete-confirmation-title {
         margin-bottom: 0;
