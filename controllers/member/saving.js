@@ -2,6 +2,31 @@ const { dashboardContent, msgContent, getMessages } = require("../../helper");
 const { Saving, User } = require("../../models");
 const numeral = require("numeral");
 
+const checkTotalSavings = async (req, res) => {
+	const { id } = req.session.user;
+	let { savingId, progress } = req.body;
+	const saving = await Saving.findByPk(savingId);
+	const user = await User.findByPk(id);
+
+	const allSavingDeposits = await user.getTransactions({
+		where: {
+			category: "Savings",
+		},
+	});
+	const totalSavingDeposits = allSavingDeposits
+		.map((sd) => Number(sd.amount))
+		.reduce((a, b) => a + b, 0);
+	const allAllocatedSavings = await user.getSavings();
+	const totalAllocatedSavings = allAllocatedSavings
+		.map((as) => Number(as.progress))
+		.reduce((a, b) => a + b, 0);
+	const totalSavings = totalSavingDeposits - totalAllocatedSavings;
+
+	const editedSavings = numeral(totalSavings).format("$0,0.00");
+
+	return { totalSavings, editedSavings };
+};
+
 const showSavingForm = (req, res) => {
 	const { firstName, lastName } = req.session.user;
 
@@ -11,10 +36,11 @@ const showSavingForm = (req, res) => {
 			savingForm: "/partials/dashboard/savingView/savingForm",
 		},
 		locals: {
-			title: "Saving Form",
+			title: "Savings",
 			lastName,
 			firstName,
 			saving: null,
+			h2: "Start Savings Goal",
 		},
 	});
 };
@@ -52,6 +78,28 @@ const list = async (req, res) => {
 	});
 
 	const editedSavings = getSavings.map((s) => {
+		if (s.deadline) {
+			const oneDay = 24 * 60 * 60 * 1000;
+			const deadlineDay = s.deadline;
+			let today = new Date();
+			today =
+				today.getFullYear() +
+				"/" +
+				(today.getMonth() + 1) +
+				"/" +
+				today.getDate();
+
+			let remaining = Math.round(
+				Math.abs((deadlineDay - today) / oneDay)
+			);
+
+			if (remaining < 0) {
+				remaining = 0;
+			}
+		} else {
+			const remaining = null;
+		}
+
 		return {
 			id: s.id,
 			title: s.title,
@@ -61,6 +109,7 @@ const list = async (req, res) => {
 				? numeral(s.progress).format("$0,0.00")
 				: numeral(0).format("$0,0.00"),
 			category: s.category,
+			remaining,
 		};
 	});
 
@@ -90,10 +139,11 @@ const showEditSavingForm = async (req, res) => {
 				savingForm: "/partials/dashboard/savingView/savingForm",
 			},
 			locals: {
-				title: "Edit Saving",
+				title: "Savings",
 				saving,
 				firstName,
 				lastName,
+				h2: "Edit Savings Goal",
 			},
 		});
 	} else {
@@ -145,6 +195,9 @@ const showAllocationForm = async (req, res) => {
 	const user = await User.findByPk(id);
 	const saving = await user.getSavings();
 
+	const totalSavings = await checkTotalSavings(req, res);
+	const editedSavings = totalSavings.editedSavings;
+
 	res.render("dashboard/saving/allocationForm", {
 		partials: {
 			...dashboardContent,
@@ -153,8 +206,9 @@ const showAllocationForm = async (req, res) => {
 		locals: {
 			firstName,
 			lastName,
-			title: "Allocate Savings",
+			title: "Savings",
 			saving,
+			editedSavings,
 		},
 	});
 };
@@ -166,19 +220,21 @@ const processAllocationForm = async (req, res) => {
 	const user = await User.findByPk(id);
 
 	// Gets the total saving funds
-	const allSavingDeposits = await user.getTransactions({
-		where: {
-			category: "Savings",
-		},
-	});
-	const totalSavingDeposits = allSavingDeposits
-		.map((sd) => Number(sd.amount))
-		.reduce((a, b) => a + b, 0);
-	const allAllocatedSavings = await user.getSavings();
-	const totalAllocatedSavings = allAllocatedSavings
-		.map((as) => Number(as.progress))
-		.reduce((a, b) => a + b, 0);
-	const totalSavings = totalSavingDeposits - totalAllocatedSavings;
+	// const allSavingDeposits = await user.getTransactions({
+	// 	where: {
+	// 		category: "Savings",
+	// 	},
+	// });
+	// const totalSavingDeposits = allSavingDeposits
+	// 	.map((sd) => Number(sd.amount))
+	// 	.reduce((a, b) => a + b, 0);
+	// const allAllocatedSavings = await user.getSavings();
+	// const totalAllocatedSavings = allAllocatedSavings
+	// 	.map((as) => Number(as.progress))
+	// 	.reduce((a, b) => a + b, 0);
+	// const totalSavings = totalSavingDeposits - totalAllocatedSavings;
+	let totalSavings = await checkTotalSavings(req, res);
+	totalSavings = totalSavings.totalSavings;
 
 	if (saving.uid == id) {
 		// Compares allocation amount to the total of the goal
@@ -211,6 +267,9 @@ const showReallocationForm = async (req, res) => {
 	const { id, firstName, lastName } = req.session.user;
 	const saving = await Saving.findByPk(savingId);
 
+	let editedSavings = await checkTotalSavings(req, res);
+	editedSavings = editedSavings.editedSavings;
+
 	if (saving.uid == id) {
 		res.render("dashboard/saving/reallocationForm", {
 			partials: {
@@ -221,8 +280,9 @@ const showReallocationForm = async (req, res) => {
 			locals: {
 				firstName,
 				lastName,
-				title: "Reallocate Savings",
+				title: "Savings",
 				saving,
+				editedSavings,
 			},
 		});
 	}
