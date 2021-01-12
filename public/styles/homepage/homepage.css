@@ -330,6 +330,9 @@ nav ul li:hover a {
   #window #contentContainer #landing {
     width: unset;
   }
+  #window #contentContainer #landing .form {
+    margin-left: 0;
+  }
   #window #contentContainer #landing p {
     width: unset;
   }
