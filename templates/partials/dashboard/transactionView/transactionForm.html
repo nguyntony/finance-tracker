@@ -5,16 +5,16 @@
         <div class="dropdown">
             <select required name="category" id="category">
                 <option value="" disabled selected>Category</option>
-                <option value="bills" ${transaction ? `${transaction.category == "bills" ? "selected" : ''}` : ""}>Bills</option>
-                <option value="auto" ${transaction ? `${transaction.category == "auto" ? "selected" : ''}` : ""}>Auto & Transport</option>
-                <option value="health" ${transaction ? `${transaction.category == "health" ? "selected" : ''}` : ""}>Health & Medical</option>
-                <option value="food" ${transaction ? `${transaction.category == "food" ? "selected" : ''}` : ""}>Food & Dining</option>
-                <option value="shopping" ${transaction ? `${transaction.category == "shopping" ? "selected" : ''}` : ""}>Shopping</option>
-                <option value="other" ${transaction ? `${transaction.category == "other" ? "selected" : ''}` : ""}>Other</option>
+                <option value="Bills" ${transaction ? `${transaction.category == "Bills" ? "selected" : ''}` : ""}>Bills</option>
+                <option value="Auto" ${transaction ? `${transaction.category == "Auto" ? "selected" : ''}` : ""}>Auto & Transport</option>
+                <option value="Health" ${transaction ? `${transaction.category == "Health" ? "selected" : ''}` : ""}>Health & Medical</option>
+                <option value="Food" ${transaction ? `${transaction.category == "Food" ? "selected" : ''}` : ""}>Food & Dining</option>
+                <option value="Shopping" ${transaction ? `${transaction.category == "Shopping" ? "selected" : ''}` : ""}>Shopping</option>
+                <option value="Other" ${transaction ? `${transaction.category == "Other" ? "selected" : ''}` : ""}>Other</option>
                 <option disabled>Deposit Funds</option>
-                <option value="deposit" ${transaction ? `${transaction.category == "deposit" ? "selected" : ''}` : ""}>Deposit</option>
+                <option value="Deposit" ${transaction ? `${transaction.category == "Deposit" ? "selected" : ''}` : ""}>Deposit</option>
                 <option disabled>Transfer to Savings</option>
-                <option value="savings" ${transaction ? `${transaction.category == "savings" ? "selected" : ''}` : ""}>Savings</option>
+                <option value="Savings" ${transaction ? `${transaction.category == "Savings" ? "selected" : ''}` : ""}>Savings</option>
             </select>
         </div>
     

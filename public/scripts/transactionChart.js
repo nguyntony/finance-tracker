@@ -13,12 +13,12 @@ const getData = async () => {
 			});
 		});
 
-	cache.bills ? tData.push(cache.bills) : tData.push(0);
-	cache.auto ? tData.push(cache.auto) : tData.push(0);
-	cache.health ? tData.push(cache.health) : tData.push(0);
-	cache.food ? tData.push(cache.food) : tData.push(0);
-	cache.shopping ? tData.push(cache.shopping) : tData.push(0);
-	cache.other ? tData.push(cache.other) : tData.push(0);
+	cache.Bills ? tData.push(cache.Bills) : tData.push(0);
+	cache.Auto ? tData.push(cache.Auto) : tData.push(0);
+	cache.Health ? tData.push(cache.Health) : tData.push(0);
+	cache.Food ? tData.push(cache.Food) : tData.push(0);
+	cache.Shopping ? tData.push(cache.Shopping) : tData.push(0);
+	cache.Other ? tData.push(cache.Other) : tData.push(0);
 
 	return tData;
 };
@@ -56,13 +56,6 @@ async function chartIt() {
 			],
 		},
 		options: {
-			plugins: {
-				datalabels: {
-					formatter: (value) => {
-						return value + "%";
-					},
-				},
-			},
 			// rotation: 1 * Math.PI,
 			// circumference: 1 * Math.PI,
 		},

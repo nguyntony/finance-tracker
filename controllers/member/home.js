@@ -16,7 +16,7 @@ const home = async (req, res) => {
 	// Function to get total funds
 	const allDeposits = await user.getTransactions({
 		where: {
-			category: "deposit",
+			category: "Deposit",
 		},
 	});
 	const totalDeposits = allDeposits
@@ -26,7 +26,7 @@ const home = async (req, res) => {
 	const allNonDeposits = await user.getTransactions({
 		where: {
 			category: {
-				[Op.not]: "deposit",
+				[Op.not]: "Deposit",
 			},
 		},
 		order: [["createdAt", "desc"]],
@@ -41,7 +41,7 @@ const home = async (req, res) => {
 	// Function to get total savings
 	const allSavingDeposits = await user.getTransactions({
 		where: {
-			category: "savings",
+			category: "Savings",
 		},
 	});
 	const totalSavingDeposits = allSavingDeposits

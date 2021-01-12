@@ -10,7 +10,7 @@ const checkTotalFundsOrTotalNonDeposits = async (req, res) => {
 
 	const allDeposits = await user.getTransactions({
 		where: {
-			category: "deposit",
+			category: "Deposit",
 		},
 	});
 	const totalDeposits = allDeposits
@@ -20,7 +20,7 @@ const checkTotalFundsOrTotalNonDeposits = async (req, res) => {
 	const allNonDeposits = await user.getTransactions({
 		where: {
 			category: {
-				[Op.not]: "deposit",
+				[Op.not]: "Deposit",
 			},
 		},
 	});
@@ -41,7 +41,7 @@ const checkTotalDeposits = async (req, res, transactionId) => {
 
 	const allDeposits = await user.getTransactions({
 		where: {
-			category: "deposits",
+			category: "Deposits",
 		},
 		id: {
 			[Op.not]: transactionId,
@@ -76,7 +76,7 @@ const checkTotalSavings = async (req, res, transactionId) => {
 
 	const allSavingDeposits = await user.getTransactions({
 		where: {
-			category: "savings",
+			category: "Savings",
 			id: {
 				[Op.not]: transactionId,
 			},
@@ -93,8 +93,6 @@ const checkTotalSavings = async (req, res, transactionId) => {
 // fn to display the transaction form
 const showTransactionForm = async (req, res) => {
 	const { firstName, lastName } = req.session.user;
-
-	const totalFunds = await checkTotalFundsOrTotalNonDeposits(req, res);
 
 	res.render("dashboard/transaction/transactionForm", {
 		partials: {
@@ -116,6 +114,8 @@ const showTransactionForm = async (req, res) => {
 const processTransactionForm = async (req, res) => {
 	const { id } = req.session.user;
 	let { category, amount, description } = req.body;
+
+	description = description.charAt(0).toUpperCase() + description.slice(1);
 
 	const totalFunds = await checkTotalFundsOrTotalNonDeposits(req, res);
 
@@ -156,12 +156,10 @@ const processDepositForm = async (req, res) => {
 	const { id } = req.session.user;
 	let { amount, description } = req.body;
 
-	if (!description) {
-		description = null;
-	}
+	description = description.charAt(0).toUpperCase() + description.slice(1);
 
 	const newDeposit = await Transaction.create({
-		category: "deposit",
+		category: "Deposit",
 		amount,
 		description,
 		uid: id,
@@ -176,7 +174,7 @@ const list = async (req, res) => {
 	const allTransactions = await user.getTransactions({
 		where: {
 			category: {
-				[Op.not]: "deposit",
+				[Op.not]: "Deposit",
 			},
 		},
 		order: [["createdAt", "desc"]],
@@ -243,7 +241,9 @@ const showEditTransactionForm = async (req, res) => {
 
 const processEditTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
-	const { category, amount, description } = req.body;
+	let { category, amount, description } = req.body;
+
+	description = description.charAt(0).toUpperCase() + description.slice(1);
 
 	const totalFundsOrND = await checkTotalFundsOrTotalNonDeposits(req, res);
 	const totalDeposits = await checkTotalDeposits(req, res, transactionId);
@@ -252,7 +252,7 @@ const processEditTransactionForm = async (req, res) => {
 
 	if (
 		totalFundsOrND.totalFunds - Number(amount) < 0 &&
-		category !== "deposit"
+		category !== "Deposit"
 	) {
 		req.session.flash = { error: "Insufficient funds." };
 		req.session.save(() => {
@@ -260,7 +260,7 @@ const processEditTransactionForm = async (req, res) => {
 		});
 	} else if (
 		totalDeposits + Number(amount) - totalFundsOrND.totalNonDeposits < 0 &&
-		category === "deposit"
+		category === "Deposit"
 	) {
 		req.session.flash = { error: "Insufficient funds." };
 		req.session.save(() => {
@@ -268,7 +268,7 @@ const processEditTransactionForm = async (req, res) => {
 		});
 	} else if (
 		totalSavings + Number(amount) - totalProgress < 0 &&
-		category === "savings"
+		category === "Savings"
 	) {
 		req.session.flash = { error: "Insufficient savings." };
 		req.session.save(() => {

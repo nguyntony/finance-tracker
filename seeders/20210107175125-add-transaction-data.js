@@ -20,31 +20,31 @@ module.exports = {
 			[
 				{
 					uid: user.id,
-					category: "deposit",
+					category: "Deposit",
 					amount: addDecimal("10000"),
-					description: "paycheck",
+					description: "Paycheck",
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					uid: user.id,
-					category: "deposit",
+					category: "Deposit",
 					amount: addDecimal("20000"),
-					description: "paycheck",
+					description: "Paycheck",
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					uid: user.id,
-					category: "deposit",
+					category: "Deposit",
 					amount: addDecimal("20000"),
-					description: "startup fund",
+					description: "Startup fund",
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					uid: user.id,
-					category: "bills",
+					category: "Bills",
 					amount: addDecimal("1000"),
 					description: "January rent",
 					createdAt: new Date(),
@@ -52,7 +52,7 @@ module.exports = {
 				},
 				{
 					uid: user.id,
-					category: "bills",
+					category: "Bills",
 					amount: addDecimal("1000"),
 					description: "February rent",
 					createdAt: new Date(),
@@ -60,7 +60,7 @@ module.exports = {
 				},
 				{
 					uid: user.id,
-					category: "health",
+					category: "Health",
 					amount: 315.25,
 					description: "Got injured surfing, medical bills",
 					createdAt: new Date(),
@@ -68,7 +68,7 @@ module.exports = {
 				},
 				{
 					uid: user.id,
-					category: "shopping",
+					category: "Shopping",
 					amount: 500.25,
 					description: "Bought a new wardrobe",
 					createdAt: new Date(),
@@ -76,7 +76,7 @@ module.exports = {
 				},
 				{
 					uid: user.id,
-					category: "auto",
+					category: "Auto",
 					amount: 600.25,
 					description: "Car insurance",
 					createdAt: new Date(),
@@ -84,7 +84,7 @@ module.exports = {
 				},
 				{
 					uid: user.id,
-					category: "food",
+					category: "Food",
 					amount: 240.99,
 					description: "Groceries for Jan.",
 					createdAt: new Date(),
@@ -92,7 +92,7 @@ module.exports = {
 				},
 				{
 					uid: user.id,
-					category: "savings",
+					category: "Savings",
 					amount: 15000,
 					description: "Transferring funds to Savings",
 					createdAt: new Date(),
