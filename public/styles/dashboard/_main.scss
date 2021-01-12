@@ -9,26 +9,24 @@
         display: flex;
         width: 100%;
         justify-content: space-evenly;
-        margin: 2.5rem 0;
+        margin: 3rem 0;
 
         li {
             list-style-type: none;
-            background: rgba(245, 245, 245, 0.8);
-            padding: 1rem 1.5rem;
-            border-radius: 1rem;
-            font-size: 1.5rem;
-            margin: 0 1rem;
-
-            &:hover {
-                background: rgba(225, 225, 225, 0.8);
-            }
 
             a {
                 text-decoration: none;
                 color: rgb(60, 60, 60);
                 font-weight: bold;
-                width: 100%;
-                height: 100%;
+                background: rgba(245, 245, 245, 0.8);
+                padding: 1rem 1.5rem;
+                border-radius: 1rem;
+                font-size: 1.5rem;
+                margin: 0 1rem;
+
+                &:hover {
+                    background: rgba(225, 225, 225, 0.8);
+                }
             }
         }
     }

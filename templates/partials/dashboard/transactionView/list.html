@@ -2,7 +2,7 @@
 
 <ul id="transaction-list">
     ${editedTransactions.map(t => `
-        <li>
+        <li id=list-li>
             <div class="transaction-item">
                 <div class="transaction-title">
                     <a href="/member/transaction/edit/${t.id}">${t.description}</a>
@@ -13,14 +13,10 @@
                         ${t.amount}
                     </p>
 
-                     <a href="/member/transaction/delete/${t.id}"><i class="fas fa-times"></i></a>
+                    <a href="/member/transaction/delete/${t.id}"><i class="fas fa-times"></i></a>
                 </div>
 
-                <!-- <div class="transaction-delete">
-                   
-                </div> -->
             </div>
-
         </li>
         
         `).join("")}
