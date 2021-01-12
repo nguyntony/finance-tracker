@@ -20,9 +20,9 @@
                     
                     <!-- ${s.total ? ` | ${s.progress} / ${s.total}` : ` | ${s.progress}`} -->
                     <div class="progress">
-                        <p id="goal-total">${s.total}</p>
-                        <div class="progress-done" data-done="${(s.progress / s.total) * 100}"><p>
-                            ${s.progress}
+                        <p id="goal-total">${s.progress} / ${s.total}</p>
+                        <div class="progress-done" data-done=${s.percent}><p>
+                            
                         </p></div>
                     </div>
             </div>

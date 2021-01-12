@@ -77,6 +77,8 @@ const list = async (req, res) => {
 		order: [["createdAt", "desc"]],
 	});
 
+	let remaining = null;
+
 	const editedSavings = getSavings.map((s) => {
 		if (s.deadline) {
 			const oneDay = 24 * 60 * 60 * 1000;
@@ -89,16 +91,16 @@ const list = async (req, res) => {
 				"/" +
 				today.getDate();
 
-			let remaining = Math.round(
+			remaining = Math.round(
 				Math.abs((deadlineDay - today) / oneDay)
 			);
 
 			if (remaining < 0) {
 				remaining = 0;
 			}
-		} else {
-			const remaining = null;
 		}
+
+		const percent = (s.progress / s.total) * 100
 
 		return {
 			id: s.id,
@@ -110,6 +112,7 @@ const list = async (req, res) => {
 				: numeral(0).format("$0,0.00"),
 			category: s.category,
 			remaining,
+			percent
 		};
 	});
 
@@ -242,8 +245,8 @@ const processAllocationForm = async (req, res) => {
 			// If the total is a number and if adding the new progress amount doesn't make the total go below 0.
 			saving.total !== null &&
 			Number(saving.total) -
-				(Number(saving.progress) + Number(progress)) <
-				0
+			(Number(saving.progress) + Number(progress)) <
+			0
 		) {
 			progress = Number(saving.total) - Number(saving.progress);
 		} else {
