@@ -1,5 +1,5 @@
 <div class="form">
-    <h2>Add Transaction</h2>
+    <h2>${h2} ${editedFunds}</h2>
 
     <form method="POST">
         <div class="dropdown">
@@ -19,13 +19,13 @@
         </div>
     
         <div class="entry">
-            <input type="number" min="0" id="amount" name="amount" step=".01" required placeholder=" " autocomplete="off" value=${transaction ? `${transaction.amount}` : ''}>
+            <input type="number" min="0" id="amount" name="amount" step=".01" required placeholder=" " autocomplete="off" value="${transaction ? `${transaction.amount}` : ''}">
             <label for="amount" title="Enter the transaction amount." class="label-name">Amount ($)</label>
         </div>
     
         <div class="same-line">
             <div class="entry deposit-description">
-                <input type="text" required name="description" id="description" placeholder=" " autocomplete="off" value=${transaction ? `${transaction.description}` : ''} >
+                <input type="text" required name="description" id="description" placeholder=" " autocomplete="off" value="${transaction ? `${transaction.description}` : ''}" >
                 <label class="label-name" for="description">Description</label>
             </div>
             <div class="submit-container">

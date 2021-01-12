@@ -31,7 +31,9 @@ const checkTotalFundsOrTotalNonDeposits = async (req, res) => {
 
 	const totalFunds = totalDeposits - totalNonDeposits;
 
-	return { totalFunds, totalNonDeposits };
+	const editedFunds = numeral(totalFunds).format("$0,0.00");
+
+	return { totalFunds, totalNonDeposits, editedFunds };
 };
 
 // Function to check total deposits without editing one
@@ -93,6 +95,7 @@ const checkTotalSavings = async (req, res, transactionId) => {
 // fn to display the transaction form
 const showTransactionForm = async (req, res) => {
 	const { firstName, lastName } = req.session.user;
+	const editedFunds = await checkTotalFundsOrTotalNonDeposits(req, res);
 
 	res.render("dashboard/transaction/transactionForm", {
 		partials: {
@@ -102,11 +105,13 @@ const showTransactionForm = async (req, res) => {
 				"/partials/dashboard/transactionView/transactionForm",
 		},
 		locals: {
-			title: "Transaction Form",
+			title: "Transaction",
 			firstName,
 			lastName,
 			transaction: null,
 			messages: getMessages(req),
+			editedFunds: editedFunds.editedFunds,
+			h2: "Add Transaction",
 		},
 	});
 };
@@ -217,6 +222,9 @@ const showEditTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
 	const { id, firstName, lastName } = req.session.user;
 	const transaction = await Transaction.findByPk(transactionId);
+	const editedFunds = await checkTotalFundsOrTotalNonDeposits(req, res);
+
+	console.log(transaction.description);
 
 	if (transaction.uid == id) {
 		res.render("dashboard/transaction/transactionForm", {
@@ -232,6 +240,8 @@ const showEditTransactionForm = async (req, res) => {
 				lastName,
 				transaction,
 				messages: getMessages(req),
+				editedFunds: editedFunds.editedFunds,
+				h2: "Edit Transaction",
 			},
 		});
 	} else {

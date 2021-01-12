@@ -1,7 +1,7 @@
 <div class="form">
     <form method="post">
         
-        <h2>Start Savings Goal</h2>
+        <h2>${h2}</h2>
     
         <div class="dropdown">
             <select name="category">
@@ -20,13 +20,13 @@
             <label class="label-name" for="title">Savings Title</label>
         </div>
         <div class="entry saving-amount">
-            <input type="number" required placeholder=" " autocomplete="off" name="total" id="total" min="0" value=${saving ? `${saving.total}` : ""}>
+            <input type="number" required placeholder=" " autocomplete="off" name="total" id="total" min="0" value="${saving ? `${saving.total}` : ""}">
             <label class="label-name" for="total">Amount ($)</label>
         </div>
 
         <div class="same-line">
             <div class="entry deadline">
-            <input type="date" name="deadline" min="" id="deadline" value=${saving ? `${saving.deadline}` : ""}>
+            <input type="date" name="deadline" min="" id="deadline" value="${saving ? `${saving.deadline}` : ""}">
             <label for="deadline" id="goal-deadline">Deadline (Optional)</label>
         </div>
             <div class="submit-container">
