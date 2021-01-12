@@ -7,6 +7,7 @@
     align-items: center;
     border-radius: 2.5rem 0 0 2.5rem;
     height: inherit;
+    position: relative;
 
     #profile-pic {
         width: 15rem;
@@ -38,8 +39,11 @@
     }
 
     nav {
-        margin: 2.5rem 0;
+        margin-top: 2.5rem;
         width: 80%;
+        // height: 100%;
+        // display: flex;
+        // flex-direction: column;
         // position: relative;
         // height: 80%;
 
@@ -47,7 +51,7 @@
             list-style: none;
             li {
                 font-size: 1.4rem;
-                margin: 0.25rem 0;
+                margin: 0.5rem 0;
 
                 a {
                     color: #a29f9f;
@@ -58,13 +62,16 @@
         }
     }
 
-    #logout {
-        width: 80%;
-        font-size: 1.3rem;
-        color: #a29f9f;
-        text-decoration: none;
-        font-weight: bold;
-        // position: absolute;
-        // bottom: 0;
-    }
+    // #logout {
+    //     display: inline-block;
+    //     // width: 80%;
+    //     font-size: 1.4rem;
+    //     color: #a29f9f;
+    //     text-decoration: none;
+    //     font-weight: bold;
+    //     // justify-self: flex-end;
+    //     position: absolute;
+    //     left: 4rem;
+    //     bottom: 2.5rem;
+    // }
 }
