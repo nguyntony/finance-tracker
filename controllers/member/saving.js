@@ -183,6 +183,7 @@ const processAllocationForm = async (req, res) => {
 	if (saving.uid == id) {
 		// Compares allocation amount to the total of the goal
 		if (
+			// If the total is a number and if adding the new progress amount doesn't make the total go below 0.
 			saving.total !== null &&
 			Number(saving.total) -
 				(Number(saving.progress) + Number(progress)) <
@@ -200,6 +201,45 @@ const processAllocationForm = async (req, res) => {
 
 		saving.update({ progress });
 		res.redirect("/member/saving/list");
+	} else {
+		res.redirect("/");
+	}
+};
+
+const showReallocationForm = async (req, res) => {
+	const { savingId } = req.params;
+	const { id, firstName, lastName } = req.session.user;
+	const saving = await Saving.findByPk(savingId);
+
+	if (saving.uid == id) {
+		res.render("dashboard/saving/reallocationForm", {
+			partials: {
+				...dashboardContent,
+				reallocationForm:
+					"/partials/dashboard/savingView/reallocationForm",
+			},
+			locals: {
+				firstName,
+				lastName,
+				title: "Reallocate Savings",
+				saving,
+			},
+		});
+	}
+};
+
+const processReallocationForm = async (req, res) => {
+	const { id } = req.session.user;
+	const { savingId } = req.params;
+	let { progress } = req.body;
+	const saving = await Saving.findByPk(savingId);
+	const user = await User.findByPk(id);
+
+	if (saving.uid == id) {
+		saving.update({ progress });
+		res.redirect("/member/saving/list");
+	} else {
+		res.redirect("/");
 	}
 };
 
@@ -212,4 +252,6 @@ module.exports = {
 	showDeleteSavingForm,
 	showAllocationForm,
 	processAllocationForm,
+	showReallocationForm,
+	processReallocationForm,
 };

@@ -21,6 +21,14 @@ router
 	.post(
 		"/allocation",
 		memberController.savingController.processAllocationForm
+	)
+	.get(
+		"/reallocation/:savingId",
+		memberController.savingController.showReallocationForm
+	)
+	.post(
+		"/reallocation/:savingId",
+		memberController.savingController.processReallocationForm
 	);
 
 module.exports = router;
