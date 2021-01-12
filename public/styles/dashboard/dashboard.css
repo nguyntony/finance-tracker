@@ -65,9 +65,7 @@ p {
 }
 
 #sidebar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -190,8 +188,12 @@ p {
 }
 
 #focus .card .card-icon {
-  width: 8rem;
-  margin-right: 0.5rem;
+  width: 5rem;
+  margin-right: 2rem;
+}
+
+#focus .card .card-icon img {
+  width: 100%;
 }
 
 #focus .card .card-content {
@@ -414,6 +416,15 @@ p {
           justify-content: space-between;
 }
 
+#transaction-list .transaction-item .saving-icon {
+  width: 5rem;
+  height: 100%;
+}
+
+#transaction-list .transaction-item .saving-icon img {
+  width: 100%;
+}
+
 #transaction-list .transaction-item .transaction-title a {
   font-size: 1.5rem;
   text-decoration: none;
@@ -445,13 +456,85 @@ p {
 }
 
 #transaction-list .transaction-item .transaction-amount a:hover {
-  color: #da7f7f;
+  color: #dd7575;
 }
 
-#transaction-list .deposit-item {
+#transaction-list .transaction-item .transaction-amount #goal-edit {
+  margin-right: 1.5rem;
+  font-size: 1.7rem;
+}
+
+#transaction-list .transaction-item .transaction-amount #goal-edit:hover {
+  color: #8255ac;
+}
+
+#transaction-list .deposit-item,
+#transaction-list .saving-item {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+#transaction-list .saving-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  width: 100%;
+}
+
+#transaction-list .saving-item .saving-icon {
+  margin-right: 2rem;
+}
+
+#transaction-list .saving-item .transaction-amount {
+  position: absolute;
+  right: 0;
+}
+
+#transaction-list .saving-item .transaction-title .progress {
+  background-color: #cecece;
+  height: 2rem;
+  width: 43rem;
+  border-radius: 2rem;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+#transaction-list .saving-item .transaction-title .progress #goal-total {
+  position: absolute;
+  top: 0.3rem;
+  right: 1rem;
+  font-size: 1.2rem;
+}
+
+#transaction-list .saving-item .transaction-title .progress .progress-done {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 0;
+  width: 0;
+  height: 100%;
+  border-radius: 2rem;
+  background: #ffbf6a;
+  background: -webkit-gradient(linear, right top, left top, from(#f07da3), to(#fa9677));
+  background: linear-gradient(to left, #f07da3, #fa9677);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 1rem;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+}
+
+#transaction-list .saving-item .transaction-title .progress .progress-done p {
+  font-size: 1.2rem;
 }
 
 #list-li:nth-child(odd) {

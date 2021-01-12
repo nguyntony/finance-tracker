@@ -13,8 +13,12 @@
 
         .card-icon {
             // height: 5rem;
-            width: 8rem;
-            margin-right: 0.5rem;
+            width: 5rem;
+            margin-right: 2rem;
+
+            img {
+                width: 100%;
+            }
         }
 
         .card-content {

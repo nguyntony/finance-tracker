@@ -29,6 +29,15 @@
         justify-content: space-between;
         // align-items: baseline;
 
+        .saving-icon {
+            width: 5rem;
+            height: 100%;
+
+            img {
+                width: 100%;
+            }
+        }
+
         .transaction-title {
             a {
                 font-size: 1.5rem;
@@ -56,14 +65,80 @@
                 color: rgb(90, 87, 87);
 
                 &:hover {
-                    color: rgb(218, 127, 127);
+                    color: rgb(221, 117, 117);
+                }
+            }
+
+            #goal-edit {
+                margin-right: 1.5rem;
+                font-size: 1.7rem;
+
+                &:hover {
+                    color: #8255ac;
                 }
             }
         }
     }
 
-    .deposit-item {
+    .deposit-item,
+    .saving-item {
         align-items: center;
+    }
+
+    .saving-item {
+        display: flex;
+        position: relative;
+        // align-items: center;
+        justify-content: unset;
+        width: 100%;
+
+        .saving-icon {
+            margin-right: 2rem;
+            // padding: 0.5rem;
+            // background: rgba(51, 52, 51, 0.2);
+        }
+
+        .transaction-amount {
+            position: absolute;
+            right: 0;
+        }
+
+        .transaction-title {
+            .progress {
+                background-color: #cecece;
+                height: 2rem;
+                width: 43rem;
+                border-radius: 2rem;
+                margin: 0.5rem 0;
+                position: relative;
+
+                #goal-total {
+                    position: absolute;
+                    top: 0.3rem;
+                    right: 1rem;
+                    font-size: 1.2rem;
+                }
+
+                .progress-done {
+                    display: flex;
+                    opacity: 0;
+                    width: 0;
+                    height: 100%;
+                    border-radius: 2rem;
+                    // background: cornflowerblue;
+                    background: rgb(255, 191, 106);
+                    background: linear-gradient(to left, #f07da3, #fa9677);
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0 1rem;
+                    transition: 1s ease;
+
+                    p {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
     }
 }
 
