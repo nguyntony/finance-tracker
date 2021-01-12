@@ -26,6 +26,10 @@ const processSavingForm = async (req, res) => {
 	// All new titles will have the first word uppercased.
 	title = title.charAt(0).toUpperCase() + title.slice(1);
 
+	if (!deadline) {
+		deadline = null;
+	}
+
 	const newSaving = await Saving.create({
 		title,
 		deadline,

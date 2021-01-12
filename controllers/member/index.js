@@ -3,4 +3,5 @@ module.exports = {
 	transactionController: require("./transaction"),
 	savingController: require("./saving"),
 	statisticsController: require("./statistics"),
+	depositController: require("./deposit"),
 };

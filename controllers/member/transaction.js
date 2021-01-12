@@ -95,7 +95,6 @@ const showTransactionForm = async (req, res) => {
 	const { firstName, lastName } = req.session.user;
 
 	const totalFunds = await checkTotalFundsOrTotalNonDeposits(req, res);
-	console.log(totalFunds);
 
 	res.render("dashboard/transaction/transactionForm", {
 		partials: {
@@ -175,6 +174,11 @@ const list = async (req, res) => {
 	const { id, firstName, lastName } = req.session.user;
 	const user = await User.findByPk(id);
 	const allTransactions = await user.getTransactions({
+		where: {
+			category: {
+				[Op.not]: "deposit",
+			},
+		},
 		order: [["createdAt", "desc"]],
 	});
 
