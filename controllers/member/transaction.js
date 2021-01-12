@@ -278,7 +278,7 @@ const processEditTransactionForm = async (req, res) => {
 		const findTransaction = await Transaction.findByPk(transactionId);
 		findTransaction.update({ category, amount, description });
 
-		res.redirect("/member/transaction/list");
+		res.redirect("/member/home");
 	}
 };
 
