@@ -1,9 +1,19 @@
-<h1>Delete Confirmation</h1>
-<p>You are attempting to delete <strong>${deleteWhat}</strong>. If you wish to proceed please type out <strong>Delete</strong>.</p>
+<div class="form">
+    <h2 id="delete-confirmation-title">Are you sure?</h2>
+    <p id="pConfirmation">You are attempting to delete <strong>${deleteWhat}</strong><br> If you wish to proceed please type out <strong>Delete</strong></p>
+    
+    
+    <form method="POST">
 
-
-<form method="POST">
-    <label for="deletion">Name</label>
-    <input type="text" name="deletion" id="deletion">
-    <input type="submit" value="confirm">
-</form>
+        <div class="same-line">
+            <div class="entry">
+                <input required type="text" name="deletion" autocomplete="off" id="deletion" placeholder=" ">
+                <label class="label-name" for="deletion">Confirmation</label>
+            </div>
+    
+            <div class="submit-container">
+                <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -16,6 +16,12 @@
         display: none;
     }
 
+    li {
+        border-radius: 1rem;
+        padding: 0.5rem 2rem;
+        margin: 0.5rem 0;
+    }
+
     .transaction-item {
         width: 100%;
         display: flex;
@@ -48,7 +54,39 @@
             a {
                 font-size: 2rem;
                 color: rgb(90, 87, 87);
+
+                &:hover {
+                    color: rgb(218, 127, 127);
+                }
             }
         }
+    }
+
+    .deposit-item {
+        align-items: center;
+    }
+}
+
+#list-li:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    transition: 0.5s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(20px);
+        transition: 0.5s;
+    }
+}
+
+#list-li:nth-child(even) {
+    background: rgba(210, 210, 210, 0.2);
+    backdrop-filter: blur(20px);
+    transition: 0.5s;
+
+    &:hover {
+        background: rgba(210, 210, 210, 0.5);
+        backdrop-filter: blur(20px);
+        transition: 0.5s;
     }
 }
