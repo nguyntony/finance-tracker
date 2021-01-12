@@ -41,7 +41,7 @@ const checkTotalDeposits = async (req, res, transactionId) => {
 
 	const allDeposits = await user.getTransactions({
 		where: {
-			category: "Deposits",
+			category: "Deposit",
 		},
 		id: {
 			[Op.not]: transactionId,
@@ -49,7 +49,7 @@ const checkTotalDeposits = async (req, res, transactionId) => {
 	});
 
 	const totalDeposits = allDeposits
-		.map((n) => Number(n.progress))
+		.map((n) => Number(n.amount))
 		.reduce((a, b) => a + b, 0);
 
 	return totalDeposits;
@@ -278,7 +278,7 @@ const processEditTransactionForm = async (req, res) => {
 		const findTransaction = await Transaction.findByPk(transactionId);
 		findTransaction.update({ category, amount, description });
 
-		res.redirect("/member/transaction/list");
+		res.redirect("/member/home");
 	}
 };
 
