@@ -79,13 +79,14 @@ p {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 2.5rem 0 0 2.5rem;
+  height: inherit;
 }
 
 #sidebar #profile-pic {
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   border-radius: 50%;
-  border: 1px solid #373737;
+  border: 1px solid #a29d9d;
   -webkit-box-shadow: 3px 3.5px 3.5px rgba(46, 54, 68, 0.3);
           box-shadow: 3px 3.5px 3.5px rgba(46, 54, 68, 0.3);
   overflow: hidden;
@@ -108,7 +109,7 @@ p {
   width: 90%;
   height: 4rem;
   margin-top: 2.5rem;
-  background: #cf9fcf;
+  background: #dac1da;
   border-radius: 1.2rem;
 }
 
@@ -122,7 +123,8 @@ p {
 }
 
 #sidebar nav ul li {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  margin: 0.25rem 0;
 }
 
 #sidebar nav ul li a {
@@ -518,7 +520,7 @@ p {
 }
 
 #transaction-list .saving-item .transaction-title .progress {
-  background-color: #cecece;
+  background: rgba(146, 141, 141, 0.3);
   height: 2rem;
   width: 43rem;
   border-radius: 2rem;
@@ -560,7 +562,8 @@ p {
   font-size: 1.2rem;
 }
 
-#list-li:nth-child(odd) {
+#list-li:nth-child(odd),
+#saving-li {
   background: rgba(255, 255, 255, 0.3);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
@@ -568,7 +571,8 @@ p {
   transition: 0.5s;
 }
 
-#list-li:nth-child(odd):hover {
+#list-li:nth-child(odd):hover,
+#saving-li:hover {
   background: rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
@@ -585,7 +589,7 @@ p {
 }
 
 #list-li:nth-child(even):hover {
-  background: rgba(210, 210, 210, 0.5);
+  background: rgba(180, 176, 176, 0.5);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
   -webkit-transition: 0.5s;

@@ -6,12 +6,13 @@
     padding: 2.5rem 2rem;
     align-items: center;
     border-radius: 2.5rem 0 0 2.5rem;
+    height: inherit;
 
     #profile-pic {
-        width: 10rem;
-        height: 10rem;
+        width: 15rem;
+        height: 15rem;
         border-radius: 50%;
-        border: 1px solid rgb(55, 55, 55);
+        border: 1px solid rgb(162, 157, 157);
         box-shadow: 3px 3.5px 3.5px rgba(46, 54, 68, 0.3);
         overflow: hidden;
 
@@ -27,7 +28,8 @@
         width: 90%;
         height: 4rem;
         margin-top: 2.5rem;
-        background: #cf9fcf;
+        background: #dac1da;
+        // background: #cf9fcf;
         border-radius: 1.2rem;
 
         // h4 {
@@ -38,12 +40,14 @@
     nav {
         margin: 2.5rem 0;
         width: 80%;
+        // position: relative;
         // height: 80%;
 
         ul {
             list-style: none;
             li {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
+                margin: 0.25rem 0;
 
                 a {
                     color: #a29f9f;
@@ -60,5 +64,7 @@
         color: #a29f9f;
         text-decoration: none;
         font-weight: bold;
+        // position: absolute;
+        // bottom: 0;
     }
 }
