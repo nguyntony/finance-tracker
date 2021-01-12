@@ -168,7 +168,7 @@ const processAllocationForm = async (req, res) => {
 	// Gets the total saving funds
 	const allSavingDeposits = await user.getTransactions({
 		where: {
-			category: "savings",
+			category: "Savings",
 		},
 	});
 	const totalSavingDeposits = allSavingDeposits

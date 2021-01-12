@@ -8,7 +8,7 @@ const list = async (req, res) => {
 	const user = await User.findByPk(id);
 	const allDeposits = await user.getTransactions({
 		where: {
-			category: "deposit",
+			category: "Deposit",
 		},
 		order: [["createdAt", "desc"]],
 	});
