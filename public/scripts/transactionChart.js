@@ -56,6 +56,13 @@ async function chartIt() {
 			],
 		},
 		options: {
+			plugins: {
+				datalabels: {
+					formatter: (value) => {
+						return value + "%";
+					},
+				},
+			},
 			// rotation: 1 * Math.PI,
 			// circumference: 1 * Math.PI,
 		},
