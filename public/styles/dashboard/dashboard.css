@@ -65,7 +65,9 @@ p {
 }
 
 #sidebar {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -509,6 +511,7 @@ p {
   top: 0.3rem;
   right: 1rem;
   font-size: 1.2rem;
+  z-index: 10;
 }
 
 #transaction-list .saving-item .transaction-title .progress .progress-done {
