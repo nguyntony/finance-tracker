@@ -223,7 +223,7 @@ p {
 #focus .card .card-other-content a {
   position: absolute;
   right: -0.3rem;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.1rem;
   border-radius: 50%;
   font-size: 1.5rem;
   border: none;
@@ -384,8 +384,28 @@ p {
   margin-bottom: 2rem;
 }
 
+#allocate-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 1.2rem;
+  font-size: 1.5rem;
+  background: #765992;
+  color: #fafafa;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#allocate-button:focus {
+  border: none;
+}
+
+#allocate-button:hover {
+  background: #bb8dbb;
+}
+
 #transaction-list {
-  height: 25rem;
+  max-height: 35rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
