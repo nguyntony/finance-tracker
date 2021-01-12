@@ -1,0 +1,26 @@
+<div class="form">
+    <form action="" method="post">
+        <h2 id="allocate-heading">Reallocate Funds</h2>
+        <p id="pAllocate">When you're low on them coints and you need them back.</p>
+
+
+        <div class="dropdown">
+            <select name="savingId" id="goal">
+                <option value="${saving.id}" disabled selected>${saving.title}</option>
+            </select>
+        </div>
+
+
+        <div class="same-line">
+            <div class="entry">
+                <input type="number" name="progress" id="progress" min="0" max="${saving.progress}" step=".01" required placeholder=" " value="${saving.progress}">
+    
+                <label class="label-name" for="progress">Amount ($)</label>
+            </div>
+            <div class="submit-container">
+                <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
+        </div>
+
+    </form>
+</div>
