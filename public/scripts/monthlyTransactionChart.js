@@ -1,7 +1,10 @@
+const fullUrl = window.location.pathname.split("/");
+const monthUrl = fullUrl[3];
+const yearUrl = fullUrl[4];
+
 const getData = async () => {
 	const tData = [];
 	const cache = {};
-
 	await fetch("/member/transaction/list/data")
 		.then((r) => r.json())
 		.then((data) => {
@@ -31,7 +34,7 @@ async function chartIt() {
 	const myChart = new Chart(transactionChart, {
 		type: "doughnut",
 		data: {
-			labels: ["Bills", "Auto", "Health", "Food", "Shopping", "Other"],
+			labels: ["Poop", "Auto", "Health", "Food", "Shopping", "Other"],
 			datasets: [
 				{
 					label: "Expenses",
