@@ -130,7 +130,8 @@
 
         .transaction-title {
             .progress {
-                background-color: #cecece;
+                background: rgba(146, 141, 141, 0.3);
+                // background-color: #cecece;
                 height: 2rem;
                 width: 43rem;
                 border-radius: 2rem;
@@ -158,6 +159,7 @@
                     justify-content: center;
                     padding: 0 1rem;
                     transition: 1s ease;
+                    // box-shadow: 0 3px 3px -5px #2e2e2e, 0 2px 5px #2e2e2e;
 
                     p {
                         font-size: 1.2rem;
@@ -168,7 +170,8 @@
     }
 }
 
-#list-li:nth-child(odd) {
+#list-li:nth-child(odd),
+#saving-li {
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(20px);
     transition: 0.5s;
@@ -186,7 +189,7 @@
     transition: 0.5s;
 
     &:hover {
-        background: rgba(210, 210, 210, 0.5);
+        background: rgba(180, 176, 176, 0.5);
         backdrop-filter: blur(20px);
         transition: 0.5s;
     }

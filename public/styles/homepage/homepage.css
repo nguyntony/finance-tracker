@@ -46,7 +46,7 @@ p {
 }
 
 #window {
-  margin: 1rem 0;
+  margin: 1rem 5rem;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.1);
   -webkit-backdrop-filter: blur(30px);
