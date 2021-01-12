@@ -144,7 +144,7 @@ p {
   min-width: 40rem;
 }
 
-#main ul {
+#main #nav-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -155,7 +155,7 @@ p {
   margin: 2.5rem 0;
 }
 
-#main ul li {
+#main #nav-list li {
   list-style-type: none;
   background: rgba(245, 245, 245, 0.8);
   padding: 1rem 1.5rem;
@@ -164,11 +164,11 @@ p {
   margin: 0 1rem;
 }
 
-#main ul li:hover {
+#main #nav-list li:hover {
   background: rgba(225, 225, 225, 0.8);
 }
 
-#main ul li a {
+#main #nav-list li a {
   text-decoration: none;
   color: #3c3c3c;
   font-weight: bold;
@@ -378,5 +378,17 @@ p {
   font-weight: bold;
   letter-spacing: 0.5px;
   color: #f0e3d4;
+}
+
+#transaction-list {
+  height: 25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: scroll;
 }
 /*# sourceMappingURL=dashboard.css.map */
