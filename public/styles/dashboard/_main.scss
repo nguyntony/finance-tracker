@@ -1,9 +1,6 @@
-// will add info
-
 #main {
     padding: 2.5rem 2rem;
     min-width: 40rem;
-    // may possbily want to remove this but will hide the sidebar instead.
 
     #nav-list {
         display: flex;
@@ -13,7 +10,6 @@
 
         li {
             list-style-type: none;
-            // width: 12rem;
 
             a {
                 text-decoration: none;

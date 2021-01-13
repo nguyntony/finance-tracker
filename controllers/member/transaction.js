@@ -1,5 +1,5 @@
 const { dashboardContent, msgContent, getMessages } = require("../../helper");
-const { Transaction, User, Saving } = require("../../models");
+const { Transaction, User } = require("../../models");
 const { Op } = require("sequelize");
 const numeral = require("numeral");
 const moment = require("moment");
@@ -431,11 +431,10 @@ const processDeleteTransactionForm = async (req, res) => {
 	if (deletion == "Delete") {
 		transaction.destroy();
 		req.session.flash = {
-			success: `${
-				transaction.category == "Deposit"
-					? `${transaction.description} has been deleted. ${editedAmount} is deducted from your funds.`
-					: `${transaction.description} has been deleted. ${editedAmount} is returned to your funds.`
-			}`,
+			success: `${transaction.category == "Deposit"
+				? `${transaction.description} has been deleted. ${editedAmount} is deducted from your funds.`
+				: `${transaction.description} has been deleted. ${editedAmount} is returned to your funds.`
+				}`,
 		};
 		req.session.save(() => res.redirect("/member/home"));
 	} else {

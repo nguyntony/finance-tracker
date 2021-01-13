@@ -1,8 +1,4 @@
 @media screen and (max-width: 750px) {
-    body {
-        // align-items: unset;
-    }
-
     #dashboard {
         height: fit-content;
 
@@ -104,9 +100,7 @@
         justify-content: unset;
         align-items: unset;
         height: 100vh;
-        // width: 100vw;
         background-size: unset;
-        // overflow-x: hidden;
     }
 
     #dashboard {
@@ -129,10 +123,9 @@
                 flex-direction: column;
                 padding: 1rem;
                 width: 99vw;
+
                 .card {
                     padding: 1rem;
-
-                    // margin: 2rem;
 
                     .card-icon {
                         width: 3.5rem;

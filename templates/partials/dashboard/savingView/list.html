@@ -17,8 +17,7 @@
                         ${s.deadline ? `${s.deadline}` : ""}
                         ${s.remaining ? `- ${s.remaining} days remaining` : ""}
                     </p>
-                    
-                    <!-- ${s.total ? ` | ${s.progress} / ${s.total}` : ` | ${s.progress}`} -->
+                
                     <div class="progress">
                         <p id="goal-total">${s.progress} / ${s.total}</p>
                         <div class="progress-done" data-done=${s.percent}><p>

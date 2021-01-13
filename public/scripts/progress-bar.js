@@ -1,7 +1,5 @@
 const progress = document.querySelectorAll(".progress-done")
 
-
-
 progress.forEach(p => {
     setTimeout(() => {
         p.style.opacity = 1;

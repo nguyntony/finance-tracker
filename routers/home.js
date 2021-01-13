@@ -5,5 +5,6 @@ const { homeController } = require("../controllers")
 
 router
     .get("/", homeController.home)
+    .get("*", homeController.errorPage)
 
 module.exports = router
