@@ -13,7 +13,7 @@
         width: 15rem;
         height: 15rem;
         border-radius: 50%;
-        border: 1px solid rgb(162, 157, 157);
+        border: 0.5px solid rgb(162, 157, 157);
         box-shadow: 3px 3.5px 3.5px rgba(46, 54, 68, 0.3);
         overflow: hidden;
 
@@ -29,13 +29,12 @@
         width: 90%;
         height: 4rem;
         margin-top: 2.5rem;
-        background: #dac1da;
-        // background: #cf9fcf;
+        background: #dfc9df;
         border-radius: 1.2rem;
 
-        // h4 {
-        //     font-size: 1.8rem;
-        // }
+        h4 {
+            color: rgb(55, 55, 55);
+        }
     }
 
     nav {

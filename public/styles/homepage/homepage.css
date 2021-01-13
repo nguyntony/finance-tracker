@@ -48,6 +48,9 @@ p {
 #window {
   margin: 1rem 5rem;
   overflow: hidden;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   background: rgba(255, 255, 255, 0.1);
   -webkit-backdrop-filter: blur(30px);
           backdrop-filter: blur(30px);
@@ -368,6 +371,12 @@ nav ul li:hover a {
   #window #mobile-nav {
     -webkit-transform: translate(30%, 20%);
             transform: translate(30%, 20%);
+  }
+}
+
+@media screen and (max-height: 900px) {
+  #window {
+    height: auto;
   }
 }
 
