@@ -55,7 +55,6 @@ const statistics = async (req, res) => {
 const processMonthSelection = async (req, res) => {
 	const { id } = req.session.user;
 	let { date } = req.body;
-	console.log("this is date", date);
 	const splitDate = date.split(" ");
 	console.log(splitDate);
 
