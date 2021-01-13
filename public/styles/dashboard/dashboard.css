@@ -87,7 +87,7 @@ p {
   width: 15rem;
   height: 15rem;
   border-radius: 50%;
-  border: 1px solid #a29d9d;
+  border: 0.5px solid #a29d9d;
   -webkit-box-shadow: 3px 3.5px 3.5px rgba(46, 54, 68, 0.3);
           box-shadow: 3px 3.5px 3.5px rgba(46, 54, 68, 0.3);
   overflow: hidden;
@@ -110,8 +110,12 @@ p {
   width: 90%;
   height: 4rem;
   margin-top: 2.5rem;
-  background: #dac1da;
+  background: #dfc9df;
   border-radius: 1.2rem;
+}
+
+#sidebar #name-card h4 {
+  color: #373737;
 }
 
 #sidebar nav {
