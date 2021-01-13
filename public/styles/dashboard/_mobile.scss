@@ -1,0 +1,154 @@
+@media screen and (max-width: 750px) {
+    body {
+        // align-items: unset;
+    }
+
+    #dashboard {
+        height: fit-content;
+
+        #main {
+            #nav-list {
+                flex-direction: column;
+                align-items: center;
+                margin: 1.5rem 0rem;
+
+                li {
+                    margin: 1.5rem;
+                }
+            }
+
+            #focus {
+                .card {
+                    .card-content {
+                        width: 70%;
+                    }
+
+                    .card-other-content {
+                        position: absolute;
+                        right: 10px;
+                        a {
+                            padding: 0.5rem 0.8rem;
+                        }
+                    }
+                }
+
+                .savingsCard {
+                    .card-content {
+                        p {
+                            display: none;
+                        }
+                    }
+                }
+
+                .form {
+                    .multiple-heading {
+                        flex-direction: column;
+
+                        h2 {
+                            margin-bottom: unset;
+                        }
+                        h3 {
+                            margin-bottom: 2.5rem;
+                            margin-left: 0.5rem;
+                        }
+
+                        #saving-goal-title {
+                            margin-bottom: 2.5rem;
+                        }
+                    }
+                }
+
+                #transaction-list {
+                    #saving-li {
+                        .saving-item {
+                            .transaction-title {
+                                width: 75%;
+
+                                .progress {
+                                    width: unset;
+                                }
+                            }
+
+                            .transaction-amount {
+                                right: -8px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 415px) {
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        display: flex;
+        justify-content: unset;
+        align-items: unset;
+        height: 100vh;
+        // width: 100vw;
+        background-size: unset;
+        // overflow-x: hidden;
+    }
+
+    #dashboard {
+        background: unset;
+        backdrop-filter: unset;
+        border: unset;
+        border-radius: unset;
+        box-shadow: unset;
+
+        #main {
+            padding: 2.5rem 0rem;
+
+            #nav-list {
+                width: 100vw;
+            }
+
+            #focus {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                padding: 1rem;
+                width: 99vw;
+                .card {
+                    padding: 1rem;
+
+                    // margin: 2rem;
+
+                    .card-icon {
+                        width: 3.5rem;
+                        margin-right: 1rem;
+                    }
+
+                    .card-content {
+                        width: 50%;
+                    }
+
+                    .card-other-content {
+                        width: 40%;
+                        position: unset;
+                        right: unset;
+
+                        p {
+                            display: block;
+                        }
+
+                        a {
+                            position: unset;
+                            right: unset;
+                            margin-left: auto;
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
