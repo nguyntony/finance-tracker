@@ -293,6 +293,26 @@ p {
   color: #373737;
 }
 
+.form form .multiple-heading #reallocate-btn {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 1.2rem;
+  font-size: 1.5rem;
+  background: #765992;
+  color: #fafafa;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.form form .multiple-heading #reallocate-btn:focus {
+  border: none;
+}
+
+.form form .multiple-heading #reallocate-btn:hover {
+  background: #bb8dbb;
+}
+
 .form form .entry {
   position: relative;
   margin: 1rem 0;
@@ -333,6 +353,10 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.form form #same-line {
+  margin-bottom: 2rem;
 }
 
 .form form .deposit-description {
@@ -467,6 +491,10 @@ p {
   text-decoration: none;
   font-weight: bold;
   color: #2d2d2d;
+}
+
+#transaction-list .transaction-item .transaction-title a:hover {
+  color: #a778a7;
 }
 
 #transaction-list .transaction-item .transaction-category {
