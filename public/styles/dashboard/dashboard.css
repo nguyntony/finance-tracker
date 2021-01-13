@@ -608,4 +608,119 @@ p {
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
+
+#desktop-responsive-nav {
+  height: 3rem;
+  display: none;
+}
+
+#desktop-responsive-nav #desktop-responsive-ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#desktop-responsive-nav #desktop-responsive-ul li {
+  list-style-type: none;
+}
+
+#desktop-responsive-nav #desktop-responsive-ul li a {
+  color: #373737;
+  text-decoration: none;
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+#desktop-responsive-nav #desktop-responsive-ul li a:hover {
+  color: #725672;
+}
+
+@media screen and (max-width: 1050px) {
+  #dashboard #sidebar {
+    display: none;
+  }
+  #desktop-responsive-nav {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+  }
+  #desktop-responsive-nav #hamburger {
+    position: absolute;
+    z-index: 200;
+    cursor: pointer;
+  }
+  #desktop-responsive-nav #hamburger i {
+    font-size: 3.5rem;
+    color: #d7d3d3;
+  }
+  #desktop-responsive-nav #hamburger i:hover {
+    color: #b8b3b3;
+  }
+  #desktop-responsive-ul {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    clip-path: circle(10rem at -10% -10%);
+    -webkit-clip-path: circle(10rem at -10% -10%);
+    -webkit-transition: all 0.8s ease-out;
+    transition: all 0.8s ease-out;
+    pointer-events: none;
+  }
+  #desktop-responsive-ul.open {
+    clip-path: circle(200rem at -10% -10%);
+    -webkit-clip-path: circle(200rem at -10% -10%);
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+    pointer-events: all;
+  }
+  #desktop-responsive-ul li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    opacity: 0;
+  }
+  #desktop-responsive-ul li.fade {
+    opacity: 1;
+  }
+  #desktop-responsive-ul li:nth-child(1) {
+    -webkit-transition: all 0.5s ease 0.2s;
+    transition: all 0.5s ease 0.2s;
+  }
+  #desktop-responsive-ul li:nth-child(2) {
+    -webkit-transition: all 0.5s ease 0.4s;
+    transition: all 0.5s ease 0.4s;
+  }
+  #desktop-responsive-ul li:nth-child(3) {
+    -webkit-transition: all 0.5s ease 0.6s;
+    transition: all 0.5s ease 0.6s;
+  }
+  #desktop-responsive-ul li:nth-child(4) {
+    -webkit-transition: all 0.5s ease 0.8s;
+    transition: all 0.5s ease 0.8s;
+  }
+}
 /*# sourceMappingURL=dashboard.css.map */
