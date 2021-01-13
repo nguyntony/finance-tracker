@@ -62,8 +62,8 @@
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(15px);
         flex-direction: column;
-        clip-path: circle(10rem at -10% -10%);
-        -webkit-clip-path: circle(10rem at -10% -10%);
+        clip-path: circle(10rem at -20% -20%);
+        -webkit-clip-path: circle(10rem at -20% -20%);
         transition: all 0.8s ease-out;
         pointer-events: none;
 
