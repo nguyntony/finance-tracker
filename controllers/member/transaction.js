@@ -145,6 +145,8 @@ const processTransactionForm = async (req, res) => {
 	const todayYear = moment(today).format("YYYY");
 	const todayMonth = moment(today).format("MMMM");
 
+	const editedAmount = numeral(amount).format("$0,0.00");
+
 	if (totalFunds.totalFunds - Number(amount) < 0) {
 		req.session.flash = { error: "Insufficient funds." };
 		req.session.save(() => {
@@ -159,8 +161,10 @@ const processTransactionForm = async (req, res) => {
 			createdYear: todayYear,
 			createdMonth: todayMonth,
 		});
-
-		res.redirect("/member/home");
+		req.session.flash = {
+			success: `${editedAmount} has been deducted from your funds for: ${description}`,
+		};
+		req.session.save(() => res.redirect("/member/home"));
 	}
 };
 
@@ -186,14 +190,25 @@ const processDepositForm = async (req, res) => {
 
 	description = description.charAt(0).toUpperCase() + description.slice(1);
 
+	const editedAmount = numeral(amount).format("$0,0.00");
+
+	const today = new Date();
+	const todayYear = moment(today).format("YYYY");
+	const todayMonth = moment(today).format("MMMM");
+
 	const newDeposit = await Transaction.create({
 		category: "Deposit",
 		amount,
 		description,
 		uid: id,
+		createdYear: todayYear,
+		createdMonth: todayMonth,
 	});
 
-	res.redirect("/member/home");
+	req.session.flash = {
+		success: `${editedAmount} has been added to your funds for: ${description}`,
+	};
+	req.session.save(() => res.redirect("/member/home"));
 };
 
 // By default, the list route will only showcase the current month's transactions.
@@ -408,11 +423,21 @@ const showDeleteTransactionForm = async (req, res) => {
 const processDeleteTransactionForm = async (req, res) => {
 	const { transactionId } = req.params;
 	const transaction = await Transaction.findByPk(transactionId);
+
+	const editedAmount = numeral(transaction.amount).format("$0,0.00");
+
 	const { deletion } = req.body;
 
 	if (deletion == "Delete") {
 		transaction.destroy();
-		res.redirect("/member/transaction/list");
+		req.session.flash = {
+			success: `${
+				transaction.category == "Deposit"
+					? `${transaction.description} has been deleted. ${editedAmount} is deducted from your funds.`
+					: `${transaction.description} has been deleted. ${editedAmount} is returned to your funds.`
+			}`,
+		};
+		req.session.save(() => res.redirect("/member/home"));
 	} else {
 		req.session.flash = {
 			error: "Your entry does not match. Please try again.",
