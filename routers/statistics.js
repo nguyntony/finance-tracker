@@ -7,12 +7,16 @@ router
 	.get("/", memberController.statisticsController.statistics)
 	.post("/", memberController.statisticsController.processMonthSelection)
 	.get(
-		"/:year/:month",
+		"/:month/:year",
 		memberController.statisticsController.monthlyStatistics
 	)
 	.post(
-		"/:year/:month",
-		memberController.statisticsController.monthlyStatistics
+		"/:month/:year",
+		memberController.statisticsController.processMonthSelection
+	)
+	.get(
+		"/data/:month/:year",
+		memberController.statisticsController.monthlyData
 	);
 
 module.exports = router;

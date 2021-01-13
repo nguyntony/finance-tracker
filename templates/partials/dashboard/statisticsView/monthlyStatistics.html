@@ -1,21 +1,28 @@
-<h2>${h2}</h2>
+
 <div class="form"> 
-<!-- Maybe make this baseline? -->
+<h2>${h2}</h2>
     <form action="" method="post">
-        <div class="dropdown">
-            <select required name="date" id="date">
-                <option value="" disabled selected>Choose a Date</option>
-                ${transactionDates.map(td => `
-                    <option value="${td}">${td}</option>
-                    `)}
-            </select>
-            <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+
+
+
+        <div class="same-line">
+            <div class="dropdown">
+                <select required name="date" id="date">
+                    <option value="" disabled selected>Choose a Date</option>
+                    ${transactionDates.map(td => `
+                        <option value="${td}">${td}</option>
+                        `)}
+                </select>
+            </div>
+            <div class="submit-container">
+                <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
         </div>
     </form>
 </div>
 
 <div style="width: 500px;">
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <canvas id="myMonthlyChart" width="400" height="400"></canvas>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
