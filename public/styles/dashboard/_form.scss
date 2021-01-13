@@ -39,6 +39,32 @@
             }
         }
 
+        .multiple-heading {
+            #reallocate-btn {
+                display: inline-block;
+                // width: 100%;
+                margin-bottom: 2rem;
+                padding: 1rem 2rem;
+                border-radius: 1.2rem;
+                font-size: 1.5rem;
+                // border: none;
+                background: #765992;
+                color: rgb(250, 250, 250);
+                cursor: pointer;
+                // outline: none;
+                // font-weight: bold;
+                text-decoration: none;
+
+                &:focus {
+                    border: none;
+                }
+
+                &:hover {
+                    background: #bb8dbb;
+                }
+            }
+        }
+
         .entry {
             position: relative;
             margin: 1rem 0;
@@ -75,6 +101,10 @@
         .same-line {
             display: flex;
             align-items: center;
+        }
+
+        #same-line {
+            margin-bottom: 2rem;
         }
 
         .deposit-description {
