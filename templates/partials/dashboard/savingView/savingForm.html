@@ -4,7 +4,7 @@
         <div class="multiple-heading">
             <h2 id="saving-goal-title">${h2}</h2>
 
-            ${saving ? `${saving.progress != 0 ? `<a href="/member/saving/reallocation/${saving.id}">Reallocate</a>` : ""}` : "" }
+            ${saving ? `${saving.progress != 0 ? `<a id="reallocate-btn" href="/member/saving/reallocation/${saving.id}">Reallocate</a>` : ""}` : "" }
         </div>
     
         <div class="dropdown">

@@ -772,6 +772,12 @@ p {
   #dashboard #main #focus .form .multiple-heading #saving-goal-title {
     margin-bottom: 2.5rem;
   }
+  #dashboard #main #focus .form .dropdown select {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  #dashboard #main #focus .form .entry input {
+    background: rgba(255, 255, 255, 0.3);
+  }
   #dashboard #main #focus #transaction-list #saving-li .saving-item .transaction-title {
     width: 75%;
   }

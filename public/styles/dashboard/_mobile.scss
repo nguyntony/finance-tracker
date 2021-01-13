@@ -56,6 +56,18 @@
                             margin-bottom: 2.5rem;
                         }
                     }
+
+                    .dropdown {
+                        select {
+                            background: rgba(255, 255, 255, 0.3);
+                        }
+                    }
+
+                    .entry {
+                        input {
+                            background: rgba(255, 255, 255, 0.3);
+                        }
+                    }
                 }
 
                 #transaction-list {
