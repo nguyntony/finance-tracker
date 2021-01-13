@@ -4,10 +4,10 @@ const router = express.Router();
 const { userController } = require("../controllers");
 
 router
-	.get("/signup", userController.signUp) // dont need?
+	.get("/signup", userController.signUp)
 	.post("/signup", userController.processSignUp)
-	.get("/login", userController.login) // dont need?
+	.get("/login", userController.login)
 	.post("/login", userController.processLogin)
-	.get("/logout", userController.logout);
+	.get("/logout", userController.logout)
 
 module.exports = router;

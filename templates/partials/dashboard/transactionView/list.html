@@ -20,7 +20,12 @@
 <ul id="transaction-list">
     ${editedTransactions.map(t => `
         <li id=list-li>
-            <div class="transaction-item">
+            <div class="transaction-item saving-item">
+
+                <div class="saving-icon">
+                    <img src="/icons/transaction/${t.category.toLowerCase()}.png" alt="">
+                </div>
+
                 <div class="transaction-title">
                     <a href="/member/transaction/edit/${t.id}">${t.description}</a>
                     <p class="transaction-category">${t.category}</p>

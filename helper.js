@@ -1,27 +1,40 @@
-const layout = {
-    partials: {
-        header: '/partials/header',
-        homeHeader: '/partials/homeHeader',
-        // memberHeader: '/partials/memberHeader',
-        footer: '/partials/footer',
-    }
-};
+const moment = require("moment")
+const { User } = require("./models")
 
-const partialContent = {
-    header: '/partials/header',
-    homeHeader: '/partials/homeHeader',
-    // memberHeader: '/partials/memberHeader',
-    footer: '/partials/footer',
+const createTransactionData = async (category, description) => {
+    const data = [];
+    let obj = {}
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+    const users = await User.findAll();
+    const user = users[0];
+
+
+    for (x of months) {
+        let amount = Math.random() * 500
+        let date = new Date(`${x} 20, 2020`)
+
+        obj = {}
+        obj["uid"] = user.id;
+        obj["category"] = category;
+        obj["amount"] = Number.parseFloat(amount).toFixed(2)
+        obj["createdAt"] = new Date(moment(date).format("YYYY-MM-DD"))
+        obj["updatedAt"] = new Date()
+        obj["createdYear"] = moment(date).format("YYYY")
+        obj["createdMonth"] = moment(date).format("MMMM")
+        obj["description"] = description
+
+        data.push(obj)
+    }
+
+    return data
 }
 
 const dashboardContent = {
     header: '/partials/header',
-    // memberHeader: "/partials/memberHeader",
     footer: '/partials/footer',
     dashHeader: "/partials/dashboard/dashHeader",
     dashFooter: "/partials/dashboard/dashFooter",
-    // cards: '/partials/dashboard/cards',
-    // transactionList: '/partials/transactionView/list'
 }
 
 const msgContent = {
@@ -45,11 +58,10 @@ const addDecimal = (num) => {
 }
 
 module.exports = {
-    layout,
     getMessages,
-    partialContent,
     msgContent,
     addDecimal,
     dashboardContent,
-    homepageContent
+    homepageContent,
+    createTransactionData
 };

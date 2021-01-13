@@ -15,6 +15,11 @@ const home = (req, res) => {
 	});
 };
 
+const errorPage = (req, res) => {
+	res.render("error404",)
+}
+
 module.exports = {
 	home,
+	errorPage
 };
