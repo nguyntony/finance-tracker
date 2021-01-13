@@ -1,4 +1,21 @@
-<h2 id="page-title">All transactions</h2>
+<div class="form"> 
+    <h2 id="page-title">${h2}</h2>
+    <form action="" method="post">
+        <div class="same-line">
+            <div class="dropdown">
+                <select required name="date" id="date">
+                    <option value="" disabled selected>Choose a Date</option>
+                    ${transactionDates.map(td =>`
+                        <option value="${td}">${td}</option>
+                        `)}
+                </select>
+            </div>
+            <div class="submit-container">
+                <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
 
 <ul id="transaction-list">
     ${editedTransactions.map(t => `

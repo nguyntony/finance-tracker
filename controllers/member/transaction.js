@@ -93,6 +93,23 @@ const checkTotalSavings = async (req, res, transactionId) => {
 	return totalSavings;
 };
 
+// Sorts all of the transaction months
+const monthlyCache = async (req, res) => {
+	const { id } = req.session.user;
+	const user = await User.findByPk(id);
+	const transaction = await user.getTransactions();
+
+	cache = {};
+	const dateOnly = transaction.map((t) => {
+		const editedDate = moment(t.createdAt).format("MMMM YYYY");
+		if (!cache[editedDate]) {
+			cache[editedDate] = true;
+		}
+	});
+
+	return cache;
+};
+
 // fn to display the transaction form
 const showTransactionForm = async (req, res) => {
 	const { firstName, lastName } = req.session.user;
@@ -179,14 +196,24 @@ const processDepositForm = async (req, res) => {
 	res.redirect("/member/home");
 };
 
+// By default, the list route will only showcase the current month's transactions.
 const list = async (req, res) => {
 	const { id, firstName, lastName } = req.session.user;
 	const user = await User.findByPk(id);
+	const months = await monthlyCache(req, res);
+
+	const currentYear = moment(new Date()).format("YYYY");
+	const currentMonth = moment(new Date()).format("MMMM");
+
+	const editedMonth = currentMonth + " " + currentYear;
+
 	const allTransactions = await user.getTransactions({
 		where: {
 			category: {
 				[Op.not]: "Deposit",
 			},
+			createdYear: currentYear,
+			createdMonth: currentMonth,
 		},
 		order: [["createdAt", "desc"]],
 	});
@@ -210,6 +237,60 @@ const list = async (req, res) => {
 			firstName,
 			lastName,
 			editedTransactions,
+			transactionDates: Object.keys(months),
+			h2: editedMonth,
+		},
+	});
+};
+
+const processMonthSelection = async (req, res) => {
+	const { id } = req.session.user;
+	let { date } = req.body;
+	const splitDate = date.split(" ");
+	console.log(splitDate);
+
+	res.redirect(`/member/transaction/list/${splitDate[0]}/${splitDate[1]}`);
+};
+
+const monthlyList = async (req, res) => {
+	const { id, firstName, lastName } = req.session.user;
+	const { year, month } = req.params;
+	const months = await monthlyCache(req, res);
+
+	const editedMonth = month + " " + year;
+	const user = await User.findByPk(id);
+	const allTransactions = await user.getTransactions({
+		where: {
+			category: {
+				[Op.not]: "Deposit",
+			},
+			createdMonth: month,
+			createdYear: year,
+		},
+		order: [["createdAt", "desc"]],
+	});
+
+	const editedTransactions = allTransactions.map((t) => {
+		return {
+			id: t.id,
+			category: t.category,
+			description: t.description,
+			amount: numeral(t.amount).format("$0,0.00"),
+		};
+	});
+
+	res.render("dashboard/transaction/transactionList", {
+		partials: {
+			...dashboardContent,
+			transactionList: "/partials/dashboard/transactionView/list",
+		},
+		locals: {
+			title: "Transactions",
+			firstName,
+			lastName,
+			editedTransactions,
+			transactionDates: Object.keys(months),
+			h2: editedMonth,
 		},
 	});
 };
@@ -348,6 +429,8 @@ module.exports = {
 	showDepositForm,
 	processDepositForm,
 	list,
+	monthlyList,
+	processMonthSelection,
 	dataList,
 	showEditTransactionForm,
 	processEditTransactionForm,

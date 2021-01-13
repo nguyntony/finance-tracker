@@ -1,15 +1,18 @@
-<h2>${h2}</h2>
 <div class="form"> 
-<!-- Maybe make this baseline? -->
+    <h2>${h2}</h2>
     <form action="" method="post">
-        <div class="dropdown">
-            <select required name="date" id="date">
-                <option value="" disabled selected>Choose a Date</option>
-                ${transactionDates.map(td => `
-                    <option value="${td}">${td}</option>
-                    `)}
-            </select>
-            <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+        <div class="same-line">
+            <div class="dropdown">
+                <select required name="date" id="date">
+                    <option value="" disabled selected>Choose a Date</option>
+                    ${transactionDates.map(td => `
+                        <option value="${td}">${td}</option>
+                        `)}
+                </select>
+            </div>
+            <div class="submit-container">
+                <button type="submit" id="deposit-submit"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
         </div>
     </form>
 </div>

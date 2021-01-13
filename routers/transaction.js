@@ -5,6 +5,15 @@ const { memberController } = require("../controllers");
 
 router
 	.get("/list", memberController.transactionController.list)
+	.post("/list", memberController.transactionController.processMonthSelection)
+	.get(
+		"/list/:month/:year",
+		memberController.transactionController.monthlyList
+	)
+	.post(
+		"/list/:month/:year",
+		memberController.transactionController.processMonthSelection
+	)
 	.get("/list/data", memberController.transactionController.dataList)
 	.get(
 		"/edit/:transactionId",

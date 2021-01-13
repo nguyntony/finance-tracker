@@ -77,11 +77,17 @@ const home = async (req, res) => {
 			totalFunds: numeral(totalFunds).format("$0,0.00"),
 			totalSavings: numeral(totalSavings).format("$0,0.00"),
 			MRT: mostRecentTransaction,
-			MRTAmt: numeral(mostRecentTransaction.amount).format("$0,0.00"),
+			MRTAmt: mostRecentTransaction
+				? numeral(mostRecentTransaction.amount).format("$0,0.00")
+				: "",
 			NoMRT: "You have no recent transactions!",
 			MRSG: mostRecentSavingGoal,
-			MRSGProg: numeral(mostRecentSavingGoal.progress).format("$0,0.00"),
-			MRSGTotal: numeral(mostRecentSavingGoal.total).format("$0,0.00"),
+			MRSGProg: mostRecentSavingGoal
+				? numeral(mostRecentSavingGoal.progress).format("$0,0.00")
+				: "",
+			MRSGTotal: mostRecentSavingGoal
+				? numeral(mostRecentSavingGoal.total).format("$0,0.00")
+				: "",
 			NoMRSG: "You have no saving goal! Create one now!",
 		},
 	});
