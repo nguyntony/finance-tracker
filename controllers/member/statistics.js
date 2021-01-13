@@ -5,7 +5,9 @@ const moment = require("moment");
 const monthlyCache = async (req, res) => {
 	const { id } = req.session.user;
 	const user = await User.findByPk(id);
-	const transaction = await user.getTransactions();
+	const transaction = await user.getTransactions({
+		order: [["createdAt", "desc"]],
+	});
 
 	cache = {};
 	const dateOnly = transaction.map((t) => {
@@ -27,6 +29,7 @@ const monthlyData = async (req, res) => {
 			createdYear: year,
 			createdMonth: month,
 		},
+		order: [["createdAt", "desc"]],
 	});
 	res.json(allTransactions);
 };
