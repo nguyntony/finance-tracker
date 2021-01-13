@@ -97,7 +97,9 @@ const checkTotalSavings = async (req, res, transactionId) => {
 const monthlyCache = async (req, res) => {
 	const { id } = req.session.user;
 	const user = await User.findByPk(id);
-	const transaction = await user.getTransactions();
+	const transaction = await user.getTransactions({
+		order: [["createdAt", "desc"]],
+	});
 
 	cache = {};
 	const dateOnly = transaction.map((t) => {
@@ -431,10 +433,11 @@ const processDeleteTransactionForm = async (req, res) => {
 	if (deletion == "Delete") {
 		transaction.destroy();
 		req.session.flash = {
-			success: `${transaction.category == "Deposit"
-				? `${transaction.description} has been deleted. ${editedAmount} is deducted from your funds.`
-				: `${transaction.description} has been deleted. ${editedAmount} is returned to your funds.`
-				}`,
+			success: `${
+				transaction.category == "Deposit"
+					? `${transaction.description} has been deleted. ${editedAmount} is deducted from your funds.`
+					: `${transaction.description} has been deleted. ${editedAmount} is returned to your funds.`
+			}`,
 		};
 		req.session.save(() => res.redirect("/member/home"));
 	} else {
