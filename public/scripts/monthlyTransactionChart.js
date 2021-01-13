@@ -5,9 +5,10 @@ const yearUrl = fullUrl[4];
 const getData = async () => {
 	const tData = [];
 	const cache = {};
-	await fetch("/member/transaction/list/data")
+	await fetch(`/member/statistics/data/${monthUrl}/${yearUrl}`)
 		.then((r) => r.json())
 		.then((data) => {
+			console.log(data);
 			data.map((d) => {
 				if (!cache[d.category]) {
 					cache[d.category] = Math.round(Number(d.amount));
@@ -30,11 +31,11 @@ chartIt();
 
 async function chartIt() {
 	const tData = await getData();
-	const transactionChart = document.getElementById("myChart");
+	const transactionChart = document.getElementById("myMonthlyChart");
 	const myChart = new Chart(transactionChart, {
 		type: "doughnut",
 		data: {
-			labels: ["Poop", "Auto", "Health", "Food", "Shopping", "Other"],
+			labels: ["Bills", "Auto", "Health", "Food", "Shopping", "Other"],
 			datasets: [
 				{
 					label: "Expenses",

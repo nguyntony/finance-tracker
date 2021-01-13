@@ -26,9 +26,11 @@ const monthlyData = async (req, res) => {
 	const user = await User.findByPk(id);
 	const allTransactions = await user.getTransactions({
 		where: {
-			// CREATE CONDITONS USING REQ.PARAMS TO MATCH THE DATE.
+			createdYear: year,
+			createdMonth: month,
 		},
 	});
+	res.json(allTransactions);
 };
 
 const statistics = async (req, res) => {
@@ -45,7 +47,7 @@ const statistics = async (req, res) => {
 			lastName,
 			firstName,
 			transactionDates: Object.keys(months),
-			h2: "Statistics - General",
+			h2: "All Transactions",
 		},
 	});
 };
@@ -53,8 +55,9 @@ const statistics = async (req, res) => {
 const processMonthSelection = async (req, res) => {
 	const { id } = req.session.user;
 	let { date } = req.body;
-
+	console.log("this is date", date);
 	const splitDate = date.split(" ");
+	console.log(splitDate);
 
 	res.redirect(`/member/statistics/${splitDate[0]}/${splitDate[1]}`);
 };
@@ -64,7 +67,7 @@ const monthlyStatistics = async (req, res) => {
 	const { year, month } = req.params;
 	const months = await monthlyCache(req, res);
 
-	const editedMonth = moment(month, year).format("MMMM YYYY");
+	const editedMonth = month + " " + year;
 
 	res.render("dashboard/statistics/monthlyStatistics", {
 		partials: {
@@ -77,7 +80,7 @@ const monthlyStatistics = async (req, res) => {
 			lastName,
 			firstName,
 			transactionDates: Object.keys(months),
-			h2: `Statistics - ${editedMonth}`,
+			h2: editedMonth,
 		},
 	});
 };
@@ -86,4 +89,5 @@ module.exports = {
 	statistics,
 	processMonthSelection,
 	monthlyStatistics,
+	monthlyData,
 };

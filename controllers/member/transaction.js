@@ -2,6 +2,7 @@ const { dashboardContent, msgContent, getMessages } = require("../../helper");
 const { Transaction, User, Saving } = require("../../models");
 const { Op } = require("sequelize");
 const numeral = require("numeral");
+const moment = require("moment");
 
 // Function to check total funds or total non-deposits
 const checkTotalFundsOrTotalNonDeposits = async (req, res) => {
@@ -123,6 +124,9 @@ const processTransactionForm = async (req, res) => {
 	description = description.charAt(0).toUpperCase() + description.slice(1);
 
 	const totalFunds = await checkTotalFundsOrTotalNonDeposits(req, res);
+	const today = new Date();
+	const todayYear = moment(today).format("YYYY");
+	const todayMonth = moment(today).format("MMMM");
 
 	if (totalFunds.totalFunds - Number(amount) < 0) {
 		req.session.flash = { error: "Insufficient funds." };
@@ -135,6 +139,8 @@ const processTransactionForm = async (req, res) => {
 			amount,
 			description,
 			uid: id,
+			createdYear: todayYear,
+			createdMonth: todayMonth,
 		});
 
 		res.redirect("/member/home");
