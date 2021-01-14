@@ -51,6 +51,12 @@ p {
   color: #373737;
 }
 
+#source-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 #dashboard {
   display: -webkit-box;
   display: -ms-flexbox;
