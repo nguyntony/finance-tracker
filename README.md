@@ -47,7 +47,7 @@ This page is a quick view of your account balance, savings balance and recent tr
 ### Transaction View 
 In the transaction view, you will see a list of your transaction of the current month. You can see past months by using the filter. To update a specific transaction click on the its title and to delete a transaction click the corresponding X button.
 
-![](README/IMG_0251.PNG)
+![Transaction View](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/transaction-info.PNG)
 
 ### Savings View 
 In the savings view, this is where your goals will be. You will see a progress bar of how far are you into the goal. To allocate funds into your goals, click on the purple button “Allocate savings”. 
@@ -56,5 +56,5 @@ If you allocated funds into a goal that you wish to change you can click on the 
 
 NOTE: The “Reallocate” button will only appear if there is any progress towards your goal (ie. The “Townhouse” goal has a progress of $500, so if you click on the goal title you will see if the “Reallocate” button). 
 
-![](README/IMG_0255.PNG)
+![Saving View](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/saving-info.PNG)
 
