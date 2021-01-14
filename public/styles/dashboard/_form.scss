@@ -42,17 +42,13 @@
         .multiple-heading {
             #reallocate-btn {
                 display: inline-block;
-                // width: 100%;
                 margin-bottom: 2rem;
                 padding: 1rem 2rem;
                 border-radius: 1.2rem;
                 font-size: 1.5rem;
-                // border: none;
                 background: #765992;
                 color: rgb(250, 250, 250);
                 cursor: pointer;
-                // outline: none;
-                // font-weight: bold;
                 text-decoration: none;
 
                 &:focus {
@@ -128,7 +124,7 @@
             padding: 0.5rem 0.8rem;
             border-radius: 100%;
             border: none;
-            background: #765992;
+            background: rgba(118, 89, 146, 0.8);
             color: rgb(250, 250, 250);
             cursor: pointer;
             outline: none;
@@ -143,7 +139,7 @@
             }
 
             &:hover {
-                background: #bb8dbb;
+                background: rgb(118, 89, 146);
             }
         }
 
@@ -154,6 +150,36 @@
             font-weight: bold;
             letter-spacing: 0.5px;
             color: #f0e3d4;
+        }
+    }
+
+    #return-btn-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #return-btn {
+        margin-left: 1rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 100%;
+        border: none;
+        background: rgba(236, 153, 150, 0.8);
+        color: rgb(250, 250, 250);
+        cursor: pointer;
+        outline: none;
+
+        i {
+            font-size: 3rem;
+            color: #f9e9df;
+        }
+
+        &:focus {
+            border: none;
+        }
+
+        &:hover {
+            background: rgb(236, 153, 150);
         }
     }
 }
