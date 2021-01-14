@@ -358,6 +358,9 @@ nav ul li:hover a {
   #desktop-nav {
     display: none;
   }
+  #window {
+    margin: 1rem 0;
+  }
   #window #mobile-nav {
     opacity: 1;
     pointer-events: unset;

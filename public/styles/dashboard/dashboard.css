@@ -905,6 +905,9 @@ p {
     padding: 1rem;
     width: 99vw;
   }
+  #dashboard #main #focus #allocate-button {
+    text-align: center;
+  }
   #dashboard #main #focus .card {
     padding: 1rem;
   }
