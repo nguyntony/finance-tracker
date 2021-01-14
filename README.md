@@ -42,7 +42,7 @@ This is the user dashboard. Here is where you will be able to quickly deposit fu
 
 This page is a quick view of your account balance, savings balance and recent transaction/saving goal. Click on the buttons on each card to go to the focused view of each category. 
 
-![](README/IMG_0253.jpg)
+![Dashboard](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/dashboard-info.PNG)
 
 ### Transaction View 
 In the transaction view, you will see a list of your transaction of the current month. You can see past months by using the filter. To update a specific transaction click on the its title and to delete a transaction click the corresponding X button.
