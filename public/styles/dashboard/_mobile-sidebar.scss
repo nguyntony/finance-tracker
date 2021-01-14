@@ -99,3 +99,14 @@
         transition: all 0.5s ease 0.8s;
     }
 }
+
+@media screen and (max-width: 415px) {
+    #desktop-responsive-nav {
+        #desktop-responsive-ul {
+            li {
+                flex-grow: unset;
+                margin: 2.5rem;
+            }
+        }
+    }
+}
