@@ -166,7 +166,7 @@ async function chartIt() {
 			events: ["click"],
 			elements: {
 				center: {
-					text: `-${editedAmount}`,
+					text: `${editedAmount}`,
 					color: "#373737",
 					sidePadding: 20,
 					minFontSize: 10,
