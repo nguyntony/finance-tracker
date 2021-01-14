@@ -127,7 +127,6 @@ async function chartIt() {
 	const editedAmount = numeral(numData.reduce((a, b) => a + b, 0)).format(
 		"$0,0.00"
 	);
-	console.log(tData);
 	const transactionChart = document.getElementById("myMonthlyChart");
 	const myChart = new Chart(transactionChart, {
 		type: "doughnut",
@@ -167,10 +166,10 @@ async function chartIt() {
 			events: ["click"],
 			elements: {
 				center: {
-					text: `${editedAmount} \tTotal Spent`,
-					color: "FF6384",
+					text: `-${editedAmount}`,
+					color: "#373737",
 					sidePadding: 20,
-					minFontSize: 30,
+					minFontSize: 10,
 					lineHeight: 40,
 				},
 			},
