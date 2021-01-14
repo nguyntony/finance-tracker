@@ -72,5 +72,5 @@ NOTE: The “Reallocate” button will only appear if there is any progress towa
 
 ## Icons and Images
 
--   ![Icons](https://www.flaticon.com/authors/freepik)
--   ![Images](https://www.freepik.com/vectors/people)
+-   [Icons](https://www.flaticon.com/authors/freepik)
+-   [Images](https://www.freepik.com/vectors/people)
