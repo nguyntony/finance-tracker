@@ -380,7 +380,7 @@ p {
   padding: 0.5rem 0.8rem;
   border-radius: 100%;
   border: none;
-  background: #765992;
+  background: rgba(118, 89, 146, 0.8);
   color: #fafafa;
   cursor: pointer;
   outline: none;
@@ -396,7 +396,7 @@ p {
 }
 
 .form form #deposit-submit:hover {
-  background: #bb8dbb;
+  background: #765992;
 }
 
 .form form #goal-deadline {
@@ -406,6 +406,40 @@ p {
   font-weight: bold;
   letter-spacing: 0.5px;
   color: #f0e3d4;
+}
+
+.form #return-btn-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.form #return-btn {
+  margin-left: 1rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 100%;
+  border: none;
+  background: rgba(236, 153, 150, 0.8);
+  color: #fafafa;
+  cursor: pointer;
+  outline: none;
+}
+
+.form #return-btn i {
+  font-size: 3rem;
+  color: #f9e9df;
+}
+
+.form #return-btn:focus {
+  border: none;
+}
+
+.form #return-btn:hover {
+  background: #ec9996;
 }
 
 .form input:focus + .label-name,
