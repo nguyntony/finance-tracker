@@ -34,4 +34,27 @@ T|WIN is a personal finance tracker web application. This app will help organize
 - [Tyler Nguyen](https://github.com/nguyntyler)
 - [Tony Nguyen](https://github.com/nguyntony)
 
+## User Guide
+Please refer back to this guide after creating a user account. 
+
+### Dashboard
+This is the user dashboard. Here is where you will be able to quickly deposit funds, add transactions and start a saving goal. To the left, is the sidebar where you can view your statistics or logout. 
+
+This page is a quick view of your account balance, savings balance and recent transaction/saving goal. Click on the buttons on each card to go to the focused view of each category. 
+
+![](README/IMG_0253.jpg)
+
+### Transaction View 
+In the transaction view, you will see a list of your transaction of the current month. You can see past months by using the filter. To update a specific transaction click on the its title and to delete a transaction click the corresponding X button.
+
+![](README/IMG_0251.PNG)
+
+### Savings View 
+In the savings view, this is where your goals will be. You will see a progress bar of how far are you into the goal. To allocate funds into your goals, click on the purple button “Allocate savings”. 
+
+If you allocated funds into a goal that you wish to change you can click on the goal title, (it will redirect you to the edit page) and on the top right corner you will see a purple button “Reallocate”. 
+
+NOTE: The “Reallocate” button will only appear if there is any progress towards your goal (ie. The “Townhouse” goal has a progress of $500, so if you click on the goal title you will see if the “Reallocate” button). 
+
+![](README/IMG_0255.PNG)
 
