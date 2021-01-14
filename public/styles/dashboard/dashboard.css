@@ -792,6 +792,15 @@ p {
   }
 }
 
+@media screen and (max-width: 415px) {
+  #desktop-responsive-nav #desktop-responsive-ul li {
+    -webkit-box-flex: unset;
+        -ms-flex-positive: unset;
+            flex-grow: unset;
+    margin: 2.5rem;
+  }
+}
+
 @media screen and (max-width: 750px) {
   #dashboard {
     height: -webkit-fit-content;
