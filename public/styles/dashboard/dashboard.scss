@@ -43,6 +43,12 @@ p {
     color: rgb(55, 55, 55);
 }
 
+#source-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 @import "window";
 @import "sidebar";
 @import "main";
