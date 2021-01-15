@@ -27,6 +27,11 @@
             </div>
 
             <div class="transaction-amount">
+
+                <form action="/member/saving/pinned/${s.id}" method="POST">
+                    <button type="submit" id="pinned-btn"><i class="fas fa-bookmark"></i></button>
+                </form>
+
                 <a href="/member/saving/delete/${s.id}"><i class="fas fa-times"></i></a>
             </div>
         </div>

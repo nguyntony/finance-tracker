@@ -30,6 +30,7 @@ router
 	.post(
 		"/reallocation/:savingId",
 		memberController.savingController.processReallocationForm
-	);
+	)
+	.post("/pinned/:goalId", memberController.savingController.pinnedGoal)
 
 module.exports = router;

@@ -118,6 +118,20 @@
         .transaction-amount {
             position: absolute;
             right: 0;
+
+            #pinned-btn {
+                outline: none;
+                border: none;
+                background: none;
+                color: rgb(90, 87, 87);
+                font-size: 1.6rem;
+                margin-right: 1.5rem;
+                cursor: pointer;
+
+                &:hover {
+                    color: rgb(255, 191, 106);
+                }
+            }
         }
 
         .transaction-title {

@@ -26,7 +26,8 @@ module.exports = {
 					category: "Car",
 					createdAt: new Date("2020-01-19"),
 					updatedAt: new Date(),
-					progress: 0
+					progress: 0,
+					pinned: false
 				},
 				{
 					uid: user.id,
@@ -35,7 +36,8 @@ module.exports = {
 					category: "Item",
 					createdAt: new Date("2021-01-01"),
 					updatedAt: new Date(),
-					progress: 0
+					progress: 0,
+					pinned: false
 				},
 				{
 					uid: user.id,
@@ -44,7 +46,8 @@ module.exports = {
 					category: "Home",
 					createdAt: new Date("2020-06-25"),
 					updatedAt: new Date(),
-					progress: 0
+					progress: 0,
+					pinned: false
 				},
 			],
 			{}
