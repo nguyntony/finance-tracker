@@ -1,6 +1,12 @@
 @media screen and (max-width: 750px) {
+    body {
+        align-items: unset;
+        height: 150vh;
+    }
+
     #dashboard {
         height: fit-content;
+        margin: 2.5rem 0;
 
         #main {
             #nav-list {
@@ -70,7 +76,7 @@
                     #saving-li {
                         .saving-item {
                             .transaction-title {
-                                width: 75%;
+                                width: 65%;
 
                                 .progress {
                                     width: unset;

@@ -600,6 +600,20 @@ p {
   right: 0;
 }
 
+#transaction-list .saving-item .transaction-amount #pinned-btn {
+  outline: none;
+  border: none;
+  background: none;
+  color: #5a5757;
+  font-size: 1.6rem;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+#transaction-list .saving-item .transaction-amount #pinned-btn:hover {
+  color: #ffbf6a;
+}
+
 #transaction-list .saving-item .transaction-title .progress {
   background: rgba(146, 141, 141, 0.3);
   height: 2rem;
@@ -802,10 +816,17 @@ p {
 }
 
 @media screen and (max-width: 750px) {
+  body {
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    height: 150vh;
+  }
   #dashboard {
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
+    margin: 2.5rem 0;
   }
   #dashboard #main #nav-list {
     -webkit-box-orient: vertical;
@@ -856,7 +877,7 @@ p {
     background: rgba(255, 255, 255, 0.3);
   }
   #dashboard #main #focus #transaction-list #saving-li .saving-item .transaction-title {
-    width: 75%;
+    width: 65%;
   }
   #dashboard #main #focus #transaction-list #saving-li .saving-item .transaction-title .progress {
     width: unset;

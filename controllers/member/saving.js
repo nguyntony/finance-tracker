@@ -252,8 +252,8 @@ const processAllocationForm = async (req, res) => {
 			// If the total is a number and if adding the new progress amount doesn't make the total go below 0.
 			saving.total !== null &&
 			Number(saving.total) -
-				(Number(saving.progress) + Number(progress)) <
-				0
+			(Number(saving.progress) + Number(progress)) <
+			0
 		) {
 			progress = Number(saving.total);
 		} else {
@@ -308,6 +308,29 @@ const processReallocationForm = async (req, res) => {
 	}
 };
 
+const pinnedGoal = async (req, res) => {
+	const { id } = req.session.user
+	const { goalId } = req.params
+	const user = await User.findByPk(id)
+	const isPinned = await user.getSavings({
+		where: {
+			pinned: true
+		}
+	})
+
+	const goal = await Saving.findByPk(goalId)
+
+	if (isPinned.length == 0) {
+		goal.update({ pinned: true })
+	} else {
+		isPinned[0].update({ pinned: false })
+		goal.update({ pinned: true })
+	}
+
+	req.session.flash = { success: `${goal.title} has been pinned.` }
+	req.session.save(() => res.redirect("/member/home"))
+}
+
 module.exports = {
 	showSavingForm,
 	processSavingForm,
@@ -320,4 +343,5 @@ module.exports = {
 	processAllocationForm,
 	showReallocationForm,
 	processReallocationForm,
+	pinnedGoal
 };
