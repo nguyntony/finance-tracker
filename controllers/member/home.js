@@ -1,8 +1,4 @@
-const {
-	msgContent,
-	getMessages,
-	dashboardContent,
-} = require("../../helper");
+const { msgContent, getMessages, dashboardContent } = require("../../helper");
 const { User } = require("../../models");
 const { Op } = require("sequelize");
 const numeral = require("numeral");
@@ -61,6 +57,18 @@ const home = async (req, res) => {
 	// Function to get most recent Transaction
 	const mostRecentTransaction = allNonDeposits[0];
 
+	let pinnedGoal = await user.getSavings({
+		where: {
+			pinned: true,
+		},
+	});
+
+	// pinnedGoal = pinnedGoal[0];
+
+	if (pinnedGoal.length == 0) {
+		pinnedGoal = false;
+	}
+
 	res.render("dashboard/home", {
 		partials: {
 			...dashboardContent,
@@ -79,7 +87,14 @@ const home = async (req, res) => {
 				? numeral(mostRecentTransaction.amount).format("$0,0.00")
 				: "",
 			NoMRT: "You have no recent transactions!",
-			MRSG: mostRecentSavingGoal,
+			PGoal: pinnedGoal[0], // If there's a pinned goal, set it to PGoal
+			PGoalProg: pinnedGoal
+				? numeral(pinnedGoal[0].progress).format("$0,0.00")
+				: "",
+			PGoalTotal: pinnedGoal
+				? numeral(pinnedGoal[0].total).format("$0,0.00")
+				: "",
+			MRSG: pinnedGoal ? "" : mostRecentSavingGoal, // If PGoal doesn't exist, set it to false and let MRSG be mostRecentSavingGoal
 			MRSGProg: mostRecentSavingGoal
 				? numeral(mostRecentSavingGoal.progress).format("$0,0.00")
 				: "",

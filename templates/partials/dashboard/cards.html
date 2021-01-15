@@ -43,7 +43,13 @@
 
             <div class="card-content">
                 <h3>Savings</h3>
-                <p> ${MRSG ? `${MRSG.title} - ${MRSGProg}/${MRSGTotal}` : `${NoMRSG}`}
+                <p> ${PGoal 
+                    ? `${PGoal.title} - ${PGoalProg}/${PGoalTotal}`
+                    : `${MRSG 
+                        ? `${MRSG.title} - ${MRSGProg}/${MRSGTotal}`
+                        : `${NoMRSG}`
+                        }`
+                    }
                 </p>
             </div>
 
