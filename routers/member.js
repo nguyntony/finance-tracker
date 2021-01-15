@@ -4,7 +4,7 @@ const router = express.Router()
 const { userController, memberController } = require("../controllers")
 
 router
-    .get("/", userController.requireLogin)
+    .get("*", userController.requireLogin)
     .get("/home", memberController.memberHomeController.home)
     .get("/transaction/create", memberController.transactionController.showTransactionForm)
     .post("/transaction/create", memberController.transactionController.processTransactionForm)
