@@ -11,7 +11,7 @@ T|WIN is a personal finance tracker web application. This app will help organize
 -   Visualization of expenses
 -   Filter monthly statements
 -   Categorize your expenses
--   Create saving goals
+-   Create saving goals and pin them on the home dashboard for quick view
 -   Transfer funds to a savings account
 -   Allocate saving funds towards your goals
 -   Create, receive, update and delete: deposits, transactions, goals
@@ -21,7 +21,6 @@ T|WIN is a personal finance tracker web application. This app will help organize
 ## Future Features
 
 -   Implement profile picture upload
--   Pin your important saving goal for a quick glance
 -   Filter completed saving goals
 -   Filter transactions by category
 
