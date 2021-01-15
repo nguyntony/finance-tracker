@@ -15,7 +15,7 @@
 
 <section id="dashboard">
     <section id="sidebar">
-        <div id="profile-pic"><img src="/images/steven.jpg" alt=""></div>
+        <div id="profile-pic"><img src=${firstName == "Steven" ? `/images/steven.jpg` : `/images/default-profile.png`} alt=""></div>
 
         <div id="name-card">
             <h4>${firstName} ${lastName}</h4>
