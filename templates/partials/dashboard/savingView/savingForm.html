@@ -24,7 +24,7 @@
             <label class="label-name" for="title">Savings Title</label>
         </div>
         <div class="entry saving-amount">
-            <input type="number" required placeholder=" " autocomplete="off" name="total" id="total" min="0" value="${saving ? `${saving.total}` : ""}">
+            <input type="number" required placeholder=" " autocomplete="off" name="total" id="total" min="0" step=".01" value="${saving ? `${saving.total}` : ""}">
             <label class="label-name" for="total">Amount ($)</label>
         </div>
 
