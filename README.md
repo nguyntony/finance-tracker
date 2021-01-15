@@ -52,13 +52,13 @@ This is the user dashboard. Here is where you will be able to quickly deposit fu
 
 This page is a quick view of your account balance, savings balance and recent transaction/saving goal. Click on the buttons on each card to go to the focused view of each category.
 
-![Dashboard](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/dashboard-info.PNG)
+![Dashboard](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/dashboard-info.png)
 
 ### Transaction View
 
 In the transaction view, you will see a list of your transaction of the current month. You can see past months by using the filter. To update a specific transaction click on the its title and to delete a transaction click the corresponding X button.
 
-![Transaction View](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/transaction-info.PNG)
+![Transaction View](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/transaction-info.png)
 
 ### Savings View
 
@@ -68,7 +68,7 @@ If you allocated funds into a goal that you wish to change you can click on the 
 
 NOTE: The “Reallocate” button will only appear if there is any progress towards your goal (ie. The “Townhouse” goal has a progress of $500, so if you click on the goal title you will see if the “Reallocate” button).
 
-![Saving View](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/saving-info.PNG)
+![Saving View](https://github.com/nguyntony/finance-tracker/blob/main/public/images/user-guide/saving-info.png)
 
 ## Icons and Images
 
