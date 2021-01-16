@@ -74,9 +74,9 @@ const processLogin = async (req, res) => {
 			username,
 		},
 	});
-	const passwordCheck = bcrypt.compareSync(password, user.hash);
+	// const passwordCheck = bcrypt.compareSync(password, user.hash);
 
-	if (user && passwordCheck) {
+	if (user && bcrypt.compareSync(password, user.hash)) {
 		req.session.user = {
 			id: user.id,
 			firstName: user.firstName,
@@ -88,7 +88,7 @@ const processLogin = async (req, res) => {
 	} else {
 		req.session.flash = { error: "The username or password is incorrect." };
 		req.session.save(() => {
-			res.redirect("/");
+			res.redirect("/user/login");
 		});
 	}
 };
